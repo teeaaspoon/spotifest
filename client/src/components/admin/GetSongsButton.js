@@ -11,7 +11,6 @@ class GetSongsButton extends Component {
 
     handleClick = event => {
         event.preventDefault();
-        console.log(this.props.artist_spotify_id);
         axios
             .post(`/api/v1/artists/${this.props.artist_id}/songs`)
             .then(response => {

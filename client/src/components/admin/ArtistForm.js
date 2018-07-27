@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import GetSongsButton from "./GetSongsButton";
+import { connect } from "react-redux";
+import { fetchArtists } from "../../actions/fetchActions";
 
 class ArtistForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             artist_name: "",
-            artists: []
+            artists: [],
+            status: ""
         };
     }
 
@@ -29,15 +32,22 @@ class ArtistForm extends Component {
                     artist_id: response.data.id
                 };
                 const artists = [...this.state.artists, newArtist];
-
                 this.setState({
                     artist_name: "",
-                    artists
+                    artists,
+                    status: "Artist added!"
                 });
-                this.props.getAllArtists();
+                setInterval(() => {
+                    this.setState({ status: "" });
+                }, 1000);
+                this.props.fetchArtists();
             })
             .catch(error => {
                 console.log(error);
+                this.setState({
+                    status:
+                        "Could Not Find Artist With That Name Or Already Exists"
+                });
             });
     };
 
@@ -60,12 +70,14 @@ class ArtistForm extends Component {
         return (
             <div>
                 <h1>Artist</h1>
+                <p>{this.state.status}</p>
                 <form onSubmit={this.onSubmit}>
                     <p>name</p>
                     <input
                         name="artist_name"
                         onChange={this.handleChange}
                         value={this.state.artist_name}
+                        required
                     />
                     <br />
                     <button> Submit </button>
@@ -78,4 +90,7 @@ class ArtistForm extends Component {
     }
 }
 
-export default ArtistForm;
+export default connect(
+    null,
+    { fetchArtists }
+)(ArtistForm);
