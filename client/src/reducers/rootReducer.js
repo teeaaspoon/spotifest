@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import autoCompleteReducer from "./autoCompleteReducer";
+import fetchReducer from "./fetchReducer";
 
-export default combineReducers({ autoComplete: autoCompleteReducer });
+export default combineReducers({ fetch: fetchReducer });
