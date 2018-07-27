@@ -13,7 +13,8 @@
         "react": "^16.4.1",
         "react-autocomplete": "^1.8.1",
         "react-dom": "^16.4.1",
-        "react-scripts": "1.1.4"
+        "react-scripts": "1.1.4",
+        "react-simple-maps": "^0.12.1"
     },
     "scripts": {
         "start": "react-scripts start",
