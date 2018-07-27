@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20180727153445) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.jsonb :spotify_user_info
+    t.jsonb "spotify_user_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
