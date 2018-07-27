@@ -2,10 +2,6 @@ import AutoComplete from "react-autocomplete";
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import {
-    fetchArtists,
-    fetchFestivals
-} from "../../actions/autoCompleteActions";
 
 class ArtistsToFestivalForm extends Component {
     constructor(props) {
@@ -49,11 +45,6 @@ class ArtistsToFestivalForm extends Component {
             });
     };
 
-    componentWillMount() {
-        this.props.fetchArtists();
-        this.props.fetchFestivals();
-    }
-
     render() {
         const artistsSelected = this.state.artistsSelected.map(artist => {
             return <p key={artist}>{artist}</p>;
@@ -64,7 +55,12 @@ class ArtistsToFestivalForm extends Component {
                 <p>Festivals</p>
                 <div onKeyDown={this.handleFestivalEnter}>
                     <AutoComplete
-                        items={this.props.festivalsForAutoComplete}
+                        items={this.props.festivals.map(festival => {
+                            return {
+                                id: festival.id,
+                                label: festival.title
+                            };
+                        })}
                         shouldItemRender={(item, value) =>
                             item.label
                                 .toLowerCase()
@@ -94,7 +90,12 @@ class ArtistsToFestivalForm extends Component {
                 <p>Artists</p>
                 <div onKeyDown={this.handleArtistEnter}>
                     <AutoComplete
-                        items={this.props.artistsForAutoComplete}
+                        items={this.props.artists.map(artist => {
+                            return {
+                                id: artist.id,
+                                label: artist.artist_name
+                            };
+                        })}
                         shouldItemRender={(item, value) =>
                             item.label
                                 .toLowerCase()
@@ -129,13 +130,11 @@ class ArtistsToFestivalForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    artistsForAutoComplete: state.autoComplete.artistsForAutoComplete,
-    festivalsForAutoComplete: state.autoComplete.festivalsForAutoComplete
+    artists: state.fetch.artists,
+    festivals: state.fetch.festivals
 });
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals }
+    null
 )(ArtistsToFestivalForm);
-
-// export default ArtistsToFestivalForm;
