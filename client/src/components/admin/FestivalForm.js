@@ -47,7 +47,7 @@ class FestivalForm extends Component {
                 console.log(error);
                 this.setState({
                     submitStatus:
-                        "Couldnt Not Submit Form, Please Make Sure All Fields Were Filled"
+                        "Couldnt Not Submit, Festival already exists or empty fields in form"
                 });
             });
     };
