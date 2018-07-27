@@ -1,5 +1,3 @@
-
-
 module Api::V1
   class FestivalsController < ApplicationController
     before_action :set_festival, only: [:show, :update, :destroy]
