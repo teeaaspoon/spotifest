@@ -10,7 +10,8 @@ class FestivalForm extends Component {
             endDate: "",
             city: "",
             country: "",
-            artists: ""
+            artists: "",
+            submitStatus: ""
         };
     }
 
@@ -38,11 +39,16 @@ class FestivalForm extends Component {
                     start_date: "",
                     end_date: "",
                     city: "",
-                    country: ""
+                    country: "",
+                    submitStatus: "Festival Successfully added!"
                 });
             })
             .catch(error => {
                 console.log(error);
+                this.setState({
+                    submitStatus:
+                        "Couldnt Not Submit Form, Please Make Sure All Fields Were Filled"
+                });
             });
     };
 
@@ -50,6 +56,7 @@ class FestivalForm extends Component {
         return (
             <div>
                 <h1>Festival</h1>
+                <p>{this.state.submitStatus}</p>
                 <form onSubmit={this.onSubmit}>
                     <p>Title</p>
                     <input
