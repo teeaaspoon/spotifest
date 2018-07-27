@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const fetchArtists = () => dispatch => {
     axios.get("/api/v1/artists").then(response => {
-        console.log(response.data);
         dispatch({
             type: FETCH_ARTISTS,
             payload: response.data

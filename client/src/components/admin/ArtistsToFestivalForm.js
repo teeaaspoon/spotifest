@@ -61,7 +61,12 @@ class ArtistsToFestivalForm extends Component {
                 <p>Festivals</p>
                 <div onKeyDown={this.handleFestivalEnter}>
                     <AutoComplete
-                        item={this.props.festivals}
+                        items={this.props.festivals.map(festival => {
+                            return {
+                                id: festival.id,
+                                label: festival.title
+                            };
+                        })}
                         shouldItemRender={(item, value) =>
                             item.label
                                 .toLowerCase()
@@ -91,7 +96,12 @@ class ArtistsToFestivalForm extends Component {
                 <p>Artists</p>
                 <div onKeyDown={this.handleArtistEnter}>
                     <AutoComplete
-                        item={this.props.artists}
+                        items={this.props.artists.map(artist => {
+                            return {
+                                id: artist.id,
+                                label: artist.artist_name
+                            };
+                        })}
                         shouldItemRender={(item, value) =>
                             item.label
                                 .toLowerCase()
