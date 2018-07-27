@@ -1,20 +1,28 @@
 import React, { Component } from "react"
-
 import {
   ComposableMap,
   ZoomableGroup,
   Geographies,
   Geography,
 } from "react-simple-maps"
-
+import axios from "axios";
+import { connect } from "react-redux";
+import {
+    fetchArtists,
+    fetchFestivals
+} from "../../actions/autoCompleteActions";
 const geographyMap = require('./mapData/world-continents.json')
-
 
 const wrapperStyles = {
   width: "100%",
   maxWidth: 980,
   margin: "0 auto",
 }
+
+const handleClick = geography => {
+  console.log(geography.properties.continent)
+}
+
 
 
 class Map extends Component {
@@ -37,7 +45,7 @@ class Map extends Component {
             <Geographies geography={geographyMap}>
               {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
                 <Geography
-                  onClick={()=> console.log(geography.id)}
+                  onClick={handleClick}
                   key={i}
                   geography={geography}
                   projection={projection}
@@ -70,5 +78,6 @@ class Map extends Component {
     )
   }
 }
+
 
 export default Map

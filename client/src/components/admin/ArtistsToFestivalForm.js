@@ -59,6 +59,7 @@ class ArtistsToFestivalForm extends Component {
             return <p key={artist}>{artist}</p>;
         });
         return (
+
             <div>
                 <h1>Artists To Festival Form</h1>
                 <p>Festivals</p>
