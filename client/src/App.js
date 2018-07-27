@@ -1,29 +1,35 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
-import LoginButton from './components/Auth'
-import { Provider } from "react-redux";
-import store from "./store";
+import LoginButton from "./components/Auth";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
 import "./App.css";
 
-let Login = () => <LoginButton />
+import { connect } from "react-redux";
+import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
+
+let Login = () => <LoginButton />;
 
 let User = () => <h1>User</h1>;
 
 class App extends Component {
+    componentWillMount() {
+        this.props.fetchArtists();
+        this.props.fetchFestivals();
+    }
     render() {
         return (
-            <Provider store={store}>
-                <Router>
-                    <Home path="/" />
-                    <Admin path="/admin" />
-                    <User path="/user" />
-                    <Login path="/login" />
-                </Router>
-            </Provider>
+            <Router>
+                <Home path="/" />
+                <Admin path="/admin" />
+                <User path="/user" />
+                <Login path="/login" />
+            </Router>
         );
     }
 }
 
-export default App;
+export default connect(
+    null,
+    { fetchArtists, fetchFestivals }
+)(App);
