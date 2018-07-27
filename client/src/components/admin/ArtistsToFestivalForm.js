@@ -2,7 +2,6 @@ import AutoComplete from "react-autocomplete";
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { fetchArtists, fetchFestivals } from "../../actions/fetchActions";
 
 class ArtistsToFestivalForm extends Component {
     constructor(props) {
@@ -45,11 +44,6 @@ class ArtistsToFestivalForm extends Component {
                 console.log(error);
             });
     };
-
-    componentWillMount() {
-        this.props.fetchArtists();
-        this.props.fetchFestivals();
-    }
 
     render() {
         const artistsSelected = this.state.artistsSelected.map(artist => {
@@ -143,7 +137,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals }
+    null
 )(ArtistsToFestivalForm);
-
-// export default ArtistsToFestivalForm;
