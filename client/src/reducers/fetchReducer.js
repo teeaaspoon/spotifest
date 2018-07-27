@@ -1,8 +1,8 @@
 import { FETCH_ARTISTS, FETCH_FESTIVALS } from "../actions/types";
 
 const initialState = {
-    artistsForAutoComplete: [],
-    festivalsForAutoComplete: []
+    artists: [],
+    festivals: []
 };
 
 export default function(state = initialState, action) {
@@ -10,12 +10,12 @@ export default function(state = initialState, action) {
         case FETCH_ARTISTS:
             return {
                 ...state,
-                artistsForAutoComplete: action.payload
+                artists: action.payload
             };
         case FETCH_FESTIVALS:
             return {
                 ...state,
-                festivalsForAutoComplete: action.payload
+                festivals: action.payload
             };
         default:
             return state;
