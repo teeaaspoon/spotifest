@@ -16,7 +16,6 @@ const wrapperStyles = {
   margin: "0 auto",
 }
 
-console.log(geographyMap)
 
 class Map extends Component {
   render() {

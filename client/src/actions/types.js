@@ -1,0 +1,2 @@
+export const FETCH_ARTISTS = "FETCH_ARTISTS";
+export const FETCH_FESTIVALS = "FETCH_FESTIVALS";
