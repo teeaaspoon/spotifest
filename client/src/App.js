@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
-
+import LoginButton from './components/Auth'
 import logo from "./logo.svg";
 import Admin from "./components/admin/Admin";
 import "./App.css";
@@ -17,6 +17,8 @@ let Home = () => (
     </div>
 );
 
+let Login = () => <LoginButton />
+
 let User = () => <h1>User</h1>;
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
                 <Home path="/" />
                 <Admin path="/admin" />
                 <User path="/user" />
+                <Login path="/login" />
             </Router>
         );
     }
