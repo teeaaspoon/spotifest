@@ -3,7 +3,9 @@ import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
 import LogOutButton from "../auth/LogOutButton";
 
-import Map from "./Map.js";
+import Map from "./Map.js"
+import ListOfFestivals from "./ListOfFestivals.js"
+
 
 class Home extends Component {
     render() {
@@ -13,6 +15,7 @@ class Home extends Component {
             <LogOutButton />
             <SignUpForm />
             <Map/>
+            <ListOfFestivals/>
           </div>
         );
     }
