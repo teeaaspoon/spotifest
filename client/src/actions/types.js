@@ -3,4 +3,6 @@ export const FETCH_FESTIVALS = "FETCH_FESTIVALS";
 export const SAVE_CONTINENT = "SAVE_CONTINENT";
 export const SAVE_YEAR = "SAVE_YEAR";
 export const SAVE_JWT = "SAVE_JWT";
+export const SAVE_SEARCH_INPUT = "SAVE_SEARCH_INPUT";
+export const SAVE_FESTIVAL_LIST = "SAVE_FESTIVAL_LIST";
 
