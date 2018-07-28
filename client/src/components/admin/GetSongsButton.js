@@ -18,7 +18,7 @@ class GetSongsButton extends Component {
                 this.setState({ fetchedSongs: true });
             })
             .catch(error => {
-                console.log(error);
+                console.log(error, "not all tracks were added");
             });
     };
 
