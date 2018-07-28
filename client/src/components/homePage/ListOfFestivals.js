@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import countryToContinent from "./mapData/countryToContinent.json"
 import Festival from "./Festival.js"
 import AutoComplete from "react-autocomplete";
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
 
 
 
@@ -28,6 +30,14 @@ class ListOfFestivals extends Component {
     return (
       <div className="list-of-festivals">
         <h3>Festivals</h3>
+{/*        <Dropdown
+          options={years}
+          onChange={e =>
+                this.setState({ selectedYear: e.target.value })
+          }
+          value={this.state.selectedYear || null}
+          />*/}
+
         <AutoComplete
             items={years.map(year => {
                 return {
