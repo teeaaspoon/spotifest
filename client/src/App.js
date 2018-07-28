@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
-import LoginButton from "./components/Auth";
+import { Provider } from "react-redux";
+import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
-import "./App.css";
-
+import jwtDecode from 'jwt-decode';
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
-
-let Login = () => <LoginButton />;
+import "./App.css";
 
 let User = () => <h1>User</h1>;
 
@@ -17,14 +16,23 @@ class App extends Component {
         this.props.fetchArtists();
         this.props.fetchFestivals();
     }
+    componentDidMount() {
+         try {
+            let jwt = window.localStorage.getItem('jwt');
+            let result = jwtDecode(jwt);
+        } catch(error) {
+            console.log(error);
+        }
+    }
     render() {
         return (
-            <Router>
-                <Home path="/" />
-                <Admin path="/admin" />
-                <User path="/user" />
-                <Login path="/login" />
-            </Router>
+            <Provider store={store}>
+                <Router>
+                    <Home path="/" />
+                    <Admin path="/admin" />
+                    <User path="/user" />
+                </Router>
+            </Provider>
         );
     }
 }

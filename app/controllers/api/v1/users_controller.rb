@@ -5,7 +5,6 @@ module Api::V1
     # GET /users
     def index
       @users = User.all
-
       render json: @users
     end
 
@@ -16,8 +15,8 @@ module Api::V1
 
     # POST /users
     def create
-      @spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
-      @user = User.new(spotify_user_info: @spotify_user)
+      @user = User.new(user_params)
+      binding.pry
 
       if @user.save
         render json: @user, status: :created
@@ -46,5 +45,9 @@ module Api::V1
         @user = User.find(params[:id])
       end
 
+      # Only allow a trusted parameter "white list" through.
+      def user_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :admin, :spotify_user_info)
+      end
   end
 end
