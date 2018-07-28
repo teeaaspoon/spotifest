@@ -1,5 +1,5 @@
 module Api::V1
-  class TokensController < SpotifyController
+  class TokensController < ApplicationController
     def create
       @user = User.find_by(email: params[:email])
       # binding.pry

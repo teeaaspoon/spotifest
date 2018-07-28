@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getJwt } from "../../actions/userActions";
+import { connect } from "react-redux";
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
         super(props);
         this.state = {
@@ -30,11 +32,12 @@ export default class SignUpForm extends Component {
                 })
                 .then(response => {
                   window.localStorage.setItem('jwt', response.data.jwt);
+                  this.props.getJwt(response.data.jwt);
                   this.setState({
                     email: "",
                     password: "",
                     password_confirmation: ""
-                });
+                  });
                 })
             })
             .catch(error => {
@@ -77,3 +80,8 @@ export default class SignUpForm extends Component {
   );
   }
 }
+
+export default connect(
+    null,
+    { getJwt }
+)(SignUpForm);
