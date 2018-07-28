@@ -1,8 +1,9 @@
-import { SAVE_CONTINENT, SAVE_YEAR } from "../actions/types";
+import { SAVE_CONTINENT, SAVE_YEAR, SEARCH_FESTIVAL } from "../actions/types";
 
 const initialState = {
     continent: "",
-    year: ""
+    year: "",
+    searchInput: ""
 };
 
 export default function(state = initialState, action) {
@@ -10,6 +11,7 @@ export default function(state = initialState, action) {
         case SAVE_CONTINENT:
             return {
                 ...state,
+                searchInput: "",
                 year: "",
                 continent: action.payload
             }
@@ -18,7 +20,13 @@ export default function(state = initialState, action) {
                 ...state,
                 year: action.payload
             }
-
+        case SEARCH_FESTIVAL:
+            return {
+                ...state,
+                year: "",
+                continent: "",
+                searchInput: action.payload
+            }
         default:
             return state;
     }

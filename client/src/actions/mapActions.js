@@ -1,4 +1,4 @@
-import { SAVE_CONTINENT, SAVE_YEAR } from "./types";
+import { SAVE_CONTINENT, SAVE_YEAR, SEARCH_FESTIVAL } from "./types";
 
 export const saveContinent = geography => dispatch => {
     dispatch({
@@ -8,9 +8,15 @@ export const saveContinent = geography => dispatch => {
 };
 
 export const saveYear = (year) => dispatch => {
-  console.log(year)
     dispatch({
         type: SAVE_YEAR,
         payload: year
+    });
+};
+
+export const searchFestival = (searchInput) => dispatch => {
+    dispatch({
+        type: SEARCH_FESTIVAL,
+        payload: searchInput
     });
 };
