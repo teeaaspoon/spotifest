@@ -1,7 +1,8 @@
-import { SAVE_CONTINENT } from "../actions/types";
+import { SAVE_CONTINENT, SAVE_YEAR } from "../actions/types";
 
 const initialState = {
-    continent: ""
+    continent: "",
+    year: ""
 };
 
 export default function(state = initialState, action) {
@@ -9,8 +10,15 @@ export default function(state = initialState, action) {
         case SAVE_CONTINENT:
             return {
                 ...state,
+                year: "",
                 continent: action.payload
-            };
+            }
+        case SAVE_YEAR:
+            return {
+                ...state,
+                year: action.payload
+            }
+
         default:
             return state;
     }

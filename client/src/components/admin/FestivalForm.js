@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { fetchFestivals } from "../../actions/fetchActions";
+import { connect } from "react-redux";
 
 class FestivalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: "",
-            startDate: "",
-            endDate: "",
+            start_date: "",
+            end_date: "",
             city: "",
             country: "",
-            artists: ""
+            artists: "",
+            submitStatus: ""
         };
     }
 
@@ -38,11 +41,17 @@ class FestivalForm extends Component {
                     start_date: "",
                     end_date: "",
                     city: "",
-                    country: ""
+                    country: "",
+                    submitStatus: "Festival Successfully added!"
                 });
+                this.props.fetchFestivals();
             })
             .catch(error => {
                 console.log(error);
+                this.setState({
+                    submitStatus:
+                        "Couldnt Not Submit, Festival already exists or empty fields in form"
+                });
             });
     };
 
@@ -50,6 +59,7 @@ class FestivalForm extends Component {
         return (
             <div>
                 <h1>Festival</h1>
+                <p>{this.state.submitStatus}</p>
                 <form onSubmit={this.onSubmit}>
                     <p>Title</p>
                     <input
@@ -89,4 +99,7 @@ class FestivalForm extends Component {
     }
 }
 
-export default FestivalForm;
+export default connect(
+    null,
+    { fetchFestivals }
+)(FestivalForm);

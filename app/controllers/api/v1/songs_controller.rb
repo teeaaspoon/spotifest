@@ -5,9 +5,7 @@ module Api::V1
 
     # GET /songs
     def index
-      @songs = Song.all
-
-      render json: @songs
+      render json: @artist.songs
     end
 
     # GET /songs/1
@@ -20,9 +18,13 @@ module Api::V1
       @songs = []
       @tracks = RSpotify::Track.search("artist:#{@artist.artist_name}", limit: 10)
       @tracks.each do |track|
-        @song = @artist.songs.new({song_name: track.name, spotify_uri: track.uri, spotify_song_info: track})
-        if @song.save
-          @songs << @song  
+        if Song.find_by spotify_uri: track.uri
+          @songs << "existing song, don't add to db"  
+        else
+          @song = @artist.songs.new({song_name: track.name, spotify_uri: track.uri, spotify_song_info: track})
+          if @song.save
+            @songs << @song  
+          end
         end
       end
 

@@ -10,12 +10,18 @@ class ArtistsToFestivalForm extends Component {
             artistsSelected: [],
             artist: "",
             festival: "",
-            festivalSelected: ""
+            festivalSelected: "",
+            status: ""
         };
     }
 
+    // check to make sure they aren't adding the same person twice
     handleArtistEnter = event => {
         if (event.keyCode === 13) {
+            if (this.state.artistsSelected.includes(this.state.artist)) {
+                this.setState({ status: "Artist was already selected" });
+                return;
+            }
             const artistsSelected = [
                 ...this.state.artistsSelected,
                 this.state.artist
@@ -38,7 +44,11 @@ class ArtistsToFestivalForm extends Component {
             })
             .then(response => {
                 console.log(response);
-                this.setState({});
+                this.setState({
+                    artistsSelected: [],
+                    festivalSelected: "",
+                    status: "Successfully added artists to festival"
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -50,8 +60,10 @@ class ArtistsToFestivalForm extends Component {
             return <p key={artist}>{artist}</p>;
         });
         return (
+
             <div>
                 <h1>Artists To Festival Form</h1>
+                <p>{this.state.status}</p>
                 <p>Festivals</p>
                 <div onKeyDown={this.handleFestivalEnter}>
                     <AutoComplete

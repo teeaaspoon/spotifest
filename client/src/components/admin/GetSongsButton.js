@@ -11,7 +11,6 @@ class GetSongsButton extends Component {
 
     handleClick = event => {
         event.preventDefault();
-        console.log(this.props.artist_spotify_id);
         axios
             .post(`/api/v1/artists/${this.props.artist_id}/songs`)
             .then(response => {
@@ -19,7 +18,7 @@ class GetSongsButton extends Component {
                 this.setState({ fetchedSongs: true });
             })
             .catch(error => {
-                console.log(error);
+                console.log(error, "not all tracks were added");
             });
     };
 

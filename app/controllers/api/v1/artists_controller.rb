@@ -17,12 +17,20 @@ module Api::V1
     # POST /artists
     def create
       @spotify_artist = RSpotify::Artist.search(artist_params[:artist_name])[0]
-      @artist = Artist.new({artist_name: @spotify_artist.name, spotify_artist_id: @spotify_artist.id, spotify_artist_info: @spotify_artist})
+      # check if that spotify artist is already in DB
+      if Artist.find_by spotify_artist_id: @spotify_artist.id
+        render json: @artist, status: :unprocessable_entity
+        return
+      else
+        @artist = Artist.new({artist_name: @spotify_artist.name, spotify_artist_id: @spotify_artist.id, spotify_artist_info: @spotify_artist})
+      end      
+
       if @artist.save
         render json: @artist, status: :created
       else
         render json: @artist.errors, status: :unprocessable_entity
       end
+
     end
 
     # PATCH/PUT /artists/1

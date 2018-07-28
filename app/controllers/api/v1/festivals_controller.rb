@@ -16,7 +16,14 @@ module Api::V1
 
     # POST /festivals
     def create
-      @festival = Festival.new(festival_params)
+      # check if already exists
+      if Festival.find_by title: festival_params[:title], start_date: festival_params[:start_date]
+          render json: @festival.errors, status: :unprocessable_entity
+          return
+      else
+        @festival = Festival.new(festival_params)
+      end
+
       if @festival.save
         render json: @festival, status: :created
       else
