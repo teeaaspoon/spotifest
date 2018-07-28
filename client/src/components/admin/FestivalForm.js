@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { fetchFestivals } from "../../actions/fetchActions";
+import { connect } from "react-redux";
 
 class FestivalForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: "",
-            startDate: "",
-            endDate: "",
+            start_date: "",
+            end_date: "",
             city: "",
             country: "",
             artists: "",
@@ -42,6 +44,7 @@ class FestivalForm extends Component {
                     country: "",
                     submitStatus: "Festival Successfully added!"
                 });
+                this.props.fetchFestivals();
             })
             .catch(error => {
                 console.log(error);
@@ -96,4 +99,7 @@ class FestivalForm extends Component {
     }
 }
 
-export default FestivalForm;
+export default connect(
+    null,
+    { fetchFestivals }
+)(FestivalForm);

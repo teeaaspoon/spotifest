@@ -39,7 +39,7 @@ class ArtistForm extends Component {
                 });
                 setInterval(() => {
                     this.setState({ status: "" });
-                }, 1000);
+                }, 5000);
                 this.props.fetchArtists();
             })
             .catch(error => {
