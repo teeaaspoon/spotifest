@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import { Provider } from "react-redux";
 import store from "./store";
-import LoginButton from "./components/Auth";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
 import jwtDecode from 'jwt-decode';
