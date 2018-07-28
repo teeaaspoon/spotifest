@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { selectFestival } from "../../actions/selectFestivalActions";
 
 class Festival extends Component {
-  render() {
-    return (
-      <p>{this.props.festival.title}</p>
-    )
-  }
+    handleClick = () => {
+        this.props.selectFestival(this.props.festival);
+    };
+    render() {
+        return <p onClick={this.handleClick}>{this.props.festival.title}</p>;
+    }
 }
 
-export default Festival
+export default connect(
+    null,
+    { selectFestival }
+)(Festival);
