@@ -5,9 +5,7 @@ module Api::V1
 
     # GET /songs
     def index
-      @songs = Song.all
-
-      render json: @songs
+      render json: @artist.songs
     end
 
     # GET /songs/1
