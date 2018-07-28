@@ -6,8 +6,7 @@ export default class LoginForm extends Component {
         super(props);
         this.state = {
             email: "",
-            password: "",
-            jwt: ""
+            password: ""
         };
     }
 
@@ -23,12 +22,10 @@ export default class LoginForm extends Component {
                 email, password
             })
             .then(response => {
-                let jwt = response.data.jwt
-                window.localStorage.setItem('jwt', jwt);
+                window.localStorage.setItem('jwt', response.data.jwt);
                 this.setState({
                     email: "",
-                    password: "",
-                    jwt: jwt
+                    password: ""
                 });
             })
             .catch(error => {

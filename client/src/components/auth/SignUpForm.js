@@ -7,9 +7,7 @@ export default class SignUpForm extends Component {
         this.state = {
             email: "",
             password: "",
-            password_confirmation: "",
-            jwt: ""
-
+            password_confirmation: ""
         };
     }
 
@@ -31,14 +29,11 @@ export default class SignUpForm extends Component {
                   email, password
                 })
                 .then(response => {
-                  let jwt = response.data.jwt
-                  window.localStorage.setItem('jwt', jwt);
+                  window.localStorage.setItem('jwt', response.data.jwt);
                   this.setState({
                     email: "",
                     password: "",
-                    password_confirmation: "",
-                    jwt: jwt
-
+                    password_confirmation: ""
                 });
                 })
             })
