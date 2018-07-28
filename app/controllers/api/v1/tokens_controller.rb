@@ -1,11 +1,11 @@
 module Api::V1
-  class TokensController < ApplicationController
+  class TokensController < SpotifyController
     def create
-      user = User.find_by(email: params[:email])
+      @user = User.find_by(email: params[:email])
       # binding.pry
-      if user&.authenticate(params[:password])
+      if @user&.authenticate(params[:password])
         render json: {
-          jwt: encode_token({id: user.id, email: user.email, spotify_user_info: user.spotify_user_info})
+          jwt: encode_token({id: @user.id, email: @user.email, spotify_user_info: @user.spotify_user_info})
         }
       else
         head :not_found
