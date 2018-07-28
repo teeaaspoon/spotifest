@@ -15,8 +15,8 @@ class Home extends Component {
             <LogOutButton />
             <SignUpForm />
             <SearchBar />
+            <ListOfFestivals />
             <Map/>
-            <ListOfFestivals/>
           </div>
         );
     }

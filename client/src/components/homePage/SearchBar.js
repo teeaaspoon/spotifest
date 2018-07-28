@@ -1,12 +1,41 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchFestival } from "../../actions/mapActions.js";
+import { saveFestivalList, saveSearchInput } from "../../actions/mapActions.js";
 
 
 class SearchBar extends Component {
+
+  searchFestivals = (searchInput) => {
+    const list = [];
+    const searchRegEx = new RegExp(searchInput, 'i')
+    this.props.festivals.forEach(festival => {
+      if (searchRegEx.test(festival.title)) {
+        list.push(festival)
+      }
+    })
+    return list
+  }
+
+  searchFestivals2 = (searchInput) => {
+    const list = [];
+    const searchInputArray = searchInput.split(" ").map(word => (`(?=.*${word})`))
+    let searchStr = searchInputArray.reduce((acc, cur) => acc.concat(cur))
+    searchStr = `/^${searchStr}.+/`
+
+    const searchRegEx = new RegExp(searchStr, 'i')
+    this.props.festivals.forEach(festival => {
+      if (searchRegEx.test(festival.title)) {
+        list.push(festival)
+      }
+    })
+    return list
+
+  }
+
   onSearch = (event) => {
-    this.props.searchFestival(event.target.value)
+    this.props.saveSearchInput(event.target.value)
+    this.props.saveFestivalList(this.searchFestivals2(event.target.value))
   }
 
   render() {
@@ -21,10 +50,11 @@ class SearchBar extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchInput: state.map.searchInput
+    searchInput: state.map.searchInput,
+    festivals: state.fetch.festivals
 });
 
 export default connect(
     mapStateToProps,
-    { searchFestival }
+    { saveFestivalList, saveSearchInput}
 )(SearchBar);
