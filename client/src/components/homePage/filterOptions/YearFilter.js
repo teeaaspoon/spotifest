@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveYear } from "../../actions/mapActions.js";
+import { saveYear } from "../../../actions/mapActions.js";
 
 
 class YearFilter extends Component {

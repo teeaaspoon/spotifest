@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import countryToContinent from "./mapData/countryToContinent.json"
 import Festival from "./Festival.js"
-import YearFilter from "./YearFilter.js"
+import YearFilter from "./filterOptions/YearFilter.js"
+import ContinentFilter from "./filterOptions/ContinentFilter.js"
 import { saveFestivalList } from '../../actions/mapActions.js'
 
 class ListOfFestivals extends Component {
@@ -14,24 +15,30 @@ class ListOfFestivals extends Component {
       return festivals
     }
   }
+  filterByContinent = (continent, festivals) => {
+    if (continent !== "") {
+      let festivalsInContinent = festivals.filter(festival => countryToContinent[festival.country] === this.props.continent)
+      return festivalsInContinent
+    } else {
+      return festivals
+    }
+  }
 
   render() {
-    // if (this.props.continent !== "") {
-    //   festivalList = this.props.festivals.filter(festival => countryToContinent[festival.country] === this.props.continent)
-    // }
     let festivals = this.props.festivals
     festivals = this.filterByYear(this.props.year, festivals)
+    festivals = this.filterByContinent(this.props.continent, festivals)
+
 
     let filteredFestivals = festivals.map(festival => <Festival festival={festival} key={festival.id}/>)
-
-    // if (!this.props.year) {
-    //   filteredFestivals = null
-    // }
 
     return (
       <div className="list-of-festivals">
         <h3>Festivals</h3>
-        {this.props.year !== "" && <YearFilter/>}
+        <div className="filter-options">
+          {this.props.year !== "" && <YearFilter/>}
+          {this.props.continent !== "" && <ContinentFilter/>}
+        </div>
         {filteredFestivals}
       </div>
     )
