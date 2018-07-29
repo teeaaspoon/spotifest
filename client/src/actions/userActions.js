@@ -1,4 +1,4 @@
-import { SAVE_JWT, SELECT_FESTIVAL, FETCH_FESTIVAL_ARTISTS } from "./types";
+import { SAVE_JWT, SELECT_FESTIVAL, CREATE_PLAYLIST } from "./types";
 import axios from "axios";
 
 export const getJwt = jwt => dispatch => {
@@ -15,10 +15,10 @@ export const selectFestival = festival => dispatch => {
     });
 };
 
-export const fetchFestivalArtists = festival_id => dispatch => {
-    axios.get(`/api/v1/festivals/${festival_id}/artists`).then(response => {
+export const createPlaylist = params => dispatch => {
+    axios.post("/api/v1/createspotifyplaylist", params).then(response => {
         dispatch({
-            type: FETCH_FESTIVAL_ARTISTS,
+            type: CREATE_PLAYLIST,
             payload: response.data
         });
     });

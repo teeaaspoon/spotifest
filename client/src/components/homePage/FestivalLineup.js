@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchFestivalArtists } from "../../actions/userActions";
+import { fetchFestivalArtists } from "../../actions/fetchActions";
 
 class FestivalSelected extends Component {
     componentWillMount() {
@@ -35,7 +35,7 @@ class FestivalSelected extends Component {
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    festivalArtists: state.user.festivalArtists
+    festivalArtists: state.fetch.festivalArtists
 });
 
 export default connect(

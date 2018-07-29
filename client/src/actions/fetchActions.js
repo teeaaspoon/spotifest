@@ -22,3 +22,12 @@ export const fetchFestivals = () => dispatch => {
         });
     });
 };
+
+export const fetchFestivalArtists = festival_id => dispatch => {
+    axios.get(`/api/v1/festivals/${festival_id}/artists`).then(response => {
+        dispatch({
+            type: FETCH_FESTIVAL_ARTISTS,
+            payload: response.data
+        });
+    });
+};

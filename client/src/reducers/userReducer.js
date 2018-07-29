@@ -1,13 +1,8 @@
-import {
-    SAVE_JWT,
-    SELECT_FESTIVAL,
-    FETCH_FESTIVAL_ARTISTS
-} from "../actions/types";
+import { SAVE_JWT, SELECT_FESTIVAL, CREATE_PLAYLIST } from "../actions/types";
 
 const initialState = {
     jwt: "",
-    festivalSelected: "",
-    festivalArtists: []
+    festivalSelected: ""
 };
 
 export default function(state = initialState, action) {
@@ -22,10 +17,9 @@ export default function(state = initialState, action) {
                 ...state,
                 festivalSelected: action.payload
             };
-        case FETCH_FESTIVAL_ARTISTS:
+        case CREATE_PLAYLIST:
             return {
-                ...state,
-                festivalArtists: action.payload
+                ...state
             };
         default:
             return state;
