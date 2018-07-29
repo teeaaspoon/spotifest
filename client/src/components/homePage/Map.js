@@ -39,8 +39,9 @@ class Map extends Component {
               <Geographies geography={geographyMap}>
                 {(geographies, projection) =>
                     geographies.map(
-                      (geography, i) =>
-                      geography.id !== "ATA" && (
+                      (geography, i) => {
+                      if (geography.id !== "ATA") {
+                        return (
                         <Geography
                           onClick={
                             this.props.saveContinent
@@ -50,26 +51,26 @@ class Map extends Component {
                           projection={projection}
                           style={{
                             default: {
-                                fill: "#ECEFF1",
-                                stroke: "#607D8B",
-                                strokeWidth: 0.75,
-                                outline: "none"
+                              fill: "#ECEFF1",
+                              stroke: "#607D8B",
+                              strokeWidth: 0.75,
+                              outline: "none"
                             },
                             hover: {
-                                fill: "#607D8B",
-                                stroke: "#607D8B",
-                                strokeWidth: 0.75,
-                                outline: "none"
+                              fill: "#607D8B",
+                              stroke: "#607D8B",
+                              strokeWidth: 0.75,
+                              outline: "none"
                             },
                             pressed: {
-                                fill: "#FF5722",
-                                stroke: "#607D8B",
-                                strokeWidth: 0.75,
-                                outline: "none"
+                              fill: "#FF5722",
+                              stroke: "#607D8B",
+                              strokeWidth: 0.75,
+                              outline: "none"
                             }
                           }}
                         />
-                      )
+                      )}}
                     )
                   }
               </Geographies>

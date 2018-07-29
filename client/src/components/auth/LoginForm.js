@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getJwt } from "../../actions/userActions";
+import { connect } from "react-redux";
 
-export default class LoginForm extends Component {
+ class LoginForm extends Component {
   constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +25,7 @@ export default class LoginForm extends Component {
             })
             .then(response => {
                 window.localStorage.setItem('jwt', response.data.jwt);
+                this.props.getJwt(response.data.jwt);
                 this.setState({
                     email: "",
                     password: ""
@@ -39,14 +42,12 @@ export default class LoginForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             name="email"
-            label="email"
             type="email"
             value={this.state.email}
             onChange={this.handleChange}/>
 
           <input
             name="password"
-            label="password"
             type="password"
             value={this.state.password}
             onChange={this.handleChange} />
@@ -59,3 +60,13 @@ export default class LoginForm extends Component {
   );
   }
 }
+
+// const mapStateToProps = state => ({
+//     artists: state.fetch.artists,
+//     festivals: state.fetch.festivals
+// });
+
+export default connect(
+    null,
+    { getJwt }
+)(LoginForm);
