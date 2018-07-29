@@ -1,26 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Select from 'react-select';
-import { saveYear, saveFestivalList } from '../../actions/mapActions.js'
+import { saveYear } from '../../actions/mapActions.js'
 
 
 
 class YearSelect extends Component {
-  filterByYear = (year) => {
-    if (year !== "") {
-      let festivalsInYear = this.props.festivalList.filter(festival => festival.title.slice(-4) === year)
-      this.props.saveFestivalList(festivalsInYear)
-    }
-  }
-
   handleYearChange = (selectedOption) => {
     this.props.saveYear(selectedOption.value)
-    this.filterByYear(selectedOption.value)
   }
 
 
   render() {
-    const years = this.props.festivalList.map(festival => festival.title.slice(-4))
+    const years = this.props.festivals.map(festival => festival.title.slice(-4))
                               .filter((elem, pos, arr) => {
                                 return arr.indexOf(elem) === pos;
                               });
@@ -40,10 +32,10 @@ class YearSelect extends Component {
 
 const mapStateToProps = state => ({
     year: state.map.year,
-    festivalList: state.map.festivalList
+    festivals: state.fetch.festivals
 });
 
 export default connect(
     mapStateToProps,
-    { saveYear, saveFestivalList }
+    { saveYear }
 )(YearSelect);
