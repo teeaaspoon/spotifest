@@ -11,7 +11,11 @@ class Festival extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    festivalSelected: state.festivalSelected.festivalSelected
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     { selectFestival }
 )(Festival);

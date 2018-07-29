@@ -1,4 +1,8 @@
-import { FETCH_ARTISTS, FETCH_FESTIVALS } from "./types";
+import {
+    FETCH_ARTISTS,
+    FETCH_FESTIVALS,
+    FETCH_FESTIVAL_ARTISTS
+} from "./types";
 import axios from "axios";
 
 export const fetchArtists = () => dispatch => {
@@ -14,6 +18,15 @@ export const fetchFestivals = () => dispatch => {
     axios.get("/api/v1/festivals").then(response => {
         dispatch({
             type: FETCH_FESTIVALS,
+            payload: response.data
+        });
+    });
+};
+
+export const fetchFestivalArtists = festival_id => dispatch => {
+    axios.get(`/api/v1/festivals/${festival_id}/artists`).then(response => {
+        dispatch({
+            type: FETCH_FESTIVAL_ARTISTS,
             payload: response.data
         });
     });

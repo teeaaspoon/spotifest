@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       resources :tokens
       post "/add_artists_to_festival" => 'artistfestival#create'
       resources :users
-      resources :festivals
+      resources :festivals do
+        resources :artists, only: [:index]
+      end
       resources :artists do
         resources :songs
       end

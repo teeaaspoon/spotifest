@@ -1,8 +1,13 @@
-import { FETCH_ARTISTS, FETCH_FESTIVALS } from "../actions/types";
+import {
+    FETCH_ARTISTS,
+    FETCH_FESTIVALS,
+    FETCH_FESTIVAL_ARTISTS
+} from "../actions/types";
 
 const initialState = {
     artists: [],
-    festivals: []
+    festivals: [],
+    festivalArtists: []
 };
 
 export default function(state = initialState, action) {
@@ -16,6 +21,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 festivals: action.payload
+            };
+        case FETCH_FESTIVAL_ARTISTS:
+            return {
+                ...state,
+                festivalArtists: action.payload
             };
         default:
             return state;

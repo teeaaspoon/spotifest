@@ -4,8 +4,12 @@ module Api::V1
 
     # GET /artists
     def index
-      @artists = Artist.all
-
+      if params[:festival_id]
+        @festival = Festival.find params[:festival_id]
+        @artists = @festival.artists
+      else
+        @artists = Artist.all
+      end
       render json: @artists
     end
 

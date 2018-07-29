@@ -7,6 +7,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case SELECT_FESTIVAL:
+            console.log(state);
             return {
                 ...state,
                 festivalSelected: action.payload
