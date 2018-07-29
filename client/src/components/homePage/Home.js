@@ -5,6 +5,8 @@ import LogOutButton from "../auth/LogOutButton";
 import SearchBar from "./SearchBar.js";
 import Map from "./Map.js"
 import ListOfFestivals from "./ListOfFestivals.js"
+import GetLocationButton from "./GetLocationButton.js"
+
 
 
 class Home extends Component {
@@ -16,6 +18,7 @@ class Home extends Component {
             <SignUpForm />
             <SearchBar />
             <ListOfFestivals />
+            <GetLocationButton />
             <Map/>
           </div>
         );

@@ -12,7 +12,6 @@ class SearchBar extends Component {
     searchStr = `^${searchStr}.+`
 
     const searchRegEx = new RegExp(searchStr, 'i')
-    console.log(searchRegEx)
     this.props.festivals.forEach(festival => {
       if (searchRegEx.test(festival.title)) {
         list.push(festival)
