@@ -4,7 +4,9 @@ import countryToContinent from "./mapData/countryToContinent.json"
 import Festival from "./Festival.js"
 import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
+import SearchFilter from "./filterOptions/SearchFilter.js"
 import { saveFestivalList } from '../../actions/mapActions.js'
+import Fuse from "fuse.js"
 
 class ListOfFestivals extends Component {
   filterByYear = (year, festivals) => {
@@ -24,10 +26,27 @@ class ListOfFestivals extends Component {
     }
   }
 
+  filterBySearch = (searchInput, festivals) => {
+    if (searchInput !== "") {
+      const options = {
+        shouldSort: true,
+        threshold: 0.3,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: ["title", "city","country"]
+      };
+      const fuse = new Fuse(festivals, options)
+      return fuse.search(searchInput)
+    } else {
+      return festivals
+    }
+  }
+
   render() {
     let festivals = this.props.festivals
     festivals = this.filterByYear(this.props.year, festivals)
     festivals = this.filterByContinent(this.props.continent, festivals)
+    festivals = this.filterBySearch(this.props.searchInput, festivals)
 
 
     let filteredFestivals = festivals.map(festival => <Festival festival={festival} key={festival.id}/>)
@@ -38,6 +57,7 @@ class ListOfFestivals extends Component {
         <div className="filter-options">
           {this.props.year !== "" && <YearFilter/>}
           {this.props.continent !== "" && <ContinentFilter/>}
+          {this.props.searchInput !== "" && <SearchFilter/>}
         </div>
         {filteredFestivals}
       </div>
