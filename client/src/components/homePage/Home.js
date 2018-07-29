@@ -6,6 +6,8 @@ import SearchBar from "./SearchBar.js";
 import Map from "./Map.js"
 import ListOfFestivals from "./ListOfFestivals.js"
 import GetLocationButton from "./GetLocationButton.js"
+import YearSelect from "./YearSelect.js"
+
 
 
 
@@ -17,6 +19,7 @@ class Home extends Component {
             <LogOutButton />
             <SignUpForm />
             <SearchBar />
+            <YearSelect />
             <ListOfFestivals />
             <GetLocationButton />
             <Map/>

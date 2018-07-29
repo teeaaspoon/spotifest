@@ -7,6 +7,8 @@ import Home from "./components/homePage/Home";
 import jwtDecode from 'jwt-decode';
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
+import { initialFestivalList } from './actions/mapActions.js'
+
 import "./App.css";
 
 let User = () => <h1>User</h1>;
@@ -15,6 +17,7 @@ class App extends Component {
     componentWillMount() {
         this.props.fetchArtists();
         this.props.fetchFestivals();
+        this.props.initialFestivalList();
     }
     componentDidMount() {
          try {
@@ -37,7 +40,11 @@ class App extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    festivals: state.fetch.festivals,
+});
+
 export default connect(
-    null,
-    { fetchArtists, fetchFestivals }
+    mapStateToProps,
+    { fetchArtists, fetchFestivals, initialFestivalList }
 )(App);

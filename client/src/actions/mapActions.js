@@ -1,4 +1,5 @@
-import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_LIST} from "./types";
+import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_LIST, INITIAL_FESTIVAL_LIST} from "./types";
+import axios from "axios";
 
 export const saveContinent = geography => dispatch => {
     dispatch({
@@ -25,6 +26,15 @@ export const saveFestivalList = (festivals) => dispatch => {
     dispatch({
         type: SAVE_FESTIVAL_LIST,
         payload: festivals
+    });
+};
+
+export const initialFestivalList = () => dispatch => {
+    axios.get("/api/v1/festivals").then(response => {
+        dispatch({
+            type: INITIAL_FESTIVAL_LIST,
+            payload: response.data
+        });
     });
 };
 

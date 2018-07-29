@@ -2,7 +2,8 @@ import { FETCH_ARTISTS, FETCH_FESTIVALS } from "../actions/types";
 
 const initialState = {
     artists: [],
-    festivals: []
+    festivals: [],
+    filteredFestivals: []
 };
 
 export default function(state = initialState, action) {
@@ -15,7 +16,8 @@ export default function(state = initialState, action) {
         case FETCH_FESTIVALS:
             return {
                 ...state,
-                festivals: action.payload
+                festivals: action.payload,
+                filteredFestivals: action.payload
             };
         default:
             return state;
