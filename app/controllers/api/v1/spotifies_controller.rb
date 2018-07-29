@@ -8,7 +8,9 @@ module Api::V1
 
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
-      redirect_to action: 'create', param: user_info
+      hash = user_info.to_hash
+      binding.pry
+      redirect_to action: 'create', param: hash
     end
 
     def show
@@ -16,9 +18,15 @@ module Api::V1
     end
 
     def create
-      @spotify_users = Spotify.all
       @spotify_user = Spotify.new(user_info: params[:param])
       @spotify_user.save
+    end
+
+    def create_playlist
+      @myAccount = Spotify.all.last
+      @spotify_user = RSpotify::User.new(@myAccount.user_info)
+      @playlist = @spotify_user.create_playlist!(params[:playlistTitle])
+      binding.pry
     end
 
     def destroy
