@@ -9,6 +9,11 @@ import FestivalSelected from "./FestivalSelected";
 import { connect } from "react-redux";
 
 class Home extends Component {
+    componentDidUpdate() {
+        // autoscrolls to bottom every update
+        this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
+    }
+
     render() {
         return (
             <div className="Home">
@@ -18,6 +23,11 @@ class Home extends Component {
                 <Map />
                 <ListOfFestivals />
                 {this.props.festivalSelected && <FestivalSelected />}
+                <div
+                    ref={el => {
+                        this.bottomOfList = el;
+                    }}
+                />
             </div>
         );
     }
