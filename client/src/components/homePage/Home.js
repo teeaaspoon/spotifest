@@ -38,7 +38,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    festivalSelected: state.festivalSelected.festivalSelected
+    festivalSelected: state.user.festivalSelected
 });
 
 export default connect(

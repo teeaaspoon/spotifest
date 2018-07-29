@@ -1,7 +1,13 @@
-import { SAVE_JWT } from "../actions/types";
+import {
+    SAVE_JWT,
+    SELECT_FESTIVAL,
+    FETCH_FESTIVAL_ARTISTS
+} from "../actions/types";
 
 const initialState = {
-    jwt: ""
+    jwt: "",
+    festivalSelected: "",
+    festivalArtists: []
 };
 
 export default function(state = initialState, action) {
@@ -10,7 +16,17 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 jwt: action.payload
-            }
+            };
+        case SELECT_FESTIVAL:
+            return {
+                ...state,
+                festivalSelected: action.payload
+            };
+        case FETCH_FESTIVAL_ARTISTS:
+            return {
+                ...state,
+                festivalArtists: action.payload
+            };
         default:
             return state;
     }

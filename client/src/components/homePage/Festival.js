@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectFestival } from "../../actions/selectFestivalActions";
+import { selectFestival } from "../../actions/userActions";
 
 class Festival extends Component {
     handleClick = () => {
@@ -12,7 +12,7 @@ class Festival extends Component {
 }
 
 const mapStateToProps = state => ({
-    festivalSelected: state.festivalSelected.festivalSelected
+    festivalSelected: state.user.festivalSelected
 });
 
 export default connect(
