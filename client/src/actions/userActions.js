@@ -17,6 +17,7 @@ export const selectFestival = festival => dispatch => {
 
 export const createPlaylist = params => dispatch => {
     axios.post("/api/v1/createspotifyplaylist", params).then(response => {
+        console.log(response);
         dispatch({
             type: CREATE_PLAYLIST,
             payload: response.data
