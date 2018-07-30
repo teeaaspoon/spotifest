@@ -8,6 +8,7 @@ const initialState = {
     artists: [],
     festivals: [],
     festivalArtists: []
+
 };
 
 export default function(state = initialState, action) {
@@ -20,7 +21,8 @@ export default function(state = initialState, action) {
         case FETCH_FESTIVALS:
             return {
                 ...state,
-                festivals: action.payload
+                festivals: action.payload,
+                filteredFestivals: action.payload
             };
         case FETCH_FESTIVAL_ARTISTS:
             return {
