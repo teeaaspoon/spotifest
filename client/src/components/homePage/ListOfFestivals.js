@@ -5,7 +5,10 @@ import Festival from "./Festival.js"
 import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
 import SearchFilter from "./filterOptions/SearchFilter.js"
+import NearMeFilter from "./filterOptions/NearMeFilter.js"
+
 import Fuse from "fuse.js"
+import geolib from "geolib"
 
 class ListOfFestivals extends Component {
   filterByYear = (year, festivals) => {
@@ -40,13 +43,32 @@ class ListOfFestivals extends Component {
       return festivals
     }
   }
+  filterByRadius = (radius, festivalCoords, currentCoords, festivals) => {
+    if (radius && festivalCoords.length === festivals.length && currentCoords.latitude && currentCoords.longitude) {
+      let festivalsInRadiusIDs = []
+      festivalCoords.forEach(fest => {
+        if (geolib.isPointInCircle(
+          {latitude: fest.latitude, longitude: fest.longitude},
+          {latitude: currentCoords.latitude, longitude: currentCoords.longitude},
+          radius
+        )) {
+          festivalsInRadiusIDs.push(fest.festivalID)
+        }
+      })
+      let festivalsNearMe = festivals.filter(festival => festivalsInRadiusIDs.includes(festival.id) )
+      return festivalsNearMe
+    } else {
+      return festivals
+    }
 
+  }
 
   render() {
     let festivals = this.props.festivals
     festivals = this.filterByYear(this.props.year, festivals)
     festivals = this.filterByContinent(this.props.continent, festivals)
     festivals = this.filterBySearch(this.props.searchInput, festivals)
+    festivals = this.filterByRadius(this.props.radius, this.props.festivalCoords, this.props.currentCoords, festivals)
 
 
     let filteredFestivals = festivals.map(festival => <Festival festival={festival} key={festival.id}/>)
@@ -58,6 +80,7 @@ class ListOfFestivals extends Component {
           {this.props.year !== "" && <YearFilter/>}
           {this.props.continent !== "" && <ContinentFilter/>}
           {this.props.searchInput !== "" && <SearchFilter/>}
+          {this.props.radius !== null && <NearMeFilter/>}
         </div>
         {filteredFestivals}
       </div>
@@ -73,7 +96,10 @@ const mapStateToProps = state => ({
     continent: state.map.continent,
     year: state.map.year,
     searchInput: state.map.searchInput,
-    festivalList: state.map.festivalList
+    festivalList: state.map.festivalList,
+    radius: state.map.radius,
+    festivalCoords: state.map.festivalCoords,
+    currentCoords: state.map.currentCoords
 });
 
 export default connect(
