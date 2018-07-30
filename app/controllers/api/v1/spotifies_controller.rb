@@ -27,8 +27,8 @@ module Api::V1
       @spotify_user = RSpotify::User.new(@myAccount.user_info)
       @festival = Festival.find params[:festival][:id]
       @playlist = @spotify_user.create_playlist!(params[:playlistTitle])
-      # find all tracks by artists
-      @artists = @festival.artists
+      # find all artists with params given
+      @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
       @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs) }
       render json: @playlist

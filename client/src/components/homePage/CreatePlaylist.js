@@ -21,7 +21,8 @@ class CreatePlaylist extends Component {
     handleClick = () => {
         this.props.createPlaylist({
             playlistTitle: this.state.playlistTitle,
-            festival: this.props.festivalSelected
+            festival: this.props.festivalSelected,
+            artistsSelected: this.props.artistsSelected
         });
     };
     handleChange = e => {
@@ -45,7 +46,8 @@ class CreatePlaylist extends Component {
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    festivalArtists: state.fetch.festivalArtists
+    festivalArtists: state.fetch.festivalArtists,
+    artistsSelected: state.user.artistsSelected
 });
 
 export default connect(
