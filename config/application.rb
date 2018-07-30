@@ -35,6 +35,6 @@ module Spotifest
     config.session_store :cookie_store
     config.api_only = false
 
-    RSpotify::authenticate("93f4e88d8d0049ebaa27cef78dd4d9a7", "123fbd3643f340758de3c12782cbd67d")
+    RSpotify::authenticate("61949ea347f344009e8b87b0e5606c8c", "1158d8503dae4dcb86cacf4bf62904aa")
   end
 end

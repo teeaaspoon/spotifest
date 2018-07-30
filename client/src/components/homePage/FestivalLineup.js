@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchFestivalArtists } from "../../actions/fetchActions";
+import { selectAllArtists } from "../../actions/userActions";
+import Artist from "./Artist.js";
 
 class FestivalSelected extends Component {
     componentWillMount() {
@@ -12,10 +14,13 @@ class FestivalSelected extends Component {
             this.props.fetchFestivalArtists(nextProps.festivalSelected.id);
         }
     }
+    componentDidUpdate() {
+        this.props.selectAllArtists(this.props.festivalArtists);
+    }
 
     mapFestivalArtistsIntoList = listOfArtists => {
         const mappedArtists = listOfArtists.map(artist => {
-            return <li key={artist.id}>{artist.artist_name}</li>;
+            return <Artist key={artist.id} artist={artist} selected={true} />;
         });
         return mappedArtists;
     };
@@ -40,5 +45,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchFestivalArtists }
+    { fetchFestivalArtists, selectAllArtists }
 )(FestivalSelected);
