@@ -8,13 +8,10 @@ import ListOfFestivals from "./ListOfFestivals.js"
 import GetLocationButton from "./GetLocationButton.js"
 import YearSelect from "./YearSelect.js"
 
-
-
 import FestivalSelected from "./FestivalSelected";
 import { connect } from "react-redux";
 import SpotifyLoginButton from "../auth/SpotifyLoginButton";
 import Map from "./Map.js";
-import ListOfFestivals from "./ListOfFestivals.js";
 
 class Home extends Component {
     componentDidUpdate() {
@@ -31,6 +28,7 @@ class Home extends Component {
                 <SignUpForm />
                 <SearchBar />
                 <ListOfFestivals />
+                <YearSelect />
                 <Map />
                 {this.props.festivalSelected && <FestivalSelected />}
                 <div
