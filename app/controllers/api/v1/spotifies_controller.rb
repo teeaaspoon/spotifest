@@ -34,7 +34,7 @@ module Api::V1
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
-      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs) }
+      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
       render json: @playlist
     end
 
