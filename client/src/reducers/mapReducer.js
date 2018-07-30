@@ -40,7 +40,6 @@ export default function(state = initialState, action) {
         case SAVE_CURRENT_COORDS:
             return {
                 ...state,
-                continent: "",
                 currentCoords: action.payload
             }
         case SAVE_RADIUS:

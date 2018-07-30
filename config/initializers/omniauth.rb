@@ -1,7 +1,7 @@
 require 'rspotify/oauth'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :spotify, "93f4e88d8d0049ebaa27cef78dd4d9a7", "123fbd3643f340758de3c12782cbd67d", scope: 'user-read-email playlist-modify-public user-library-read user-library-modify'
+  provider :spotify, "61949ea347f344009e8b87b0e5606c8c", "1158d8503dae4dcb86cacf4bf62904aa", scope: 'user-read-email playlist-modify-public user-library-read user-library-modify'
 end
 
 

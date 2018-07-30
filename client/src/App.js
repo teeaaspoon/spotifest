@@ -4,25 +4,23 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
-import jwtDecode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
-
 import "./App.css";
 
 let User = () => <h1>User</h1>;
 
 class App extends Component {
     componentWillMount() {
-        this.props.fetchArtists();
         this.props.fetchFestivals();
     }
     componentDidMount() {
-         try {
-            let jwt = window.localStorage.getItem('jwt');
+        try {
+            let jwt = window.localStorage.getItem("jwt");
             let result = jwtDecode(jwt);
             console.log(result);
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
     }
@@ -40,7 +38,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    festivals: state.fetch.festivals,
+    festivals: state.fetch.festivals
 });
 
 export default connect(
