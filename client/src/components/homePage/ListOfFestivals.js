@@ -41,6 +41,7 @@ class ListOfFestivals extends Component {
     }
   }
 
+
   render() {
     let festivals = this.props.festivals
     festivals = this.filterByYear(this.props.year, festivals)

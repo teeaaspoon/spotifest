@@ -1,4 +1,4 @@
-import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_COORDS} from "./types";
+import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_COORDS, SAVE_CURRENT_COORDS} from "./types";
 
 export const saveContinent = geography => dispatch => {
     dispatch({
@@ -29,5 +29,11 @@ export const saveFestivalCoords = (coords)=> dispatch => {
     });
 }
 
+export const saveCurrentCoords = (coords)=> dispatch => {
+    dispatch({
+        type: SAVE_CURRENT_COORDS,
+        payload: coords
+    });
+}
 
 

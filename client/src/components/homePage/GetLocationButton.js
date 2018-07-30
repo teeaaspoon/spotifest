@@ -1,13 +1,13 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveFestivalCoords } from "../../actions/mapActions.js";
+import { saveFestivalCoords, saveCurrentCoords } from "../../actions/mapActions.js";
 
 class GetLocationButton extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      gpsCoords: []
+      errorMessage: ""
     }
   }
 
@@ -33,20 +33,29 @@ class GetLocationButton extends Component {
     if ("geolocation" in navigator) {
       console.log("geolocation is available")
     } else {
-      console.log("geolocation is NOT available")
+      this.setState({errorMessage: "sorry! geolocation is not available"})
     }
 
   }
   handleClick = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.props.saveCurrentCoords({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
+    })
     this.props.festivals.forEach(festival => {
       this.getLonLat(festival)
     })
   }
 
   render() {
-    console.log(this.state)
+
     return (
-      <button onClick={this.handleClick}>Festivals Near You!</button>
+      <div className="get-location-button">
+        <button onClick={this.handleClick}>Festivals Near You!</button>
+        {this.state.errorMessage !== "" && <p>{this.state.errorMessage}</p>}
+      </div>
     )
   }
 }
@@ -57,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveFestivalCoords }
+    { saveFestivalCoords, saveCurrentCoords }
 )(GetLocationButton);
