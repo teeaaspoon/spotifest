@@ -8,7 +8,6 @@ class SearchBar extends Component {
 
   onSearch = (event) => {
     this.props.saveSearchInput(event.target.value)
-    // this.props.saveFestivalList(this.searchFestivals(event.target.value))
   }
 
   render() {

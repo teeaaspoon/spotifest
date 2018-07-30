@@ -27,8 +27,9 @@ class Home extends Component {
                 <LogOutButton />
                 <SignUpForm />
                 <SearchBar />
-                <ListOfFestivals />
                 <YearSelect />
+                <ListOfFestivals />
+                <GetLocationButton />
                 <Map />
                 {this.props.festivalSelected && <FestivalSelected />}
                 <div
