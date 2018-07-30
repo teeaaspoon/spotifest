@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
 import GetLocationButton from "./GetLocationButton"
 import YearSelect from "./YearSelect"
-import LoginForm from "../auth/LogInForm"
+import LoginForm from "../auth/LoginForm"
 import SignUpForm from "../auth/SignUpForm"
 
 

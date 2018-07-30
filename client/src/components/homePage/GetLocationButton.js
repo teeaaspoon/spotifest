@@ -73,15 +73,9 @@ class GetLocationButton extends Component {
     this.setState(newState)
   }
   render() {
-    console.log(this.state)
     return (
       <div className="get-location-button">
         <button onClick={this.handleClick}>Festivals Near You!</button>
-{/*        <input
-          onChange={this.setRadius}
-          placeholder="set a radius (km)"
-          value={this.state.radius}
-        />*/}
         <Select
           className="select-radius"
           onChange={this.setRadius}
