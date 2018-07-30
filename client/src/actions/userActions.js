@@ -1,4 +1,11 @@
-import { SAVE_JWT, SELECT_FESTIVAL, CREATE_PLAYLIST } from "./types";
+import {
+    SAVE_JWT,
+    SELECT_FESTIVAL,
+    CREATE_PLAYLIST,
+    SELECT_ARTIST,
+    DESELECT_ARTIST,
+    SELECT_ALL_ARTISTS
+} from "./types";
 import axios from "axios";
 
 export const getJwt = jwt => dispatch => {
@@ -22,5 +29,26 @@ export const createPlaylist = params => dispatch => {
             type: CREATE_PLAYLIST,
             payload: response.data
         });
+    });
+};
+
+export const selectArtist = artist => dispatch => {
+    dispatch({
+        type: SELECT_ARTIST,
+        payload: artist
+    });
+};
+
+export const deselectArtist = artist => dispatch => {
+    dispatch({
+        type: DESELECT_ARTIST,
+        payload: artist
+    });
+};
+
+export const selectAllArtists = artists => dispatch => {
+    dispatch({
+        type: SELECT_ALL_ARTISTS,
+        payload: artists
     });
 };
