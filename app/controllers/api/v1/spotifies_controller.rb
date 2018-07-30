@@ -19,10 +19,14 @@ module Api::V1
     def create_user
       @spotify_user = Spotify.new(user_info: params[:param])
       @spotify_user.email = @spotify_user.user_info['email']
+      binding.pry
       if @spotify_user.save
-        return
+        redirect_to "http://localhost:3000/"
+        # render json: @spotify_user
       else
         @old_user = Spotify.find_by_email(@spotify_user.email)
+        binding.pry
+        redirect_to "http://localhost:3000/"
       end
     end
 

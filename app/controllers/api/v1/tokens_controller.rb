@@ -5,7 +5,7 @@ module Api::V1
       # binding.pry
       if @user&.authenticate(params[:password])
         render json: {
-          jwt: encode_token({id: @user.id, email: @user.email, spotify_user_info: @user.spotify_user_info})
+          jwt: encode_token({id: @user.id, email: @user.email})
         }
       else
         head :not_found
