@@ -31,3 +31,4 @@ export const fetchFestivalArtists = festival_id => dispatch => {
         });
     });
 };
+
