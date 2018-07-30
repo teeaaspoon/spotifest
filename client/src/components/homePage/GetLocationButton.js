@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent } from "../../actions/mapActions.js";
+import Select from 'react-select';
 
 class GetLocationButton extends Component {
   constructor(props) {
@@ -9,11 +10,17 @@ class GetLocationButton extends Component {
     this.state = {
       errorMessages: {
         noGeolocation: "",
-        radiusNotNumber: ""
       },
       radius: ""
     }
   }
+  radiusOptions = [
+    {value: 50000, label: "50 km"},
+    {value: 100000, label: "100 km"},
+    {value: 250000, label: "250 km"},
+    {value: 500000, label: "500 km"},
+    {value: 1000000, label: "1000 km"},
+  ]
 
   getLonLat = (festival) => {
     let lonLat = {}
@@ -43,46 +50,45 @@ class GetLocationButton extends Component {
     }
   }
   handleClick = () => {
-    if (!Number(this.state.radius)) {
-      let newState = this.state
-      newState.errorMessages.radiusNotNumber = "the radius must be a number!"
-      this.setState(newState)
-    } else {
-      let newState = this.state
-      this.props.saveRadius(Number(this.state.radius) * 1000)
-      newState.errorMessages.radiusNotNumber = ""
-      newState.radius = ""
-      this.setState(newState)
-      this.props.saveContinent("")
-      navigator.geolocation.getCurrentPosition(position => {
-        this.props.saveCurrentCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        })
+    let newState = this.state
+    this.props.saveRadius(this.state.radius)
+    newState.errorMessages.radiusNotNumber = ""
+    newState.radius = ""
+    this.setState(newState)
+    this.props.saveContinent("")
+    navigator.geolocation.getCurrentPosition(position => {
+      this.props.saveCurrentCoords({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
       })
-      this.props.festivals.forEach(festival => {
-        this.getLonLat(festival)
-      })
-    }
+    })
+    this.props.festivals.forEach(festival => {
+      this.getLonLat(festival)
+    })
+
   }
 
-  setRadius = (e) => {
+  setRadius = (selectedOption) => {
     let newState = this.state
-    newState.radius = e.target.value
+    newState.radius = selectedOption.value
     this.setState(newState)
-
   }
   render() {
+    console.log(this.state)
     return (
       <div className="get-location-button">
         <button onClick={this.handleClick}>Festivals Near You!</button>
-        <input
+{/*        <input
           onChange={this.setRadius}
           placeholder="set a radius (km)"
           value={this.state.radius}
+        />*/}
+        <Select
+          className="select-radius"
+          onChange={this.setRadius}
+          options={this.radiusOptions}
         />
         {this.state.errorMessages.noGeolocation && <p>{this.state.errorMessages.noGeolocation}</p>}
-        {this.state.errorMessages.radiusNotNumber && <p>{this.state.errorMessages.radiusNotNumber}</p>}
       </div>
     )
   }
