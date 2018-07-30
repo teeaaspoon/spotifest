@@ -5,7 +5,6 @@ import Festival from "./Festival.js"
 import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
 import SearchFilter from "./filterOptions/SearchFilter.js"
-import { saveFestivalList } from '../../actions/mapActions.js'
 import Fuse from "fuse.js"
 
 class ListOfFestivals extends Component {
@@ -78,5 +77,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveFestivalList }
+    null
 )(ListOfFestivals);

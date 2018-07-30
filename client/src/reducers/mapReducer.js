@@ -1,10 +1,10 @@
-import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_LIST } from "../actions/types";
+import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_LIST, SAVE_FESTIVAL_COORDS } from "../actions/types";
 
 const initialState = {
     continent: "",
     year: "",
     searchInput: "",
-    festivalList: []
+    festivalCoords: []
 };
 
 export default function(state = initialState, action) {
@@ -24,10 +24,10 @@ export default function(state = initialState, action) {
                 ...state,
                 searchInput: action.payload
             }
-        case SAVE_FESTIVAL_LIST:
+        case SAVE_FESTIVAL_COORDS:
             return {
                 ...state,
-                festivalList: action.payload
+                festivalCoords: [...state.festivalCoords, action.payload]
             }
         default:
             return state;

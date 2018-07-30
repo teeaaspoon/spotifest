@@ -3,7 +3,6 @@ import { FETCH_ARTISTS, FETCH_FESTIVALS } from "../actions/types";
 const initialState = {
     artists: [],
     festivals: [],
-    filteredFestivals: []
 };
 
 export default function(state = initialState, action) {
