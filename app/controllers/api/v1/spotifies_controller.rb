@@ -25,10 +25,12 @@ module Api::V1
     def create_playlist
       @myAccount = Spotify.all.last
       @spotify_user = RSpotify::User.new(@myAccount.user_info)
+      @festival = Festival.find params[:festival][:id]
       @playlist = @spotify_user.create_playlist!(params[:playlistTitle])
-      # find all tracks by artists selected
-      @tracks = Artist.all.first.songs
-      add_tracks_to_playlist(@playlist, @tracks)
+      # find all tracks by artists
+      @artists = @festival.artists
+      # this will add all songs to the playlist
+      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs) }
       render json: @playlist
     end
 
