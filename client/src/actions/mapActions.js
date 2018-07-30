@@ -1,9 +1,9 @@
 import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_COORDS, SAVE_CURRENT_COORDS, SAVE_RADIUS, DELETE_FESTIVAL_COORDS} from "./types";
 
-export const saveContinent = geography => dispatch => {
+export const saveContinent = continent => dispatch => {
     dispatch({
         type: SAVE_CONTINENT,
-        payload: geography.properties.continent
+        payload: continent
     });
 };
 

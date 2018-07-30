@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveFestivalCoords, saveCurrentCoords, saveRadius } from "../../actions/mapActions.js";
+import { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent } from "../../actions/mapActions.js";
 
 class GetLocationButton extends Component {
   constructor(props) {
@@ -53,6 +53,7 @@ class GetLocationButton extends Component {
       newState.errorMessages.radiusNotNumber = ""
       newState.radius = ""
       this.setState(newState)
+      this.props.saveContinent("")
       navigator.geolocation.getCurrentPosition(position => {
         this.props.saveCurrentCoords({
           latitude: position.coords.latitude,
@@ -93,5 +94,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveFestivalCoords, saveCurrentCoords, saveRadius }
+    { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent}
 )(GetLocationButton);

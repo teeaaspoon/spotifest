@@ -1,83 +1,58 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveContinent } from "../../actions/mapActions.js";
+import { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords } from "../../actions/mapActions.js";
+import { southAmericaPath, oceaniaPath, northAmericaPath, europePath, asiaPath, africaPath } from "./mapData/pathData.js"
 
-import {
-    ComposableMap,
-    ZoomableGroup,
-    Geographies,
-    Geography
-} from "react-simple-maps";
 
-const geographyMap = require("./mapData/world-continents.json");
-
-const wrapperStyles = {
-    width: "100%",
-    maxWidth: 980,
-    margin: "0 auto"
-};
 
 class Map extends Component {
 
+  handleClick = (e) => {
+    this.props.saveContinent(e.target.id)
+    let emptyCoords = {}
+    this.props.saveCurrentCoords(emptyCoords)
+    this.props.saveRadius(null)
+    this.props.deleteFestivalCoords()
+  }
+  continents = [
+    {name: "SouthAmerica", path: southAmericaPath},
+    {name: "Oceania", path: oceaniaPath},
+    {name: "NorthAmerica", path: northAmericaPath},
+    {name: "Europe", path: europePath},
+    {name: "Asia", path: asiaPath},
+    {name: "Africa", path: africaPath},
+  ]
+
   render() {
+    const allPaths = this.continents.map(continent => {
+      return (
+        <path
+          key={continent.name}
+          onClick={this.handleClick}
+          d={continent.path}
+          id={continent.name}
+          className={this.props.continent === continent.name ? "selectedContinent" : "not-selected"}>
+        </path>)
+    })
+
     return (
-      <div style={wrapperStyles}>
-        <ComposableMap
-          projectionConfig={{
-              scale: 205,
-              rotation: [-11, 0, 0]
-          }}
-          width={980}
-          height={551}
-          style={{
-              width: "100%",
-              height: "auto"
-          }}
-        >
-          <ZoomableGroup center={[0, 20]} disablePanning>
-              <Geographies geography={geographyMap}>
-                {(geographies, projection) =>
-                    geographies.map(
-                      (geography, i) => {
-                      if (geography.id !== "ATA") {
-                        return (
-                        <Geography
-                          onClick={
-                            this.props.saveContinent
-                          }
-                          key={i}
-                          geography={geography}
-                          projection={projection}
-                          style={{
-                            default: {
-                              fill: "#ECEFF1",
-                              stroke: "#607D8B",
-                              strokeWidth: 0.75,
-                              outline: "none"
-                            },
-                            hover: {
-                              fill: "#607D8B",
-                              stroke: "#607D8B",
-                              strokeWidth: 0.75,
-                              outline: "none"
-                            },
-                            pressed: {
-                              fill: "#FF5722",
-                              stroke: "#607D8B",
-                              strokeWidth: 0.75,
-                              outline: "none"
-                            }
-                          }}
-                        />
-                      )}}
-                    )
-                  }
-              </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
-      </div>
-    );
+      <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
+        <g className="rsm-zoomable-group" transform="translate(
+                   519.05
+                   337.21
+                 )
+                 scale(1)
+                 translate(-490 -275.5)
+               ">
+          <rect x="122" y="-74" width="737" height="699" fill="transparent" style={{strokeWidth: 0}}></rect>
+          <g className="rsmGeographies">
+          {allPaths}
+          </g>
+
+        </g>
+      </svg>
+    )
   }
 }
 
@@ -87,5 +62,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveContinent }
+    { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords }
 )(Map);

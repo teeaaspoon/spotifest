@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import SpotifyLoginButton from "../auth/SpotifyLoginButton";
 import Map from "./Map.js";
 
+
 class Home extends Component {
     componentDidUpdate() {
         // autoscrolls to bottom every update

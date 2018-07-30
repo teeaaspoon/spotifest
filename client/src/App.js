@@ -7,7 +7,6 @@ import Home from "./components/homePage/Home";
 import jwtDecode from 'jwt-decode';
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
-
 import "./App.css";
 
 let User = () => <h1>User</h1>;
