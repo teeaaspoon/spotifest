@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent } from "../../actions/mapActions.js";

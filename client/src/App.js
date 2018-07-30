@@ -19,6 +19,7 @@ class App extends Component {
         try {
             let jwt = window.localStorage.getItem("jwt");
             let result = jwtDecode(jwt);
+            console.log(result);
         } catch (error) {
             console.log(error);
         }
