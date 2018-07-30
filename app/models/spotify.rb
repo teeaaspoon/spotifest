@@ -1,3 +1,3 @@
 class Spotify < ApplicationRecord
-  validates :user_info, uniqueness: true
+  validates :email, uniqueness: true
 end
