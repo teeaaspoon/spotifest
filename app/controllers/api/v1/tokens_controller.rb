@@ -2,7 +2,6 @@ module Api::V1
   class TokensController < ApplicationController
     def create
       @user = User.find_by(email: params[:email])
-      # binding.pry
       if @user&.authenticate(params[:password])
         render json: {
           jwt: encode_token({id: @user.id, email: @user.email})

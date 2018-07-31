@@ -70,17 +70,5 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.jsonb "spotify_user_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.jsonb "spotify_user_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "songs", "artists"
 end
