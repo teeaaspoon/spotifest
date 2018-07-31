@@ -1,4 +1,3 @@
 class Spotify < ApplicationRecord
-  belongs_to :user
-  validates :email, uniqueness: true
+  validates :spotify_id, uniqueness: true
 end
