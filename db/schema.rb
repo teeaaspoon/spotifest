@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180731165651) do
+ActiveRecord::Schema.define(version: 20180731193308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.bigint "artist_id", null: false
   end
 
+  create_table "artists_genres", id: false, force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "artist_id", null: false
+  end
+
   create_table "festivals", force: :cascade do |t|
     t.string "title"
     t.string "start_date"
@@ -40,6 +45,12 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.float "longitude"
     t.float "latitude"
     t.string "continent"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "songs", force: :cascade do |t|
