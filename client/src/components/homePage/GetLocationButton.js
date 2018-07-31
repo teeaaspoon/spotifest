@@ -75,8 +75,9 @@ class GetLocationButton extends Component {
   render() {
     return (
       <div className="get-location-button">
-        <button onClick={this.handleClick}>Festivals Near You!</button>
+        <button onClick={this.handleClick}>GET FESTIVALS NEAR YOU</button>
         <Select
+          placeholder="SELECT RADIUS"
           className="select-radius"
           onChange={this.setRadius}
           options={this.radiusOptions}

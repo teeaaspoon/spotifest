@@ -12,31 +12,15 @@ class YearSelect extends Component {
 
 
   render() {
-    const customStyles = {
-      option: (base, state) => ({
-        ...base,
-        borderBottom: '1px dotted pink',
-        color: state.isFullscreen ? 'red' : 'blue',
-        padding: 20,
-      }),
-      control: () => ({
-        width: 200,
-      }),
-      singleValue: (base, state) => {
-        const opacity = state.isDisabled ? 0.5 : 1;
-        const transition = 'opacity 300ms';
-
-        return { ...base, opacity, transition };
-      }
-    }
     const years = this.props.festivals.map(festival => festival.title.slice(-4))
                               .filter((elem, pos, arr) => {
                                 return arr.indexOf(elem) === pos;
                               });
     return (
       <Select
-        className="select-year"
-        styles={customStyles}
+        className="select-year-container"
+        placeholder="SELECT YEAR"
+        classNamePrefix="select-year"
         value={this.props.year}
         onChange={this.handleYearChange}
         options={years.map(year => ({value: year, label: year}))}

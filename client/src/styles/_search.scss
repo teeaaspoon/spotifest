@@ -1,10 +1,43 @@
 .search {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  padding-bottom: 4px;
+  border: 1px solid white;
+  height: 35px;
+  .select-year-container {
+    padding: 0px;
+    margin: 0px;
+    width: 25%;
+    height: 35px;
+    font-family: sans-serif;
+    font-size: 10px;
+    .select-year__control {
+      background-color: $black;
+      color: white;
+      margin: 0px;
+      border: none;
+    }
+    .select-year__menu {
+      background-color: $darkGrey;
+      border: none;
+      .select-year__option--is-focused {
+        background-color: $darkGrey;
+        color: $green;
+      }
+      .select-year__option:hover {
+        background-color: $darkGrey;
+        color: $green;
+      }
+    }
+  }
 
   .searchFestival {
-    border-width: 1.5px;
+    margin: 0px;
+    border: none;
     background-color: $black;
-    width: 80%;
-    height: 2.5rem;
+    width: 75%;
+    height: 35px;
     padding-left: 1rem;
     font-size: 10px;
     color: white;

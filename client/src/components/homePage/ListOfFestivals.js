@@ -6,6 +6,8 @@ import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
 import SearchFilter from "./filterOptions/SearchFilter.js"
 import NearMeFilter from "./filterOptions/NearMeFilter.js"
+import GetLocationButton from "./GetLocationButton"
+
 
 import Fuse from "fuse.js"
 import geolib from "geolib"
@@ -76,6 +78,7 @@ class ListOfFestivals extends Component {
     return (
       <div className="list-of-festivals">
         <h3>Festivals</h3>
+        <GetLocationButton />
         <div className="filter-options">
           {this.props.year !== "" && <YearFilter/>}
           {this.props.continent !== "" && <ContinentFilter/>}

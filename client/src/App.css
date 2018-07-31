@@ -1,36 +1,82 @@
-path {
-  fill: #1e1e1e;
-  stroke: white;
-  stroke-width: 1; }
+.mapAndFestivalList {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 2rem; }
+  .mapAndFestivalList .rsm-svg {
+    width: 75%; }
+    .mapAndFestivalList .rsm-svg path {
+      fill: #181818;
+      stroke: white;
+      stroke-width: 1.5; }
+      .mapAndFestivalList .rsm-svg path:hover {
+        fill: #3df5ff;
+        stroke: #181818; }
+    .mapAndFestivalList .rsm-svg .selectedContinent {
+      fill: #FF5722;
+      stroke: #181818;
+      stroke-width: 1.5; }
+      .mapAndFestivalList .rsm-svg .selectedContinent:hover {
+        fill: #FF5722;
+        stroke: #181818;
+        stroke-width: 1.5; }
 
-path:hover {
-  fill: #3df5ff;
-  stroke: #181818;
-  stroke-width: 1; }
+.search {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  padding-bottom: 4px;
+  border: 1px solid white;
+  height: 35px; }
+  .search .select-year-container {
+    padding: 0px;
+    margin: 0px;
+    width: 25%;
+    height: 35px;
+    font-family: sans-serif;
+    font-size: 10px; }
+    .search .select-year-container .select-year__control {
+      background-color: #181818;
+      color: white;
+      margin: 0px;
+      border: none; }
+    .search .select-year-container .select-year__menu {
+      background-color: #1e1e1e;
+      border: none; }
+      .search .select-year-container .select-year__menu .select-year__option--is-focused {
+        background-color: #1e1e1e;
+        color: #01E365; }
+      .search .select-year-container .select-year__menu .select-year__option:hover {
+        background-color: #1e1e1e;
+        color: #01E365; }
+  .search .searchFestival {
+    margin: 0px;
+    border: none;
+    background-color: #181818;
+    width: 75%;
+    height: 35px;
+    padding-left: 1rem;
+    font-size: 10px;
+    color: white; }
+    .search .searchFestival:hover {
+      border-color: #3df5ff; }
 
-.selectedContinent {
-  fill: #FF5722;
-  stroke: #181818;
-  stroke-width: 1; }
-  .selectedContinent:hover {
-    fill: #FF5722;
-    stroke: #181818;
-    stroke-width: 1; }
+.list-of-continents {
+  width: 25%; }
 
-.search .searchFestival {
-  border-width: 1.5px;
-  background-color: #181818;
-  width: 80%;
-  height: 2.5rem;
-  padding-left: 1rem;
-  font-size: 10px;
-  color: white; }
-  .search .searchFestival:hover {
-    border-color: #3df5ff; }
+.get-location-button {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%; }
+  .get-location-button .select-radius {
+    width: 25%; }
 
 html {
   margin: 2rem; }
   html body {
     margin: 0px;
     background-color: #181818;
-    color: white; }
+    color: white;
+    font-family: sans-serif;
+    font-size: 12px; }

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import LogOutButton from "../auth/LogOutButton";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
-import GetLocationButton from "./GetLocationButton"
 import YearSelect from "./YearSelect"
 import LoginForm from "../auth/LoginForm"
 import SignUpForm from "../auth/SignUpForm"
@@ -34,7 +33,6 @@ class Home extends Component {
                 <div className="mapAndFestivalList">
                     <Map />
                     <ListOfFestivals />
-                    <GetLocationButton />
                 </div>
                 {this.props.festivalSelected && <FestivalSelected />}
                 <div
