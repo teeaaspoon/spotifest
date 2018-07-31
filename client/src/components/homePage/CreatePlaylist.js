@@ -24,7 +24,7 @@ class CreatePlaylist extends Component {
             playlistTitle: this.state.playlistTitle,
             festival: this.props.festivalSelected,
             artistsSelected: this.props.artistsSelected,
-            numberOfSongs: this.state.numberOfSongs
+            numberOfSongs: this.state.numberOfSongs,
             spotifyUser: this.props.spotifyUser
         });
     };
