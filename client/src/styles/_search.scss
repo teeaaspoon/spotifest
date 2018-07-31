@@ -1,0 +1,15 @@
+.search {
+
+  .searchFestival {
+    border-width: 1.5px;
+    background-color: $black;
+    width: 80%;
+    height: 2.5rem;
+    padding-left: 1rem;
+    font-size: 10px;
+    color: white;
+    &:hover {
+      border-color: $blue
+    }
+  }
+}

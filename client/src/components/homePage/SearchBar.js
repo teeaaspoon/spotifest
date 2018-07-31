@@ -13,8 +13,9 @@ class SearchBar extends Component {
   render() {
     return (
       <input
+        className="searchFestival"
         onChange={this.onSearch}
-        placeholder="Search a festival!"
+        placeholder="SEARCH A FESTIVAL NAME, CITY, OR COUNTRY"
         value={this.props.searchInput}
       />
     )

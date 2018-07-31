@@ -1,17 +1,22 @@
 path {
-  fill: #ECEFF1;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
+  fill: $darkGrey;
+  stroke: white;
+  stroke-width: 1;
 }
 path:hover {
-  fill: #607D8B;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
+  fill: $blue;
+  stroke: $black;
+  stroke-width: 1;
 }
 
 .selectedContinent {
-  fill: #FF5722;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
+  fill: $orange;
+  stroke: $black;
+  stroke-width: 1;
+  &:hover {
+    fill: #FF5722;
+    stroke: $black;
+    stroke-width: 1;
+  }
 }
 

@@ -1,10 +1,21 @@
-@import 'styles/_map.scss';
 
 $black: #181818;
+$blue: #3df5ff;
+$orange: #FD5F00;
+$darkGrey: #1e1e1e;
+$green: #01E365;
+$pink: #FF5E9A;
+$orange: #FF5722;
 
-body {
-  margin: 0px;
-  padding: 2rem;
-  background-color: white;
-  color: black;
+@import 'styles/_map.scss';
+@import 'styles/_search.scss';
+
+
+html {
+  margin: 2rem;
+  body {
+    margin: 0px;
+    background-color: $black;
+    color: white;
+  }
 }

@@ -1,20 +1,36 @@
 path {
-  fill: #ECEFF1;
-  stroke: #607D8B;
-  stroke-Width: 0.75; }
+  fill: #1e1e1e;
+  stroke: white;
+  stroke-width: 1; }
 
 path:hover {
-  fill: #607D8B;
-  stroke: #607D8B;
-  stroke-Width: 0.75; }
+  fill: #3df5ff;
+  stroke: #181818;
+  stroke-width: 1; }
 
 .selectedContinent {
   fill: #FF5722;
-  stroke: #607D8B;
-  stroke-Width: 0.75; }
+  stroke: #181818;
+  stroke-width: 1; }
+  .selectedContinent:hover {
+    fill: #FF5722;
+    stroke: #181818;
+    stroke-width: 1; }
 
-body {
-  margin: 0px;
-  padding: 2rem;
-  background-color: white;
-  color: black; }
+.search .searchFestival {
+  border-width: 1.5px;
+  background-color: #181818;
+  width: 80%;
+  height: 2.5rem;
+  padding-left: 1rem;
+  font-size: 10px;
+  color: white; }
+  .search .searchFestival:hover {
+    border-color: #3df5ff; }
+
+html {
+  margin: 2rem; }
+  html body {
+    margin: 0px;
+    background-color: #181818;
+    color: white; }

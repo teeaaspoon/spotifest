@@ -23,15 +23,19 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <SpotifyLoginButton />
+{/*                <SpotifyLoginButton />
                 <LoginForm />
                 <LogOutButton />
-                <SignUpForm />
-                <SearchBar />
-                <YearSelect />
-                <ListOfFestivals />
-                <GetLocationButton />
-                <Map />
+                <SignUpForm />*/}
+                <div className="search">
+                    <SearchBar />
+                    <YearSelect />
+                </div>
+                <div className="mapAndFestivalList">
+                    <Map />
+                    <ListOfFestivals />
+                    <GetLocationButton />
+                </div>
                 {this.props.festivalSelected && <FestivalSelected />}
                 <div
                     ref={el => {
