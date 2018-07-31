@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import countryToContinent from "./mapData/countryToContinent.json"
 import Festival from "./Festival.js"
 import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
@@ -21,7 +20,7 @@ class ListOfFestivals extends Component {
   }
   filterByContinent = (continent, festivals) => {
     if (continent !== "") {
-      let festivalsInContinent = festivals.filter(festival => countryToContinent[festival.country] === this.props.continent)
+      let festivalsInContinent = festivals.filter(festival => festival.continent === this.props.continent)
       return festivalsInContinent
     } else {
       return festivals

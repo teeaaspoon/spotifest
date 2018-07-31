@@ -22,13 +22,15 @@ class GetLocationButton extends Component {
   ]
 
   handleClick = () => {
-    this.props.saveContinent("")
-    this.props.saveRadius(this.state.radius)
+    if (this.state.radius) {
+      this.props.saveContinent("")
+      this.props.saveRadius(this.state.radius)
 
-    let newState = this.state
-    newState.errorMessages.radiusNotNumber = ""
-    newState.radius = ""
-    this.setState(newState)
+      let newState = this.state
+      newState.errorMessages.radiusNotNumber = ""
+      newState.radius = ""
+      this.setState(newState)
+    }
   }
 
   setRadius = (selectedOption) => {
