@@ -22,7 +22,6 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 festivals: action.payload,
-                filteredFestivals: action.payload
             };
         case FETCH_FESTIVAL_ARTISTS:
             return {

@@ -4,22 +4,37 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
+import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
+import { saveCurrentCoords } from "./actions/mapActions";
 import "./App.css";
 
-let User = () => <h1>User</h1>;
+const User = props => <h2>{props.userId}</h2>;
 
 class App extends Component {
     componentWillMount() {
         this.props.fetchFestivals();
+
+        if ("geolocation" in navigator) {
+          console.log("geolocation is available")
+        } else {
+          let newState = this.state
+          newState.errorMessages.noGeolocation = "sorry! geolocation is not available"
+          this.setState(newState)
+        }
+        navigator.geolocation.getCurrentPosition(position => {
+          this.props.saveCurrentCoords({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          })
+        })
     }
     componentDidMount() {
         try {
             let jwt = window.localStorage.getItem("jwt");
-            let result = jwtDecode(jwt);
-            console.log(result);
+            jwtDecode(jwt);
         } catch (error) {
             console.log(error);
         }
@@ -30,7 +45,8 @@ class App extends Component {
                 <Router>
                     <Home path="/" />
                     <Admin path="/admin" />
-                    <User path="/user" />
+                    <LoggedIn path="/:userId" />
+                    <User path="/user/:userId" />
                 </Router>
             </Provider>
         );
@@ -43,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals }
+    { fetchArtists, fetchFestivals, saveCurrentCoords }
 )(App);

@@ -12,7 +12,9 @@ class FestivalForm extends Component {
             end_date: "",
             city: "",
             country: "",
-            artists: "",
+            continent: "",
+            longitude: "",
+            latitude: "",
             submitStatus: ""
         };
     }
@@ -90,6 +92,24 @@ class FestivalForm extends Component {
                         name="country"
                         onChange={this.handleChange}
                         value={this.state.country}
+                    />
+                    <p>Continent</p>
+                    <input
+                        name="continent"
+                        onChange={this.handleChange}
+                        value={this.state.continent}
+                    />
+                    <p>Longitude</p>
+                    <input
+                        name="longitude"
+                        onChange={this.handleChange}
+                        value={this.state.longitude}
+                    />
+                    <p>Latitude</p>
+                    <input
+                        name="latitude"
+                        onChange={this.handleChange}
+                        value={this.state.latitude}
                     />
                     <br />
                     <button> Submit </button>

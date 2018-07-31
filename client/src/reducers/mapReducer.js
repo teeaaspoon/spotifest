@@ -1,4 +1,4 @@
-import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_FESTIVAL_COORDS, SAVE_CURRENT_COORDS, SAVE_RADIUS, DELETE_FESTIVAL_COORDS } from "../actions/types";
+import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_CURRENT_COORDS, SAVE_RADIUS } from "../actions/types";
 
 const initialState = {
     continent: "",
@@ -14,7 +14,6 @@ export default function(state = initialState, action) {
         case SAVE_CONTINENT:
             return {
                 ...state,
-                currentCoords: "",
                 continent: action.payload
             }
         case SAVE_YEAR:
@@ -26,16 +25,6 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 searchInput: action.payload
-            }
-        case SAVE_FESTIVAL_COORDS:
-            return {
-                ...state,
-                festivalCoords: [...state.festivalCoords, action.payload]
-            }
-        case DELETE_FESTIVAL_COORDS:
-            return {
-                ...state,
-                festivalCoords: []
             }
         case SAVE_CURRENT_COORDS:
             return {

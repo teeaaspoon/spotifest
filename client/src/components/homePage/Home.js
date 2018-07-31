@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import LogOutButton from "../auth/LogOutButton";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
 import YearSelect from "./YearSelect"
-import LoginForm from "../auth/LoginForm"
-import SignUpForm from "../auth/SignUpForm"
 
 
 import FestivalSelected from "./FestivalSelected";
@@ -22,10 +19,8 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-{/*                <SpotifyLoginButton />
-                <LoginForm />
-                <LogOutButton />
-                <SignUpForm />*/}
+
+                <SpotifyLoginButton />
                 <div className="search">
                     <SearchBar />
                     <YearSelect />
