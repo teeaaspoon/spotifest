@@ -23,7 +23,7 @@ module Api::V1
       if @spotify_user.save
         redirect_to "http://localhost:3000/#{@spotify_user.user_info['id']}"
       else
-        @old_user = Spotify.find_by(spotify_id: @spotify_user.id)
+        @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
         redirect_to "http://localhost:3000/#{@old_user.user_info['id']}"
       end
     end
