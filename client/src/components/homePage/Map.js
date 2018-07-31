@@ -1,27 +1,26 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords } from "../../actions/mapActions.js";
+import { saveContinent, saveCurrentCoords, saveRadius } from "../../actions/mapActions.js";
 import { southAmericaPath, oceaniaPath, northAmericaPath, europePath, asiaPath, africaPath } from "./mapData/pathData.js"
+import classNameToContinent from "./mapData/classNameToContinent.json"
 
 
 
 class Map extends Component {
 
   handleClick = (e) => {
-    this.props.saveContinent(e.target.id)
-    let emptyCoords = {}
-    this.props.saveCurrentCoords(emptyCoords)
+    const continent = classNameToContinent[e.target.id]
+    this.props.saveContinent(continent)
     this.props.saveRadius(null)
-    this.props.deleteFestivalCoords()
   }
   continents = [
-    {name: "SouthAmerica", path: southAmericaPath},
-    {name: "Oceania", path: oceaniaPath},
-    {name: "NorthAmerica", path: northAmericaPath},
-    {name: "Europe", path: europePath},
-    {name: "Asia", path: asiaPath},
-    {name: "Africa", path: africaPath},
+    {name: "southAmerica", path: southAmericaPath},
+    {name: "oceania", path: oceaniaPath},
+    {name: "northAmerica", path: northAmericaPath},
+    {name: "europe", path: europePath},
+    {name: "asia", path: asiaPath},
+    {name: "africa", path: africaPath},
   ]
 
   render() {
@@ -62,5 +61,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords }
+    { saveContinent, saveCurrentCoords, saveRadius }
 )(Map);

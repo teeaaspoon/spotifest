@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import countryToContinent from "./mapData/countryToContinent.json"
 import Festival from "./Festival.js"
 import YearFilter from "./filterOptions/YearFilter.js"
 import ContinentFilter from "./filterOptions/ContinentFilter.js"
@@ -21,7 +20,7 @@ class ListOfFestivals extends Component {
   }
   filterByContinent = (continent, festivals) => {
     if (continent !== "") {
-      let festivalsInContinent = festivals.filter(festival => countryToContinent[festival.country] === this.props.continent)
+      let festivalsInContinent = festivals.filter(festival => festival.continent === this.props.continent)
       return festivalsInContinent
     } else {
       return festivals
@@ -43,24 +42,19 @@ class ListOfFestivals extends Component {
       return festivals
     }
   }
-  filterByRadius = (radius, festivalCoords, currentCoords, festivals) => {
-    if (radius && festivalCoords.length === festivals.length && currentCoords.latitude && currentCoords.longitude) {
-      let festivalsInRadiusIDs = []
-      festivalCoords.forEach(fest => {
-        if (geolib.isPointInCircle(
-          {latitude: fest.latitude, longitude: fest.longitude},
+
+  filterByRadius = (radius, currentCoords, festivals) => {
+    console.log(radius)
+    if (radius && currentCoords.latitude && currentCoords.longitude) {
+      let festivalsInCoords = festivals.filter(festival => geolib.isPointInCircle(
+          {latitude: festival.latitude, longitude: festival.longitude},
           {latitude: currentCoords.latitude, longitude: currentCoords.longitude},
           radius
-        )) {
-          festivalsInRadiusIDs.push(fest.festivalID)
-        }
-      })
-      let festivalsNearMe = festivals.filter(festival => festivalsInRadiusIDs.includes(festival.id) )
-      return festivalsNearMe
+        ))
+      return festivalsInCoords
     } else {
       return festivals
     }
-
   }
 
   render() {
@@ -68,7 +62,7 @@ class ListOfFestivals extends Component {
     festivals = this.filterByYear(this.props.year, festivals)
     festivals = this.filterByContinent(this.props.continent, festivals)
     festivals = this.filterBySearch(this.props.searchInput, festivals)
-    festivals = this.filterByRadius(this.props.radius, this.props.festivalCoords, this.props.currentCoords, festivals)
+    festivals = this.filterByRadius(this.props.radius, this.props.currentCoords, festivals)
 
 
     let filteredFestivals = festivals.map(festival => <Festival festival={festival} key={festival.id}/>)
