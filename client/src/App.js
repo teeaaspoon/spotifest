@@ -7,7 +7,6 @@ import Home from "./components/homePage/Home";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
-
 import "./App.css";
 
 let User = () => <h1>User</h1>;
@@ -20,6 +19,7 @@ class App extends Component {
         try {
             let jwt = window.localStorage.getItem("jwt");
             let result = jwtDecode(jwt);
+            console.log(result);
         } catch (error) {
             console.log(error);
         }

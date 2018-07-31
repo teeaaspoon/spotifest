@@ -6,12 +6,7 @@ import { saveContinent } from "../../../actions/mapActions.js";
 
 class ContinentFilter extends Component {
   deleteContinentFilter = () => {
-    const emptyContinent = {
-      properties: {
-        continent: ""
-      }
-    }
-    this.props.saveContinent(emptyContinent)
+    this.props.saveContinent("")
   }
   render() {
     return (

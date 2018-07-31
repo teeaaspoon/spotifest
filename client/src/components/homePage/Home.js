@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import LoginForm from "../auth/LoginForm";
-import SignUpForm from "../auth/SignUpForm";
 import LogOutButton from "../auth/LogOutButton";
+import SearchBar from "./SearchBar";
+import ListOfFestivals from "./ListOfFestivals"
+import GetLocationButton from "./GetLocationButton"
+import YearSelect from "./YearSelect"
+import LoginForm from "../auth/LoginForm"
+import SignUpForm from "../auth/SignUpForm"
 
-import SearchBar from "./SearchBar.js";
-import ListOfFestivals from "./ListOfFestivals.js"
-import GetLocationButton from "./GetLocationButton.js"
-import YearSelect from "./YearSelect.js"
 
 import FestivalSelected from "./FestivalSelected";
 import { connect } from "react-redux";
 import SpotifyLoginButton from "../auth/SpotifyLoginButton";
-import Map from "./Map.js";
+import Map from "./Map";
+
 
 class Home extends Component {
     componentDidUpdate() {
