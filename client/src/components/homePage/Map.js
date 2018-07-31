@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords } from "../../actions/mapActions.js";
+import { saveContinent, saveCurrentCoords, saveRadius } from "../../actions/mapActions.js";
 import { southAmericaPath, oceaniaPath, northAmericaPath, europePath, asiaPath, africaPath } from "./mapData/pathData.js"
 
 
@@ -10,10 +10,7 @@ class Map extends Component {
 
   handleClick = (e) => {
     this.props.saveContinent(e.target.id)
-    let emptyCoords = {}
-    this.props.saveCurrentCoords(emptyCoords)
     this.props.saveRadius(null)
-    this.props.deleteFestivalCoords()
   }
   continents = [
     {name: "SouthAmerica", path: southAmericaPath},
@@ -62,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveContinent, saveCurrentCoords, saveRadius, deleteFestivalCoords }
+    { saveContinent, saveCurrentCoords, saveRadius }
 )(Map);

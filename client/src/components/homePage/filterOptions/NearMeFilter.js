@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveCurrentCoords, saveRadius, deleteFestivalCoords } from "../../../actions/mapActions.js";
+import { saveCurrentCoords, saveRadius } from "../../../actions/mapActions.js";
 
 
 class NearMeFilter extends Component {
   deleteNearMeFilter = () => {
-    let emptyCoords = {}
-    this.props.saveCurrentCoords(emptyCoords)
     this.props.saveRadius(null)
-    this.props.deleteFestivalCoords()
   }
   render() {
     return (
@@ -28,5 +25,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveCurrentCoords, saveRadius, deleteFestivalCoords }
+    { saveCurrentCoords, saveRadius }
 )(NearMeFilter);

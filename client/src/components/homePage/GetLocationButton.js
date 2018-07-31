@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent } from "../../actions/mapActions.js";
+import { saveCurrentCoords, saveRadius, saveContinent } from "../../actions/mapActions.js";
 import Select from 'react-select';
 
 class GetLocationButton extends Component {
@@ -21,50 +21,14 @@ class GetLocationButton extends Component {
     {value: 1000000, label: "1000 km"},
   ]
 
-  getLonLat = (festival) => {
-    let lonLat = {}
-    const cityStr = festival.city.split(" ").join("%20")
-
-    fetch(`https://api.teleport.org/api/cities/?search=${cityStr}`)
-    .then(results => {return results.json()})
-    .then(result => {
-      fetch(result["_embedded"]["city:search-results"][0]["_links"]["city:item"]["href"])
-      .then(results => {return results.json()})
-      .then(result => {
-        lonLat.festivalID = festival.id
-        lonLat.latitude = result["location"]["latlon"]["latitude"]
-        lonLat.longitude = result["location"]["latlon"]["longitude"]
-        this.props.saveFestivalCoords(lonLat)
-      })
-    })
-  }
-
-  componentDidMount() {
-    if ("geolocation" in navigator) {
-      console.log("geolocation is available")
-    } else {
-      let newState = this.state
-      newState.errorMessages.noGeolocation = "sorry! geolocation is not available"
-      this.setState(newState)
-    }
-  }
   handleClick = () => {
-    let newState = this.state
+    this.props.saveContinent("")
     this.props.saveRadius(this.state.radius)
+
+    let newState = this.state
     newState.errorMessages.radiusNotNumber = ""
     newState.radius = ""
     this.setState(newState)
-    this.props.saveContinent("")
-    navigator.geolocation.getCurrentPosition(position => {
-      this.props.saveCurrentCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      })
-    })
-    this.props.festivals.forEach(festival => {
-      this.getLonLat(festival)
-    })
-
   }
 
   setRadius = (selectedOption) => {
@@ -75,23 +39,29 @@ class GetLocationButton extends Component {
   render() {
     return (
       <div className="get-location-button">
-        <button onClick={this.handleClick}>Festivals Near You!</button>
-        <Select
-          className="select-radius"
-          onChange={this.setRadius}
-          options={this.radiusOptions}
-        />
-        {this.state.errorMessages.noGeolocation && <p>{this.state.errorMessages.noGeolocation}</p>}
+        {this.props.currentCoords.latitude ? (
+          <div>
+            <button onClick={this.handleClick}>Festivals Near You!</button>
+            <Select
+              className="select-radius"
+              onChange={this.setRadius}
+              options={this.radiusOptions}
+            />
+          </div>
+          ) : (
+          <p>Getting current location...</p>
+          )
+        }
       </div>
     )
   }
 }
-
 const mapStateToProps = state => ({
-    festivals: state.fetch.festivals
+    currentCoords: state.map.currentCoords
 });
+
 
 export default connect(
     mapStateToProps,
-    { saveFestivalCoords, saveCurrentCoords, saveRadius, saveContinent}
+    { saveCurrentCoords, saveRadius, saveContinent}
 )(GetLocationButton);
