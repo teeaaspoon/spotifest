@@ -4,11 +4,13 @@ import {
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
-    SELECT_ALL_ARTISTS
+    SELECT_ALL_ARTISTS,
+    GET_SPOTIFY_USER
 } from "../actions/types";
 
 const initialState = {
     jwt: "",
+    spotifyUser: "",
     festivalSelected: "",
     artistsSelected: []
 };
@@ -19,6 +21,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 jwt: action.payload
+            };
+        case GET_SPOTIFY_USER:
+            return {
+                ...state,
+                spotifyUser: action.payload
             };
         case SELECT_FESTIVAL:
             return {

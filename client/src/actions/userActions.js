@@ -4,7 +4,8 @@ import {
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
-    SELECT_ALL_ARTISTS
+    SELECT_ALL_ARTISTS,
+    GET_SPOTIFY_USER
 } from "./types";
 import axios from "axios";
 
@@ -12,6 +13,13 @@ export const getJwt = jwt => dispatch => {
     dispatch({
         type: SAVE_JWT,
         payload: jwt
+    });
+};
+
+export const getSpotifyUser = spotify_id => dispatch => {
+    dispatch({
+        type: GET_SPOTIFY_USER,
+        payload: spotify_id
     });
 };
 

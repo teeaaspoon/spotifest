@@ -22,7 +22,8 @@ class CreatePlaylist extends Component {
         this.props.createPlaylist({
             playlistTitle: this.state.playlistTitle,
             festival: this.props.festivalSelected,
-            artistsSelected: this.props.artistsSelected
+            artistsSelected: this.props.artistsSelected,
+            spotifyUser: this.props.spotifyUser
         });
     };
     handleChange = e => {
@@ -47,7 +48,8 @@ class CreatePlaylist extends Component {
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
     festivalArtists: state.fetch.festivalArtists,
-    artistsSelected: state.user.artistsSelected
+    artistsSelected: state.user.artistsSelected,
+    spotifyUser: state.user.spotifyUser
 });
 
 export default connect(

@@ -4,22 +4,20 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
+import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
 import "./App.css";
 
-let User = () => <h1>User</h1>;
+const User = props => <h2>{props.userId}</h2>;
 
 class App extends Component {
     componentWillMount() {
         this.props.fetchFestivals();
-    }
-    componentDidMount() {
         try {
             let jwt = window.localStorage.getItem("jwt");
-            let result = jwtDecode(jwt);
-            console.log(result);
+            jwtDecode(jwt);
         } catch (error) {
             console.log(error);
         }
@@ -30,7 +28,8 @@ class App extends Component {
                 <Router>
                     <Home path="/" />
                     <Admin path="/admin" />
-                    <User path="/user" />
+                    <LoggedIn path="/:userId" />
+                    <User path="/user/:userId" />
                 </Router>
             </Provider>
         );
