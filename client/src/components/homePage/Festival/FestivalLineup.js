@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchFestivalArtists } from "../../actions/fetchActions";
-import { selectAllArtists } from "../../actions/userActions";
+import { fetchFestivalArtists } from "../../../actions/fetchActions";
+import { selectAllArtists } from "../../../actions/userActions";
+import { saveFestivalGenres, saveFestivalGenresSum } from "../../../actions/genreActions";
+
 import Artist from "./Artist.js";
-import axios from "axios";
 
 class FestivalSelected extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = {
-    //         genresToArtists = {}
-    //     }
-    // }
     componentWillMount() {
         this.props.fetchFestivalArtists(this.props.festivalSelected.id);
     }
@@ -23,7 +18,10 @@ class FestivalSelected extends Component {
     }
     componentDidUpdate() {
         this.props.selectAllArtists(this.props.festivalArtists);
-        this.getArtistGenres(this.props.festivalArtists)
+
+        let festivalGenres = this.getAllFestivalGenres(this.props.festivalArtists)
+        this.props.saveFestivalGenres(festivalGenres)
+        this.props.saveFestivalGenresSum(this.sortGenreSum(this.props.festivalArtists))
     }
 
     mapFestivalArtistsIntoList = listOfArtists => {
@@ -38,15 +36,38 @@ class FestivalSelected extends Component {
         //make graph of festival genres with this data
     //make dropdown using the object keys (genre_id) => genre title
         //filter artists using genre_id and calling @artist.genre.includes...
-    // getArtistGenres = listOfArtists => {
-    //     const artistID = listOfArtists[1].id
-    //     axios.get(`/api/v1/artists/${artistID}/genres`).then(response => {
-    //         response.data.forEach(genre => {
-    //             genresToArtists[genre.id] = []
-    //         })
-    //     })
 
-    // }
+    getAllFestivalGenres = (listOfArtists) => {
+        let festivalGenres = {}
+        listOfArtists.forEach(artist => {
+            artist.spotify_artist_info.genres.forEach(genre => {
+                if (festivalGenres[genre]) {
+                    festivalGenres[genre].push(artist.artist_name)
+                } else {
+                    festivalGenres[genre] = [artist.artist_name]
+                }
+            })
+        })
+        return festivalGenres
+    }
+    getFestivalGenresSum = (festivalGenres) => {
+        let festivalGenresSum = {}
+        for (let genre in festivalGenres) {
+            festivalGenresSum[genre] = festivalGenres[genre].length
+        }
+        return festivalGenresSum
+    }
+    sortGenreSum = (listOfArtists) => {
+        let festivalGenres = this.getAllFestivalGenres(listOfArtists)
+        let genreSumObj = this.getFestivalGenresSum(festivalGenres)
+        let genreSums = []
+        for (let genre in genreSumObj) {
+            genreSums.push([genre, genreSumObj[genre]]);
+        }
+        genreSums.sort((a, b) => b[1] - a[1] );
+        return genreSums
+    }
+
 
     render() {
         return (
@@ -68,5 +89,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchFestivalArtists, selectAllArtists }
+    { fetchFestivalArtists, selectAllArtists, saveFestivalGenres, saveFestivalGenresSum }
 )(FestivalSelected);
