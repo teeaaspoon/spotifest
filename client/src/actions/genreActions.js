@@ -1,6 +1,7 @@
 import {
     SAVE_FESTIVAL_GENRES,
     SAVE_FESTIVAL_GENRES_SUM,
+    SAVE_GENRE
 } from "./types";
 
 export const saveFestivalGenres = (festivalGenres) => dispatch => {
@@ -16,4 +17,11 @@ export const saveFestivalGenresSum = (festivalGenresSum) => dispatch => {
         payload: festivalGenresSum
     });
 };
+
+export const saveGenre = (genre) => dispatch => {
+    dispatch({
+        type: SAVE_GENRE,
+        payload: genre
+    })
+}
 

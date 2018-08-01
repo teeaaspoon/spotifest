@@ -30,13 +30,6 @@ class FestivalSelected extends Component {
         });
         return mappedArtists;
     };
-    //FIGURE THIS OUT TOMORROW!!!!!
-    //do i need genreToArtist object in the state???
-    //todo: get object where keys are genre id and value is number of artists (or array of artists) =>use front end data
-        //make graph of festival genres with this data
-    //make dropdown using the object keys (genre_id) => genre title
-        //filter artists using genre_id and calling @artist.genre.includes...
-
     getAllFestivalGenres = (listOfArtists) => {
         let festivalGenres = {}
         listOfArtists.forEach(artist => {

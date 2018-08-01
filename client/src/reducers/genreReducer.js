@@ -1,11 +1,13 @@
 import {
   SAVE_FESTIVAL_GENRES,
   SAVE_FESTIVAL_GENRES_SUM,
+  SAVE_GENRE
 } from "../actions/types";
 
 const initialState = {
   festivalGenres: {},
   festivalGenresSum: [],
+  selectedGenre: ""
 };
 
 export default function(state = initialState, action) {
@@ -20,6 +22,11 @@ export default function(state = initialState, action) {
           ...state,
           festivalGenresSum: action.payload
       };
+    case SAVE_GENRE:
+      return {
+          ...state,
+          selectedGenre: action.payload
+      }
     default:
       return state
   }
