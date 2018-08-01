@@ -7,7 +7,9 @@ import { saveGenre } from '../../../actions/genreActions.js'
 
 class SelectGenre extends Component {
   handleGenreChange = (selectedOption) => {
-    this.props.saveGenre(selectedOption.value)
+    if (!this.props.selectedGenres.includes(selectedOption.value)){
+      this.props.saveGenre(selectedOption.value)
+    }
   }
 
   render() {
@@ -27,6 +29,7 @@ class SelectGenre extends Component {
 }
 
 const mapStateToProps = state => ({
+    selectedGenres: state.genre.selectedGenres,
     festivalGenresSum: state.genre.festivalGenresSum
 });
 
