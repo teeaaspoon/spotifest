@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectArtist, deselectArtist } from "../../actions/userActions";
+import { selectArtist, deselectArtist } from "../../../actions/userActions";
 
 class Artist extends Component {
     constructor(props) {

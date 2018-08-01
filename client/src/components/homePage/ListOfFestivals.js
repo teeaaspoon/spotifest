@@ -44,7 +44,6 @@ class ListOfFestivals extends Component {
   }
 
   filterByRadius = (radius, currentCoords, festivals) => {
-    console.log(radius)
     if (radius && currentCoords.latitude && currentCoords.longitude) {
       let festivalsInCoords = festivals.filter(festival => geolib.isPointInCircle(
           {latitude: festival.latitude, longitude: festival.longitude},

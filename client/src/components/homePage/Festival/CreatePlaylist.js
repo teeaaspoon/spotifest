@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { createPlaylist } from "../../actions/userActions";
+import { createPlaylist } from "../../../actions/userActions";
 
 class CreatePlaylist extends Component {
     constructor(props) {
