@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180731165651) do
+ActiveRecord::Schema.define(version: 20180801155708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.bigint "artist_id", null: false
   end
 
+  create_table "artists_genres", id: false, force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "artist_id", null: false
+  end
+
   create_table "festivals", force: :cascade do |t|
     t.string "title"
     t.string "start_date"
@@ -40,6 +45,26 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.float "longitude"
     t.float "latitude"
     t.string "continent"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.jsonb "spotify_playlist_info"
+    t.bigint "spotify_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["spotify_id"], name: "index_playlists_on_spotify_id"
+  end
+
+  create_table "playlists_songs", id: false, force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.bigint "playlist_id", null: false
   end
 
   create_table "songs", force: :cascade do |t|
@@ -57,18 +82,18 @@ ActiveRecord::Schema.define(version: 20180731165651) do
     t.jsonb "user_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.string "email"
     t.string "spotify_id"
     t.index ["spotify_id"], name: "index_spotifies_on_spotify_id"
-    t.index ["user_id"], name: "index_spotifies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.jsonb "spotify_user_info"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "playlists", "spotifies"
   add_foreign_key "songs", "artists"
 end

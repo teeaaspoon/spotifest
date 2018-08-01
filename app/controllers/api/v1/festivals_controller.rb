@@ -53,7 +53,7 @@ module Api::V1
 
       # Only allow a trusted parameter "white list" through.
       def festival_params
-        params.require(:festival).permit(:title, :start_date, :end_date, :city, :country)
+        params.require(:festival).permit(:title, :start_date, :end_date, :city, :country, :continent, :longitude, :latitude)
       end
   end
 end

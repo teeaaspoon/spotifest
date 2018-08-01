@@ -25,7 +25,16 @@ class FestivalForm extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        const { title, start_date, end_date, city, country } = this.state;
+        const {
+            title,
+            start_date,
+            end_date,
+            city,
+            country,
+            continent,
+            longitude,
+            latitude
+        } = this.state;
         axios
             .post("/api/v1/festivals", {
                 festival: {
@@ -33,7 +42,10 @@ class FestivalForm extends Component {
                     start_date,
                     end_date,
                     city,
-                    country
+                    country,
+                    continent,
+                    longitude,
+                    latitude
                 }
             })
             .then(response => {
@@ -44,6 +56,9 @@ class FestivalForm extends Component {
                     end_date: "",
                     city: "",
                     country: "",
+                    continent: "",
+                    longitude: "",
+                    latitude: "",
                     submitStatus: "Festival Successfully added!"
                 });
                 this.props.fetchFestivals();

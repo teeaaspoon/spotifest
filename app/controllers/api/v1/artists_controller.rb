@@ -27,7 +27,16 @@ module Api::V1
         return
       else
         @artist = Artist.new({artist_name: @spotify_artist.name, spotify_artist_id: @spotify_artist.id, spotify_artist_info: @spotify_artist})
-      end      
+        @artist.spotify_artist_info['genres'].each do |genre|
+          @search_genre = Genre.find_by(name: genre)
+          if @search_genre
+            @artist.genres << @search_genre
+          else
+            @genre = Genre.create!(name: genre)
+            @artist.genres << @genre
+          end
+        end
+      end
 
       if @artist.save
         render json: @artist, status: :created

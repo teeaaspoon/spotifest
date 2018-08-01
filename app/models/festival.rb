@@ -6,4 +6,7 @@ class Festival < ApplicationRecord
     validates :end_date, presence:true
     validates :city, presence:true
     validates :country, presence:true
+    validates :continent, presence:true
+    validates :longitude, presence:true
+    validates :latitude, presence:true
 end
