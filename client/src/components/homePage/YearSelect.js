@@ -25,6 +25,7 @@ class YearSelect extends Component {
         onChange={this.handleYearChange}
         options={years.map(year => ({value: year, label: year}))}
       />
+
     )
 
   }

@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       resources :spotifies
       resources :festivals
       resources :artists do
+        resources :genres
         resources :songs
+      end
+      resources :genres do
+        resources :artists
       end
     end
   end

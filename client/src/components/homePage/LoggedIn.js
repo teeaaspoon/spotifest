@@ -7,7 +7,7 @@ import YearSelect from "./YearSelect"
 import { getSpotifyUser } from "../../actions/userActions";
 
 
-import FestivalSelected from "./FestivalSelected";
+import FestivalSelected from "./Festival/FestivalSelected";
 import { connect } from "react-redux";
 import Map from "./Map";
 
