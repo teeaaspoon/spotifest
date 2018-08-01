@@ -73,12 +73,5 @@ ActiveRecord::Schema.define(version: 20180731193308) do
     t.index ["spotify_id"], name: "index_spotifies_on_spotify_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "songs", "artists"
 end
