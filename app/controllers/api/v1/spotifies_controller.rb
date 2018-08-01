@@ -8,7 +8,6 @@ module Api::V1
 
 
     def login
-      binding.pry
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
       user_hash = user_info.to_hash
       redirect_to action: 'create_user', param: user_hash
@@ -35,10 +34,14 @@ module Api::V1
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
+      @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
+      binding.pry
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
       @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
+      @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
+      binding.pry
       render json: @playlist
     end
 
@@ -56,5 +59,11 @@ module Api::V1
       tracks
     end
 
+    def add_songs_to_playlist(playlist, tracks)
+      tracks.each do |track|
+        playlist.songs << track
+        binding.pry
+      end
+    end
   end
 end
