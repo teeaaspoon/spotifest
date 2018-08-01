@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchFestivalArtists } from "../../../actions/fetchActions";
-import { selectAllArtists } from "../../../actions/userActions";
+import { selectAllArtists, deselectArtist } from "../../../actions/userActions";
 import { saveFestivalGenres, saveFestivalGenresSum } from "../../../actions/genreActions";
+import SelectedGenre from "./SelectedGenre.js"
 
 import Artist from "./Artist.js";
 
@@ -22,6 +23,7 @@ class FestivalSelected extends Component {
         let festivalGenres = this.getAllFestivalGenres(this.props.festivalArtists)
         this.props.saveFestivalGenres(festivalGenres)
         this.props.saveFestivalGenresSum(this.sortGenreSum(this.props.festivalArtists))
+        this.filterByGenre(this.props.selectedGenres, this.props.festivalArtists)
     }
 
     mapFestivalArtistsIntoList = listOfArtists => {
@@ -61,10 +63,29 @@ class FestivalSelected extends Component {
         return genreSums
     }
 
+    filterByGenre = (selectedGenres, festivalArtists) => {
+        if (selectedGenres.length > 0) {
+            this.props.selectAllArtists(festivalArtists)
+            let selectArtists = []
+            selectedGenres.forEach(genre => {
+                let genreArtists = festivalArtists.filter(artist => artist.spotify_artist_info.genres.includes(genre))
+                selectArtists = [...selectArtists, ...genreArtists]
+            })
+            festivalArtists.forEach(artist => {
+                if(!selectArtists.includes(artist)) {
+                    this.props.deselectArtist(artist)
+                }
+            })
+        }
+    }
 
     render() {
+        const allSelectedGenres = this.props.selectedGenres.map(genreStr =>
+            (<SelectedGenre key={genreStr} genre={genreStr}/>)
+        )
         return (
             <div>
+                {allSelectedGenres}
                 <ul>
                     {this.mapFestivalArtistsIntoList(
                         this.props.festivalArtists
@@ -77,10 +98,11 @@ class FestivalSelected extends Component {
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    festivalArtists: state.fetch.festivalArtists
+    festivalArtists: state.fetch.festivalArtists,
+    selectedGenres: state.genre.selectedGenres,
 });
 
 export default connect(
     mapStateToProps,
-    { fetchFestivalArtists, selectAllArtists, saveFestivalGenres, saveFestivalGenresSum }
+    { fetchFestivalArtists, selectAllArtists, saveFestivalGenres, saveFestivalGenresSum, deselectArtist }
 )(FestivalSelected);

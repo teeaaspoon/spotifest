@@ -1,13 +1,15 @@
 import {
   SAVE_FESTIVAL_GENRES,
   SAVE_FESTIVAL_GENRES_SUM,
-  SAVE_GENRE
+  SAVE_GENRE,
+  REMOVE_GENRE,
+  RESET_GENRE
 } from "../actions/types";
 
 const initialState = {
   festivalGenres: {},
   festivalGenresSum: [],
-  selectedGenre: ""
+  selectedGenres: []
 };
 
 export default function(state = initialState, action) {
@@ -25,7 +27,24 @@ export default function(state = initialState, action) {
     case SAVE_GENRE:
       return {
           ...state,
-          selectedGenre: action.payload
+          selectedGenres: state.selectedGenres.concat(action.payload)
+      }
+    case REMOVE_GENRE:
+      let removeIndex = state.selectedGenres.indexOf(action.payload)
+      let newGenres = []
+      for (let i = 0; i < state.selectedGenres.length; i++) {
+        if (i !== removeIndex){
+          newGenres = newGenres.concat(state.selectedGenres[i])
+        }
+      }
+      return {
+          ...state,
+          selectedGenres: newGenres
+      }
+    case RESET_GENRE:
+      return {
+          ...state,
+          selectedGenres: []
       }
     default:
       return state

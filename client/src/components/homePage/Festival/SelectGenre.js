@@ -17,13 +17,16 @@ class SelectGenre extends Component {
         className="select-genre"
         onChange={this.handleGenreChange}
         options={allGenres}
+        onSelectResetsInput = { true }
+        onBlurResetsInput = { true }
+        value=""
+        placeholder="select genres"
       />
     )
   }
 }
 
 const mapStateToProps = state => ({
-    selectedGenre: state.genre.selectedGenre,
     festivalGenresSum: state.genre.festivalGenresSum
 });
 

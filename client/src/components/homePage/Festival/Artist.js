@@ -3,49 +3,32 @@ import { connect } from "react-redux";
 import { selectArtist, deselectArtist } from "../../../actions/userActions";
 
 class Artist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selected: this.props.selected
-        };
-    }
-    componentColour = state => {
-        if ((state = true)) {
-            return { color: "green" };
-        }
-    };
 
-    handleClick = () => {
-        this.setState({ selected: !this.state.selected });
-        if (!this.state.selected) {
-            this.props.selectArtist(this.props.artist);
-        } else {
-            this.props.deselectArtist(this.props.artist);
-        }
-    };
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.festivalSelected !== this.props.festivalSelected) {
-            this.setState({ selected: true });
-        }
+  handleClick = (ev) => {
+    if(ev.target.className === "artist selected") {
+      this.props.deselectArtist(this.props.artist)
+    } else {
+      this.props.selectArtist(this.props.artist)
     }
+  };
 
-    render() {
-        return (
-            <li
-                style={
-                    this.state.selected ? { color: "green" } : { color: "red" }
-                }
-                onClick={this.handleClick}
-            >
-                {this.props.artist.artist_name}
-            </li>
-        );
+
+  render() {
+    let selectedOrNot = "selected"
+    if (!this.props.artistsSelected.includes(this.props.artist)) {
+      selectedOrNot = "notSelected"
     }
+    return (
+      <li className={`artist ${selectedOrNot}`} onClick={this.handleClick}>{this.props.artist.artist_name}</li>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    festivalSelected: state.user.festivalSelected
+    festivalSelected: state.user.festivalSelected,
+    artistsSelected: state.user.artistsSelected
+
 });
 
 export default connect(

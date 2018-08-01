@@ -18,3 +18,11 @@ body {
   padding: 2rem;
   background-color: white;
   color: black; }
+
+li.artist.selected {
+  color: green;
+}
+
+li.artist.notSelected {
+  color: red;
+}
