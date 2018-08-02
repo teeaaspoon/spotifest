@@ -1,7 +1,8 @@
 import {
     FETCH_ARTISTS,
     FETCH_FESTIVALS,
-    FETCH_FESTIVAL_ARTISTS
+    FETCH_FESTIVAL_ARTISTS,
+    FETCH_USER_TOP_ARTISTS
 } from "./types";
 import axios from "axios";
 
@@ -32,3 +33,12 @@ export const fetchFestivalArtists = festival_id => dispatch => {
     });
 };
 
+export const fetchUserTopArtists = userId => dispatch => {
+    axios.get(`/api/v1/${userId}/top_artists`).then(response => {
+        console.log(response);
+        dispatch({
+            type: FETCH_USER_TOP_ARTISTS,
+            payload: response.data
+        });
+    });
+};

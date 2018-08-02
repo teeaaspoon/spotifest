@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import LogOutButton from "../auth/LogOutButton";
 import SearchBar from "./SearchBar";
-import ListOfFestivals from "./ListOfFestivals"
-import GetLocationButton from "./GetLocationButton"
-import YearSelect from "./YearSelect"
+import ListOfFestivals from "./ListOfFestivals";
+import GetLocationButton from "./GetLocationButton";
+import YearSelect from "./YearSelect";
 import { getSpotifyUser } from "../../actions/userActions";
-
 
 import FestivalSelected from "./FestivalSelected";
 import { connect } from "react-redux";
 import Map from "./Map";
-
+import { Link } from "@reach/router";
 
 class LoggedIn extends Component {
     componentDidUpdate() {
@@ -25,7 +24,12 @@ class LoggedIn extends Component {
     render() {
         return (
             <div className="Home">
-                <h1>Hey {this.props.userId}</h1>
+                <h1>
+                    Hey
+                    <Link to={"/user/" + this.props.userId}>
+                        {this.props.userId}
+                    </Link>
+                </h1>
                 <LogOutButton />
                 <SearchBar />
                 <YearSelect />
@@ -39,7 +43,6 @@ class LoggedIn extends Component {
                     }}
                 />
             </div>
-
         );
     }
 }

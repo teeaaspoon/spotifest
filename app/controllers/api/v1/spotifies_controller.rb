@@ -45,6 +45,16 @@ module Api::V1
       render json: @playlist
     end
 
+    def fetch_top_artists
+      @spotify_user_id = params[:userId]
+      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+      @top_artists = @RSpotify_user.top_artists
+      # find festivals where those artists are in
+      binding.pry
+      render json: @top_artists
+    end
+
     def destroy
       @spotify_user.destroy
     end
