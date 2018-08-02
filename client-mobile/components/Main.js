@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { fetchArtists, fetchFestivals } from "../actions/fetchActions";
 import { connect } from "react-redux";
 
@@ -7,11 +7,20 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchFestivals();
     }
+    handleClick = () => {
+        console.log("hihihii");
+    };
     render() {
-        console.log(this.props);
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Festivals</Text>
+                <FlatList
+                    data={this.props.festivals}
+                    renderItem={({ item }) => (
+                        <Text onPress={this.handleClick}>{item.title}</Text>
+                    )}
+                    keyExtractor={item => item.id.toString()}
+                />
             </View>
         );
     }
@@ -26,7 +35,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginTop: 100
     }
 });
 
