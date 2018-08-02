@@ -23,7 +23,8 @@ class SearchBar extends Component {
 
 const mapStateToProps = state => ({
     searchInput: state.map.searchInput,
-    festivals: state.fetch.festivals
+    festivals: state.fetch.festivals,
+    emptyList: state.map.emptyList
 });
 
 export default connect(

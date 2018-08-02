@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Festival from "./Festival.js"
-import YearFilter from "./filterOptions/YearFilter.js"
-import ContinentFilter from "./filterOptions/ContinentFilter.js"
-import SearchFilter from "./filterOptions/SearchFilter.js"
-import NearMeFilter from "./filterOptions/NearMeFilter.js"
+import Festival from "./Festival.js";
+import YearFilter from "./filterOptions/YearFilter.js";
+import ContinentFilter from "./filterOptions/ContinentFilter.js";
+import SearchFilter from "./filterOptions/SearchFilter.js";
+import NearMeFilter from "./filterOptions/NearMeFilter.js";
+import { saveEmptyList } from "../../actions/mapActions";
 
 import Fuse from "fuse.js"
 import geolib from "geolib"
@@ -57,12 +58,26 @@ class ListOfFestivals extends Component {
     }
   }
 
+  emptyList = (list) =>  { if (list.length < 1) {
+                              return true
+                          } else  {
+                              return false
+                            }
+                        }
+
+
+  // componentDidMount() {
+  //   let festivals = this.props.festivals
+  //   festivals = this.filterByYear(this.props.year, festivals)
+  //   festivals = this.filterByContinent(this.props.continent, festivals)
+  //   festivals = this.filterBySearch(this.props.searchInput, festivals)
+  //   festivals = this.filterByRadius(this.props.radius, this.props.currentCoords, festivals)
+  //       this.props.saveEmptyList(this.emptyList(festivals));
+
+  // }
+
+
   render() {
-    let festivals = this.props.festivals
-    festivals = this.filterByYear(this.props.year, festivals)
-    festivals = this.filterByContinent(this.props.continent, festivals)
-    festivals = this.filterBySearch(this.props.searchInput, festivals)
-    festivals = this.filterByRadius(this.props.radius, this.props.currentCoords, festivals)
 
 
     let filteredFestivals = festivals.map(festival => <Festival festival={festival} key={festival.id}/>)
@@ -96,7 +111,13 @@ const mapStateToProps = state => ({
     currentCoords: state.map.currentCoords
 });
 
+const mapDispatchToProps = dispatch => {
+  removeFilter: filter => {
+    //dispatch(removeFilter(filter))
+  }
+}
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps,
+    { saveEmptyList }
 )(ListOfFestivals);
