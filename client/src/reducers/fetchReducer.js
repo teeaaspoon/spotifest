@@ -2,14 +2,17 @@ import {
     FETCH_ARTISTS,
     FETCH_FESTIVALS,
     FETCH_FESTIVAL_ARTISTS,
-    FETCH_USER_TOP_GENRES
+    FETCH_USER_TOP_GENRES,
+    FETCH_REQUESTS,
+    CLEAR_REQUEST
 } from "../actions/types";
 
 const initialState = {
     artists: [],
     festivals: [],
     festivalArtists: [],
-    userTopGenres: []
+    userTopGenres: [],
+    requests: []
 };
 
 export default function(state = initialState, action) {
@@ -23,6 +26,16 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 festivals: action.payload
+            };
+        case FETCH_REQUESTS:
+            return {
+                ...state,
+                requests: action.payload
+            };
+        case CLEAR_REQUEST:
+            return {
+                ...state,
+                requests: state.requests.filter(req => req.id !== action.payload)
             };
         case FETCH_FESTIVAL_ARTISTS:
             return {

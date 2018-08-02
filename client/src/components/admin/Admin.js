@@ -1,18 +1,29 @@
 import React, { Component } from "react";
 import FestivalForm from "./FestivalForm";
 import ArtistForm from "./ArtistForm";
+import Request from "./Request";
 import ArtistsToFestivalForm from "./ArtistsToFestivalForm";
 import { connect } from "react-redux";
-import { fetchArtists } from "../../actions/fetchActions";
+import { fetchArtists, fetchRequests } from "../../actions/fetchActions";
+
 
 class Admin extends Component {
+
     componentDidMount() {
-        this.props.fetchArtists();
+        this.props.fetchRequests()
     }
+
     render() {
+        const allRequests = this.props.requests.map(request => <Request key={request.id} id={request.id} festival={request.festival_name} />)
         return (
             <div>
                 <h1>Admin</h1>
+                <div className="requests">
+                    {this.props.requests.length > 0 && <p>Requests</p>}
+                    <ul>
+                        {allRequests}
+                    </ul>
+                </div>
                 <FestivalForm />
                 <ArtistForm />
                 <ArtistsToFestivalForm />
@@ -28,8 +39,11 @@ class Admin extends Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    requests: state.fetch.requests
+});
 
 export default connect(
-    null,
-    { fetchArtists }
+    mapStateToProps,
+    { fetchArtists, fetchRequests }
 )(Admin);
