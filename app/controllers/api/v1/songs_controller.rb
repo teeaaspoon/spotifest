@@ -18,12 +18,19 @@ module Api::V1
       @songs = []
       @tracks = RSpotify::Track.search("artist:#{@artist.artist_name}", limit: 10)
       @tracks.each do |track|
+        binding.pry
         if Song.find_by spotify_uri: track.uri
-          @songs << "existing song, don't add to db"  
+          @songs << "existing song, don't add to db"
         else
+          binding.pry
           @song = @artist.songs.new({song_name: track.name, spotify_uri: track.uri, spotify_song_info: track})
+          @track_id = track.uri.split("track:")[1]
+          @audio_feature = RSpotify::AudioFeatures.find(@track_id)
+          if @audio_feature && @audio_feature.uri
+            @song.audio = Audio.create!(features: @audio_feature)
+          end
           if @song.save
-            @songs << @song  
+            @songs << @song
           end
         end
       end
