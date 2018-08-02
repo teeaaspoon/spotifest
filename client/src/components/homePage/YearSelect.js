@@ -19,7 +19,6 @@ class YearSelect extends Component {
     return (
         <Select
           className="select-year"
-          value={this.props.year}
           onChange={this.handleYearChange}
           options={years.map(year => ({value: year, label: year}))}
         />
