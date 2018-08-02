@@ -12,9 +12,14 @@ class Landing extends Component {
         <div className="festivalPic">
           <img src={image}/>
         </div>
-        <div className="title">
-          <h3>SPOTI</h3>
-          <h4>FEST</h4>
+        <div className="titleAndLogin">
+          <div className="title">
+            <h3>SPOTI</h3>
+            <h4>FEST</h4>
+          </div>
+          <div className="loginButton">
+            <p>LOGIN TO SPOTIFY</p>
+          </div>
         </div>
       </div>
     )

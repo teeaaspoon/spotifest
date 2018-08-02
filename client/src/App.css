@@ -98,25 +98,37 @@
       height: 150px;
       width: 100%;
       content: ''; }
-  .landing .title {
+  .landing .titleAndLogin .title {
     margin: 0px;
     padding: 10rem; }
-    .landing .title h3 {
+    .landing .titleAndLogin .title h3 {
       position: absolute;
       margin: 0px;
       padding: 0px;
-      padding-left: 1rem;
+      padding-left: 3rem;
       font-family: "Oswald";
       font-size: 160px; }
-    .landing .title h4 {
+    .landing .titleAndLogin .title h4 {
       position: absolute;
       z-index: 10;
       padding-top: 0px;
       margin-top: 7rem;
-      padding-left: 13rem;
+      padding-left: 15rem;
       font-family: "Permanent Marker";
       font-size: 100px;
       color: #01E365; }
+    .landing .titleAndLogin .title .loginButton {
+      padding-top: 15rem;
+      padding-left: 10rem; }
+      .landing .titleAndLogin .title .loginButton p {
+        padding: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        display: inline-block;
+        border: 1px solid white;
+        border-radius: 40px;
+        font-family: "proxima_nova_scosfthin";
+        font-size: 15px; }
 
 html {
   margin: 0px;
