@@ -91,14 +91,15 @@ ActiveRecord::Schema.define(version: 20180801183127) do
     t.jsonb "user_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.string "email"
     t.string "spotify_id"
     t.index ["spotify_id"], name: "index_spotifies_on_spotify_id"
+    t.index ["user_id"], name: "index_spotifies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
+    t.jsonb "spotify_user_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

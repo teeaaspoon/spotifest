@@ -12,6 +12,7 @@ module Api::V1
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
       user_hash = user_info.to_hash
       redirect_to action: 'create_user', param: user_hash
+
     end
 
     def show

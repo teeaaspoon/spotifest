@@ -7,7 +7,7 @@ import {
 const initialState = {
     artists: [],
     festivals: [],
-    festivalArtists: []
+    festivalArtists: [],
 
 };
 
