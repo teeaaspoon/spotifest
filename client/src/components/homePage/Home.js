@@ -19,7 +19,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-
+                <h1>Hey {this.props.userId}</h1>
                 <SpotifyLoginButton />
                 <div className="search">
                     <SearchBar />

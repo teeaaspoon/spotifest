@@ -4,19 +4,30 @@ $blue: #3df5ff;
 $orange: #FD5F00;
 $darkGrey: #1e1e1e;
 $green: #01E365;
-$pink: #FF5E9A;
+$pink: #FF005A;
 $orange: #FF5722;
+
+@import url('https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker');
+
+$titleFont: "Oswald";
+$markerFont: "Permanent Marker";
+$spotifyFont: "Proxima Nova', Georgia, sans-serif";
 
 @import 'styles/_map.scss';
 @import 'styles/_search.scss';
 @import 'styles/_festivalList.scss';
 @import 'styles/_getLocation.scss';
+@import 'styles/_festivalLineUp.scss';
+@import 'styles/_landingPage.scss';
+
 
 html {
-  margin: 2rem;
+  margin: 0px;
+  padding: 0px;
   body {
     margin: 0px;
-    background-color: $black;
+    padding: 0px;
+    background-color: black;
     color: white;
     font-family: sans-serif;
     font-size: 12px;

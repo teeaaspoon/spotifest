@@ -4,6 +4,9 @@ import { fetchFestivalArtists } from "../../../actions/fetchActions";
 import { selectAllArtists, deselectArtist } from "../../../actions/userActions";
 import { saveFestivalGenres, saveFestivalGenresSum } from "../../../actions/genreActions";
 import SelectedGenre from "./SelectedGenre.js"
+import SelectAllButton from "./SelectAllButton.js"
+
+
 
 import Artist from "./Artist.js";
 
@@ -84,8 +87,11 @@ class FestivalSelected extends Component {
             (<SelectedGenre key={genreStr} genre={genreStr}/>)
         )
         return (
-            <div>
+            <div className="lineup">
+                <div className="selectedGenres">
+                <SelectAllButton />
                 {allSelectedGenres}
+                </div>
                 <ul>
                     {this.mapFestivalArtistsIntoList(
                         this.props.festivalArtists

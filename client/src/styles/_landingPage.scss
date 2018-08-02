@@ -1,0 +1,49 @@
+.landing {
+  margin: 0px;
+  padding: 0px;
+  .festivalPic {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    z-index: -1;
+    img {
+      width: 100%;
+      filter: brightness(20%) grayscale(100%)
+      // filter: brightness(30%)
+    }
+    &::after {
+      display: block;
+      position: relative;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, black 100%);
+      margin-top: -150px;
+      height: 150px;
+      width: 100%;
+      content: '';
+    }
+  }
+  .title {
+    margin: 0px;
+    padding: 10rem;
+    // display: flex;
+    // justify-content: center;
+    h3 {
+      position: absolute;
+      margin: 0px;
+      padding: 0px;
+      padding-left: 1rem;
+      font-family: $titleFont;
+      font-size: 160px;
+    }
+    h4 {
+      // display: none;
+      position: absolute;
+      z-index: 10;
+      padding-top: 0px;
+      margin-top: 7rem;
+      padding-left: 13rem;
+      font-family: $markerFont;
+      font-size: 100px;
+      color: $green;
+    }
+  }
+}

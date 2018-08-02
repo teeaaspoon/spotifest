@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
+import Landing from "./components/landingPage/Landing";
 import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
@@ -43,9 +44,9 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Router>
-                    <Home path="/" />
+                    <Landing path="/" />
+                    <Home path="/:userId" />
                     <Admin path="/admin" />
-                    <LoggedIn path="/:userId" />
                     <User path="/user/:userId" />
                 </Router>
             </Provider>
