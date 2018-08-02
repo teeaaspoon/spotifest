@@ -20,11 +20,7 @@ class ContinentFilter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-    continent: state.map.continent
-});
-
 export default connect(
-    mapStateToProps,
+    null,
     { saveContinent }
 )(ContinentFilter);

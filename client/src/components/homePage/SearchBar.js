@@ -15,14 +15,14 @@ class SearchBar extends Component {
       <input
         onChange={this.onSearch}
         placeholder="Search a festival!"
-        value={this.props.searchInput}
+        value={this.props.filters.filter(f => f.type === "search")[0] ? (this.props.filters.filter(f => f.type === "search")[0].args):("")}
       />
     )
   }
 }
 
 const mapStateToProps = state => ({
-    searchInput: state.map.searchInput,
+    filters: state.map.filters,
     festivals: state.fetch.festivals
 });
 

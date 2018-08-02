@@ -1,4 +1,11 @@
-import { SAVE_CONTINENT, SAVE_YEAR, SAVE_SEARCH_INPUT, SAVE_CURRENT_COORDS, SAVE_RADIUS} from "./types";
+import { SAVE_CONTINENT,
+    SAVE_YEAR,
+    SAVE_SEARCH_INPUT,
+    SAVE_CURRENT_COORDS,
+    SAVE_RADIUS,
+    SELECT_ALL_FESTIVALS,
+} from "./types";
+import axios from "axios"
 
 export const saveContinent = continent => dispatch => {
     dispatch({
@@ -35,6 +42,17 @@ export const saveRadius = (radius)=> dispatch => {
         payload: radius
     });
 }
+
+export const selectAllFestivals = () => dispatch => {
+    axios.get("/api/v1/festivals").then(response => {
+        dispatch({
+            type: SELECT_ALL_FESTIVALS,
+            payload: response.data
+        });
+    });
+};
+
+
 
 
 
