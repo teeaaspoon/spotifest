@@ -5,7 +5,7 @@ import GetLocationButton from "./GetLocationButton"
 import YearSelect from "./YearSelect"
 
 
-import FestivalSelected from "./FestivalSelected";
+import FestivalSelected from "./Festival/FestivalSelected.js";
 import { connect } from "react-redux";
 import SpotifyLoginButton from "../auth/SpotifyLoginButton";
 import Map from "./Map";

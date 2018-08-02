@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post '/api/v1/createspotifyplaylist', to: 'api/v1/spotifies#create_playlist'
   get "create_user", to: "api/v1/spotifies#create_user", as: :create_spotify
   post "set_user", to: "api/v1/spotifies#set_user", as: :set_user
-
+  get "/api/v1/:userId/genres", to: 'api/v1/spotifies#fetch_top_genres', as: :fetch_top_artists
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       resources :spotifies
       resources :festivals
       resources :artists do
+        resources :genres
         resources :songs
+      end
+      resources :genres do
+        resources :artists
       end
     end
   end

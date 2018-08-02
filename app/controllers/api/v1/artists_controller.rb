@@ -7,6 +7,9 @@ module Api::V1
       if params[:festival_id]
         @festival = Festival.find params[:festival_id]
         @artists = @festival.artists
+      elsif params[:genre_id]
+        @genre = Genre.find params[:genre_id]
+        @artists = @genre.artists
       else
         @artists = Artist.all
       end

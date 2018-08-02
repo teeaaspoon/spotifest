@@ -8,7 +8,6 @@ module Api::V1
 
 
     def login
-      binding.pry
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
       user_hash = user_info.to_hash
       redirect_to action: 'create_user', param: user_hash
@@ -44,6 +43,17 @@ module Api::V1
       @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
       binding.pry
       render json: @playlist
+    end
+
+    def fetch_top_genres
+      @spotify_user_id = params[:userId]
+      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+      @top_artists = @RSpotify_user.top_artists
+      # find top genres for each artist
+      @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
+      # find genres for each festival, compare
+      render json: @genres
     end
 
     def destroy
