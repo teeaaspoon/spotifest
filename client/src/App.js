@@ -8,7 +8,7 @@ import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
-import { saveCurrentCoords } from "./actions/mapActions";
+import { saveCurrentCoords, selectAllFestivals } from "./actions/mapActions";
 import "./App.css";
 
 const User = props => <h2>{props.userId}</h2>;
@@ -16,7 +16,6 @@ const User = props => <h2>{props.userId}</h2>;
 class App extends Component {
     componentWillMount() {
         this.props.fetchFestivals();
-
         if ("geolocation" in navigator) {
           console.log("geolocation is available")
         } else {
@@ -38,6 +37,7 @@ class App extends Component {
         } catch (error) {
             console.log(error);
         }
+        this.props.selectAllFestivals()
     }
     render() {
         return (
@@ -59,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals, saveCurrentCoords }
+    { fetchArtists, fetchFestivals, saveCurrentCoords, selectAllFestivals }
 )(App);

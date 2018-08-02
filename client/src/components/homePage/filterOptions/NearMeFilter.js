@@ -19,11 +19,8 @@ class NearMeFilter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-    radius: state.map.radius
-});
 
 export default connect(
-    mapStateToProps,
+    null,
     { saveCurrentCoords, saveRadius }
 )(NearMeFilter);
