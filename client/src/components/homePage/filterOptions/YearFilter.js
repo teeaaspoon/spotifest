@@ -20,11 +20,7 @@ class YearFilter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-    year: state.map.year
-});
-
 export default connect(
-    mapStateToProps,
+    null,
     { saveYear }
 )(YearFilter);

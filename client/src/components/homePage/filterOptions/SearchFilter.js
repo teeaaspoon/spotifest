@@ -11,7 +11,7 @@ class SearchFilter extends Component {
   render() {
     return (
       <div>
-        {this.props.searchInput}
+        {this.props.search}
         <span>
           <button onClick={this.deleteSearchFilter}>delete</button>
         </span>
@@ -20,11 +20,8 @@ class SearchFilter extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-    searchInput: state.map.searchInput
-});
 
 export default connect(
-    mapStateToProps,
+    null,
     { saveSearchInput }
 )(SearchFilter);
