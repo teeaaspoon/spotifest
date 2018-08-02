@@ -1,34 +1,21 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchUserTopGenres } from "../../actions/fetchActions";
+// import { connect } from "react-redux";
+import TopGenres from "./TopGenres";
+import TopArtists from "./TopArtists";
+import Playlists from "./Playlists";
 
-class User extends Component {
-    componentDidMount() {
-        // fetch top spotify artists for user.
-        this.props.fetchUserTopGenres(this.props.userId);
-    }
-    mapTopGenresToList = listOfGenres => {
-        const genres = listOfGenres.map((genre, index) => {
-            return <li key={index}>{genre}</li>;
-        });
-        return genres;
-    };
+
+
+export default class User extends Component {
     render() {
         return (
             <div>
                 <h2>Hello {this.props.userId}</h2>
-                <p>These are your top genres</p>
-                <ul>{this.mapTopGenresToList(this.props.topGenres)}</ul>
+                <TopGenres userId={this.props.userId} />
+                <TopArtists userId={this.props.userId} />
+                <Playlists userId={this.props.userId} />
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
-    topGenres: state.fetch.userTopGenres
-});
-
-export default connect(
-    mapStateToProps,
-    { fetchUserTopGenres }
-)(User);
