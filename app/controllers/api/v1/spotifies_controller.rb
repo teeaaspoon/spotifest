@@ -35,31 +35,37 @@ module Api::V1
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
-      binding.pry
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
       @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
       @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
-      binding.pry
       render json: @playlist
     end
 
     def fetch_top_genres
+      get_user
+      @top_artists = @RSpotify_user.top_artists
+      @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
+      render json: @genres
+    end
+
+    def fetch_top_artists
+      get_user
+      @top_artists = @RSpotify_user.top_artists
+      render json: @top_artists
+    end
+
+    def fetch_playlists
       @spotify_user_id = params[:userId]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
-      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
-      @top_artists = @RSpotify_user.top_artists
-      # find top genres for each artist
-      @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
-      # find genres for each festival, compare
-      render json: @genres
+      @playlists = @spotify_user.playlists
+      render json: @playlists
     end
 
     def destroy
       @spotify_user.destroy
     end
-
 
     private
 
@@ -73,8 +79,15 @@ module Api::V1
     def add_songs_to_playlist(playlist, tracks)
       tracks.each do |track|
         playlist.songs << track
-        binding.pry
       end
     end
+
+    def get_user
+      @spotify_user_id = params[:userId]
+      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+    end
+
+
   end
 end
