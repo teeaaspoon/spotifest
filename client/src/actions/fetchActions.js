@@ -2,7 +2,7 @@ import {
     FETCH_ARTISTS,
     FETCH_FESTIVALS,
     FETCH_FESTIVAL_ARTISTS,
-    FETCH_USER_TOP_ARTISTS
+    FETCH_USER_TOP_GENRES
 } from "./types";
 import axios from "axios";
 
@@ -33,11 +33,11 @@ export const fetchFestivalArtists = festival_id => dispatch => {
     });
 };
 
-export const fetchUserTopArtists = userId => dispatch => {
-    axios.get(`/api/v1/${userId}/top_artists`).then(response => {
+export const fetchUserTopGenres = userId => dispatch => {
+    axios.get(`/api/v1/${userId}/genres`).then(response => {
         console.log(response);
         dispatch({
-            type: FETCH_USER_TOP_ARTISTS,
+            type: FETCH_USER_TOP_GENRES,
             payload: response.data
         });
     });
