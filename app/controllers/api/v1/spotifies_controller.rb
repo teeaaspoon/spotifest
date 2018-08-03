@@ -14,10 +14,10 @@ module Api::V1
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
-        redirect_to "http://localhost:3000/#{@spotify_user.spotify_id}?token=#{token}"
+        redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        redirect_to "http://localhost:3000/#{@spotify_user.spotify_id}?token=#{token}"
+        redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
 

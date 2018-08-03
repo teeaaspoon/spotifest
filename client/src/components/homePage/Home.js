@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
 import YearSelect from "./YearSelect"
 import NavBar from "./NavBar"
+import LogOutButton from "../auth/LogOutButton"
 
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
@@ -13,7 +14,7 @@ import Map from "./Map";
 class Home extends Component {
     componentDidUpdate() {
         // autoscrolls to bottom every update
-        this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
+        // this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
     }
 
     componentDidMount() {
@@ -25,6 +26,7 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
+                <LogOutButton />
                 <NavBar />
                 {/*<h1>Hey {this.props.userId}</h1>
                 <SpotifyLoginButton />*/}
@@ -37,11 +39,11 @@ class Home extends Component {
                     <ListOfFestivals />
                 </div>
                 {this.props.festivalSelected && <FestivalSelected />}
-                <div
+                {/*<div
                     ref={el => {
                         this.bottomOfList = el;
                     }}
-                />
+                />*/}
             </div>
 
         );
