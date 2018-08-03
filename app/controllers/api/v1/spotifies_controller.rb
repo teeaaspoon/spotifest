@@ -10,36 +10,40 @@ module Api::V1
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
       user_hash = user_info.to_hash
-      redirect_to action: 'create_user', param: user_hash
+      @spotify_user = Spotify.new(user_info: user_hash)
+      @spotify_user.spotify_id = @spotify_user.user_info['id']
+      token = encode_token({userId: @spotify_user.spotify_id})
+      if @spotify_user.save
+        redirect_to "http://localhost:3000/?token=#{token}"
+      else
+        @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
+        redirect_to "http://localhost:3000/?token=#{token}"
+      end
     end
 
     def show
       render json: @spotify_user
     end
 
-    def create_user
-      @spotify_user = Spotify.new(user_info: params[:param])
-      @spotify_user.spotify_id = @spotify_user.user_info['id']
-      if @spotify_user.save
-        redirect_to "http://localhost:3000/#{@spotify_user.user_info['id']}"
-      else
-        @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        redirect_to "http://localhost:3000/#{@old_user.user_info['id']}"
-      end
-    end
 
     def create_playlist
+      binding.pry
       @spotify_user_id = params[:spotifyUser]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+      binding.pry
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
+      binding.pry
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
+      binding.pry
       # this will add all songs to the playlist
       @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
+      binding.pry
       @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
+      binding.pry
       render json: @playlist
     end
 
@@ -88,6 +92,10 @@ module Api::V1
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
     end
 
-
+    def encode_token(payload={})
+      exp = 100.days.from_now
+      payload[:exp] = exp.to_i
+      JWT.encode(payload, Rails.application.secrets.secret_key_base)
+    end
   end
 end

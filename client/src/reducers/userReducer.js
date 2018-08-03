@@ -5,7 +5,7 @@ import {
     SELECT_ARTIST,
     DESELECT_ARTIST,
     SELECT_ALL_ARTISTS,
-    GET_SPOTIFY_USER
+    CLEAR_JWT
 } from "../actions/types";
 
 const initialState = {
@@ -22,10 +22,10 @@ export default function(state = initialState, action) {
                 ...state,
                 jwt: action.payload
             };
-        case GET_SPOTIFY_USER:
+        case CLEAR_JWT:
             return {
                 ...state,
-                spotifyUser: action.payload
+                jwt: ""
             };
         case SELECT_FESTIVAL:
             return {

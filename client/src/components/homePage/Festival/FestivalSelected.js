@@ -9,7 +9,7 @@ import SelectGenre from "./SelectGenre";
 class FestivalSelected extends Component {
     render() {
         return (
-            <div>
+            <div className="festivalSelected">
                 <h1>{this.props.festivalSelected.title}</h1>
                 <h2>Line up</h2>
                 <GenreChart />

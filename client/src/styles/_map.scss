@@ -1,17 +1,36 @@
-path {
-  fill: #ECEFF1;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
-}
-path:hover {
-  fill: #607D8B;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
-}
+.mapAndFestivalList {
 
-.selectedContinent {
-  fill: #FF5722;
-  stroke: #607D8B;
-  stroke-Width: 0.75;
+  margin-top: 2rem;
+  .map {
+    position: relative;
+    display:flex;
+    justify-content: center;
+    .rsm-svg {
+      position: absolute;
+      width: 75%;
+      path {
+        fill: black;
+        stroke: gray;
+        stroke-width: 1.5;
+        &:hover {
+          fill: $green;
+          stroke: $black;
+        }
+      }
+      .selectedContinent {
+        fill: $pink;
+        stroke: black;
+        stroke-width: 1.5;
+        &:hover {
+          fill: #FF5722;
+          stroke: $black;
+          stroke-width: 1.5;
+        }
+      }
+
+    }
+
+  }
+
 }
 

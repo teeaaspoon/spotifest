@@ -1,0 +1,61 @@
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2px;
+  padding-bottom: 4px;
+  height: 35px;
+  .select-year-container {
+    outline: none;
+    padding: 0px;
+    margin: 0px;
+    width: 25%;
+    height: 35px;
+    font-family: $spotifyFont;
+    font-size: 20px;
+
+    .select-year__control {
+      outline: none;
+      background-color: black;
+      color: white;
+      margin: 0px;
+      border: none;
+    }
+    .select-year__menu {
+      background-color: $darkGrey;
+      border: none;
+      .select-year__option--is-selected {
+        background-color: $darkGrey;
+        color: white;
+      }
+      .select-year__option--is-focused {
+        background-color: $darkGrey;
+        color: $green;
+      }
+      .select-year__option:hover {
+        background-color: $darkGrey;
+        color: $green;
+      }
+    }
+  }
+
+  .searchFestival {
+    input:focus::-webkit-input-placeholder { color:transparent; }
+    caret-color: $pink;
+    margin: 0px;
+    margin-left: 3rem;
+    border: none;
+    background-color: black;
+    width: 50%;
+    height: 35px;
+    padding-bottom: 0px;
+    font-size: 20px;
+    font-family: $spotifyFont;
+    outline: none;
+    color: white;
+    border-bottom: 1px solid gray;
+    &:focus {
+      border-bottom: 1px solid $green;
+    }
+  }
+}

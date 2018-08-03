@@ -25,7 +25,7 @@ class CreatePlaylist extends Component {
             festival: this.props.festivalSelected,
             artistsSelected: this.props.artistsSelected,
             numberOfSongs: this.state.numberOfSongs,
-            spotifyUser: this.props.spotifyUser
+            spotifyUser: this.props.jwt.userId
         });
     };
     handleChange = e => {
@@ -70,7 +70,7 @@ const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
     festivalArtists: state.fetch.festivalArtists,
     artistsSelected: state.user.artistsSelected,
-    spotifyUser: state.user.spotifyUser
+    jwt: state.user.jwt
 });
 
 export default connect(

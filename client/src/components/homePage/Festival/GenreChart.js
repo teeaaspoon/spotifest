@@ -47,7 +47,7 @@ class GenreChart extends Component {
       }
     }
     return (
-      <div>
+      <div className="barChart">
         <p>Top Genres</p>
         <Bar
           data={data}
