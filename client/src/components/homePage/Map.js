@@ -25,8 +25,8 @@ class Map extends Component {
 
   render() {
     let selectedContinent = ""
-    if (this.props.filters.filter(f => f.type ="continent")[0]) {
-      selectedContinent = this.props.filters.filter(f => f.type ="continent")[0].args
+    if (this.props.filters.filter(f => f.type === "continent")[0]) {
+      selectedContinent = this.props.filters.filter(f => f.type === "continent")[0].args
     }
     const allPaths = this.continents.map(continent => {
       return (
