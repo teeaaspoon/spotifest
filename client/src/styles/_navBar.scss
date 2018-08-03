@@ -1,0 +1,22 @@
+.navBar {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  .row {
+    .navBarHome, .navBarUser {
+      font-style: $thinFont;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-bottom: 0.5rem;
+      margin-left: 6rem;
+      margin-right: 6rem;
+      font-family: $thinFont;
+      font-size: 13px;
+      border-bottom: 2px solid $pink;
+      &:hover {
+        border-color: $green;
+      }
+    }
+  }
+}

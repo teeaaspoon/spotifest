@@ -18,7 +18,7 @@ class YearSelect extends Component {
                               });
     return (
       <Select
-        className="select-year-container"
+        className="col-md-4 select-year-container"
         placeholder="SELECT YEAR"
         classNamePrefix="select-year"
         value={this.props.year}

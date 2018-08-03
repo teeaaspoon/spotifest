@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
 import YearSelect from "./YearSelect"
+import NavBar from "./NavBar"
 
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
@@ -19,9 +20,10 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <h1>Hey {this.props.userId}</h1>
-                <SpotifyLoginButton />
-                <div className="search">
+                <NavBar />
+                {/*<h1>Hey {this.props.userId}</h1>
+                <SpotifyLoginButton />*/}
+                <div className="search row">
                     <SearchBar />
                     <YearSelect />
                 </div>
