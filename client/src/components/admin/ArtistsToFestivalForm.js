@@ -60,7 +60,8 @@ class ArtistsToFestivalForm extends Component {
             return <p key={artist}>{artist}</p>;
         });
         return (
-
+            <div>
+            {this.props.selectedForm === "artistToFestivalForm" &&
             <div>
                 <h1>Artists To Festival Form</h1>
                 <p>{this.state.status}</p>
@@ -137,13 +138,16 @@ class ArtistsToFestivalForm extends Component {
                 {artistsSelected}
                 <button onClick={this.handleClick}>Submit</button>
             </div>
+            }
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
     artists: state.fetch.artists,
-    festivals: state.fetch.festivals
+    festivals: state.fetch.festivals,
+    selectedForm: state.adminNav.selectedForm
 });
 
 export default connect(

@@ -26,4 +26,5 @@ export const SAVE_GENRE = "SAVE_GENRE";
 export const REMOVE_GENRE = "REMOVE_GENRE";
 export const RESET_GENRE = "RESET_GENRE";
 export const SELECT_ALL_FESTIVALS = "SELECT_ALL_FESTIVALS"
+export const SET_NAV = "SET_NAV"
 

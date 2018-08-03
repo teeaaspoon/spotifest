@@ -68,29 +68,37 @@ class ArtistForm extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Artist</h1>
-                <p>{this.state.status}</p>
-                <form onSubmit={this.onSubmit}>
-                    <p>name</p>
-                    <input
-                        name="artist_name"
-                        onChange={this.handleChange}
-                        value={this.state.artist_name}
-                        required
-                    />
-                    <br />
-                    <button> Submit </button>
-                </form>
-                {this.state.artists
-                    ? this.mapArtistsToDiv(this.state.artists)
-                    : null}
+            <div className="artistForm">
+                {this.props.selectedForm === "artistForm" &&
+                <div>
+                    <h1>Artist</h1>
+                    <p>{this.state.status}</p>
+                    <form onSubmit={this.onSubmit}>
+                        <p>name</p>
+                        <input
+                            name="artist_name"
+                            onChange={this.handleChange}
+                            value={this.state.artist_name}
+                            required
+                        />
+                        <br />
+                        <button> Submit </button>
+                    </form>
+                    {this.state.artists
+                        ? this.mapArtistsToDiv(this.state.artists)
+                        : null}
+                </div>
+                }
             </div>
         );
     }
 }
 
+const mapStateToProps = state => ({
+    selectedForm: state.adminNav.selectedForm
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     { fetchArtists }
 )(ArtistForm);
