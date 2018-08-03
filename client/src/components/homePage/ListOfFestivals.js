@@ -12,8 +12,8 @@ class ListOfFestivals extends Component {
   render() {
     const filteredFestivals = this.props.filteredFestivals.map(festival => <Festival festival={festival} key={festival.id}/>)
     return (
-      <div className="list-of-festivals">
-        <h3>Festivals</h3>
+      <div className="list-of-festivals col-md-4">
+        <h3 className="festivalHeader">FESTIVALS</h3>
         <GetLocationButton />
         <div className="filter-options">
           <AllFilters />

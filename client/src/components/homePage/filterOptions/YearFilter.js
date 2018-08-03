@@ -10,10 +10,10 @@ class YearFilter extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="yearFilter filter">
         {this.props.year}
         <span>
-          <button onClick={this.deleteYearFilter}>delete</button>
+          <button onClick={this.deleteYearFilter}><i className="fa fa-remove"></i></button>
         </span>
       </div>
     )

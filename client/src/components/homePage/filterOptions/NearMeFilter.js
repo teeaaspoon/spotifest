@@ -9,10 +9,10 @@ class NearMeFilter extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="radiusFilter filter">
         within {this.props.radius / 1000} km
         <span>
-          <button onClick={this.deleteNearMeFilter}>delete</button>
+          <button onClick={this.deleteNearMeFilter}><i className="fa fa-remove"></i></button>
         </span>
       </div>
     )

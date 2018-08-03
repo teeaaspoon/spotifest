@@ -40,21 +40,22 @@ class Map extends Component {
     })
 
     return (
-      <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
-        <g className="rsm-zoomable-group" transform="translate(
-                   519.05
-                   337.21
-                 )
-                 scale(1)
-                 translate(-490 -275.5)
-               ">
-          <rect x="122" y="-74" width="737" height="699" fill="transparent" style={{strokeWidth: 0}}></rect>
-          <g className="rsmGeographies">
-          {allPaths}
+      <div className="map col-md-8">
+        <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
+          <g className="rsm-zoomable-group" transform="translate(
+                     519.05
+                     337.21
+                   )
+                   scale(1)
+                   translate(-490 -275.5)
+                 ">
+            <rect x="122" y="-74" width="737" height="699" fill="transparent" style={{strokeWidth: 0}}></rect>
+            <g className="rsmGeographies">
+            {allPaths}
+            </g>
           </g>
-
-        </g>
-      </svg>
+        </svg>
+      </div>
     )
   }
 }

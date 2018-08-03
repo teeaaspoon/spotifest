@@ -21,6 +21,8 @@ $thinFont: "proxima_nova_scosfthin";
 @import 'styles/_festivalLineUp.scss';
 @import 'styles/_landingPage.scss';
 @import 'styles/_navBar.scss';
+@import 'styles/_filters.scss';
+
 
 
 
@@ -32,10 +34,12 @@ html {
     padding: 0px;
     background-color: black;
     color: white;
-    font-family: sans-serif;
-    font-size: 12px;
+    font-family: $thinFont;
+    font-size: 15px;
     .Home {
-      margin: 1rem;
+      margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
     }
   }
 

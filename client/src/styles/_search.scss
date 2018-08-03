@@ -13,6 +13,7 @@
     height: 35px;
     font-family: $spotifyFont;
     font-size: 20px;
+
     .select-year__control {
       outline: none;
       background-color: black;
@@ -42,7 +43,7 @@
     input:focus::-webkit-input-placeholder { color:transparent; }
     caret-color: $pink;
     margin: 0px;
-    margin-left: 5rem;
+    margin-left: 3rem;
     border: none;
     background-color: black;
     width: 50%;

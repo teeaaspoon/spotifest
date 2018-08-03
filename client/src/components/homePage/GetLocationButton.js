@@ -40,20 +40,21 @@ class GetLocationButton extends Component {
   }
   render() {
     return (
-      <div className="get-location-button">
+      <div className="get-location">
 
         {this.props.currentCoords.latitude ? (
-          <div>
+          <div className="get-location-button">
             <button onClick={this.handleClick}>GET FESTIVALS NEAR YOU</button>
             <Select
               placeholder="SELECT RADIUS"
-              className="select-radius"
+              className="select-radius-container"
+              classNamePrefix="select-radius"
               onChange={this.setRadius}
               options={this.radiusOptions}
             />
           </div>
           ) : (
-          <p>Getting current location...</p>
+          <p className="getting-location-message">Getting current location...</p>
           )
         }
       </div>

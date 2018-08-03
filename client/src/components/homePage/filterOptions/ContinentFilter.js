@@ -10,10 +10,10 @@ class ContinentFilter extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="continentFilter filter">
         {this.props.continent}
         <span>
-          <button onClick={this.deleteContinentFilter}>delete</button>
+          <button onClick={this.deleteContinentFilter}><i className="fa fa-remove"></i></button>
         </span>
       </div>
     )

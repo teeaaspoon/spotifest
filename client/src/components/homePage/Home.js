@@ -27,7 +27,7 @@ class Home extends Component {
                     <SearchBar />
                     <YearSelect />
                 </div>
-                <div className="mapAndFestivalList">
+                <div className="mapAndFestivalList row">
                     <Map />
                     <ListOfFestivals />
                 </div>
