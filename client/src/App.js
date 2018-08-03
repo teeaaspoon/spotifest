@@ -6,7 +6,6 @@ import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
 import Landing from "./components/landingPage/Landing";
 import User from "./components/user/User";
-import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { getJwt } from "./actions/userActions";
@@ -16,25 +15,7 @@ import "./App.css";
 
 class App extends Component {
     componentWillMount() {
-
-        this.props.fetchFestivals();
-        if ("geolocation" in navigator) {
-            console.log("geolocation is available");
-        } else {
-            let newState = this.state;
-            newState.errorMessages.noGeolocation =
-                "sorry! geolocation is not available";
-            this.setState(newState);
-        }
-        navigator.geolocation.getCurrentPosition(position => {
-            this.props.saveCurrentCoords({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            });
-        });
-    }
-    componentDidMount() {
-        function getParameterByName(name, url) {
+         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
             var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -56,14 +37,43 @@ class App extends Component {
         } catch (error) {
             console.log(error);
         }
+
+        this.props.fetchFestivals();
+        if ("geolocation" in navigator) {
+            console.log("geolocation is available");
+        } else {
+            let newState = this.state;
+            newState.errorMessages.noGeolocation =
+                "sorry! geolocation is not available";
+            this.setState(newState);
+        }
+        navigator.geolocation.getCurrentPosition(position => {
+            this.props.saveCurrentCoords({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            });
+        });
+    }
+    componentDidMount() {
         this.props.selectAllFestivals();
     }
     render() {
+        const jwtoken = window.localStorage.getItem("jwt");
+        let home;
+        let landing;
+
+        if (jwtoken) {
+            home = <Home path="/" />;
+            landing = <Landing path="/landingpage" />
+        } else {
+            home = <Home path="/:userId" />
+            landing = <Landing path="/" />
+        }
         return (
             <Provider store={store}>
                 <Router>
-                    <Landing path="/" />
-                    <Home path="/:userId" />
+                    {landing}
+                    {home}
                     <Admin path="/admin" />
                     <User path="/user/:userId" />
                 </Router>
