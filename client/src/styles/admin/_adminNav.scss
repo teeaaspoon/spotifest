@@ -4,7 +4,7 @@
   .nav {
     display: flex;
     flex-direction: row;
-    padding-top: 1rem;
+    padding: 1rem;
     .festivalFormNav, .artistFormNav, .artistToFestivalFormNav {
       font-style: $thinFont;
       padding-left: 0.5rem;
@@ -18,6 +18,9 @@
       &:hover {
         border-color: $green;
       }
+    }
+    .selectedNav {
+      border-bottom: 2px solid $green;
     }
   }
 }

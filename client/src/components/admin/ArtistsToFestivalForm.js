@@ -60,14 +60,17 @@ class ArtistsToFestivalForm extends Component {
             return <p key={artist}>{artist}</p>;
         });
         return (
-            <div className="artistToFestivalForm">
+            <div className="adminForm artistToFestivalForm">
             {this.props.selectedForm === "artistToFestivalForm" &&
-            <div>
-                <h1>Artists To Festival Form</h1>
-                <p>{this.state.status}</p>
-                <p>Festivals</p>
-                <div onKeyDown={this.handleFestivalEnter}>
+            <div className="formContents">
+                <div className="formTitleAndStatus">
+                    <h1 className="formTitle">Artists To Festival Form</h1>
+                    <p>{this.state.status}</p>
+                </div>
+                <div className="formInputs">
+                <div  onKeyDown={this.handleFestivalEnter}>
                     <AutoComplete
+                        inputProps={{className:"festivalAuto", placeholder: "festival"}}
                         items={this.props.festivals.map(festival => {
                             return {
                                 id: festival.id,
@@ -80,29 +83,27 @@ class ArtistsToFestivalForm extends Component {
                                 .indexOf(value.toLowerCase()) > -1
                         }
                         getItemValue={item => `${item.label}, id:::${item.id}`}
-                        renderItem={(item, highlighted) => (
-                            <div
-                                key={item.id}
-                                style={{
-                                    backgroundColor: highlighted
-                                        ? "#eee"
-                                        : "transparent"
-                                }}
-                            >
-                                {item.label}
-                            </div>
-                        )}
+                        renderItem={(item, highlighted) => (<div key={item.id}> {item.label}</div>)}
                         value={this.state.festival}
-                        onChange={e =>
-                            this.setState({ festival: e.target.value })
-                        }
+                        onChange={e => this.setState({ festival: e.target.value })}
                         onSelect={value => this.setState({ festival: value })}
+                        menuStyle={{
+                          borderRadius: '3px',
+                          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+                          background: "white",
+                          color: "black",
+                          padding: "1rem",
+                          width: "8rem",
+                          fontSize: '100%',
+                          position: 'fixed',
+                          overflow: 'auto',
+                          maxHeight: '50%',
+                        }}
                     />
                 </div>
-
-                <p>Artists</p>
                 <div onKeyDown={this.handleArtistEnter}>
                     <AutoComplete
+                        inputProps={{className:"artistAuto", placeholder: "artist"}}
                         items={this.props.artists.map(artist => {
                             return {
                                 id: artist.id,
@@ -115,28 +116,29 @@ class ArtistsToFestivalForm extends Component {
                                 .indexOf(value.toLowerCase()) > -1
                         }
                         getItemValue={item => `${item.label}, id:::${item.id}`}
-                        renderItem={(item, highlighted) => (
-                            <div
-                                key={item.id}
-                                style={{
-                                    backgroundColor: highlighted
-                                        ? "#eee"
-                                        : "transparent"
-                                }}
-                            >
-                                {item.label}
-                            </div>
-                        )}
+                        renderItem={(item, highlighted) => (<div key={item.id}> {item.label} </div>)}
                         value={this.state.artist}
-                        onChange={e =>
-                            this.setState({ artist: e.target.value })
-                        }
+                        onChange={e => this.setState({ artist: e.target.value })}
                         onSelect={value => this.setState({ artist: value })}
+                        menuStyle={{
+                          borderRadius: '3px',
+                          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
+                          background: "white",
+                          color: "black",
+                          padding: "1rem",
+                          width: "8rem",
+                          fontSize: '100%',
+                          position: 'fixed',
+                          overflow: 'auto',
+                          maxHeight: '50%',
+                        }}
                     />
                 </div>
+
                 <p>{this.state.festivalSelected}</p>
                 {artistsSelected}
                 <button onClick={this.handleClick}>Submit</button>
+                </div>
             </div>
             }
             </div>
