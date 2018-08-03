@@ -1,9 +1,6 @@
 .allFilters {
   display: flex;
   flex-direction: row;
-  // background-color: $black;
-  // padding: 0.5rem;
-  // border-radius: 20px;
   margin-bottom: 1rem;
   .filter {
     padding-left: 1rem;
@@ -21,6 +18,7 @@
       margin: 0px;
       padding: 0px;
       padding-left: 1rem;
+      outline: none;
     }
     &.continentFilter {
       color: $pink;

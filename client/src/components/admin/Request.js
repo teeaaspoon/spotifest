@@ -11,7 +11,12 @@ class Request extends Component {
   }
   render() {
     return (
-      <li>{this.props.festival}<button onClick={this.clearRequest}>clear</button></li>
+      <div className="request">
+        {this.props.festival}
+        <span>
+          <button onClick={this.clearRequest}><i className="fa fa-remove"></i></button>
+        </span>
+      </div>
     )
   }
 }
