@@ -6,12 +6,13 @@ import { createStackNavigator } from "react-navigation";
 import store from "./store.js";
 import Main from "./components/Main";
 import Lineup from "./components/Lineup";
+import Login from "./components/Login";
 
 class App extends React.Component {
     render() {
         const MainNavigator = createStackNavigator({
             Home: { screen: Main },
-            Lineup: { screen: Lineup }
+            Lineup: { screen: Login }
         });
         return (
             <Provider store={store}>
