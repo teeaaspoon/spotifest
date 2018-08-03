@@ -17,6 +17,12 @@ class Home extends Component {
         this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
     }
 
+    componentDidMount() {
+        window.thingFunction = () => {
+            console.log('pop up worked')
+        }
+    }
+
     render() {
         return (
             <div className="Home">

@@ -1,9 +1,9 @@
 import {
-    SAVE_JWT,
     SELECT_FESTIVAL,
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
+    SAVE_JWT,
     SELECT_ALL_ARTISTS,
     GET_SPOTIFY_USER
 } from "./types";
