@@ -23,9 +23,17 @@
       content: '';
     }
   }
-  .animation-delay-200 {
+  .delay-2 {
     -webkit-animation-delay: 0.2s;
     animation-delay: 0.2s;
+  }
+  .delay-6 {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+  }
+  .delay-10 {
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
   }
   .titleAndLogin {
     display: flex;

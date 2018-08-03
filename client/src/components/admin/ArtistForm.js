@@ -68,14 +68,16 @@ class ArtistForm extends Component {
 
     render() {
         return (
-            <div className="artistForm">
+            <div className="adminForm artistForm">
                 {this.props.selectedForm === "artistForm" &&
-                <div>
-                    <h1>Artist</h1>
-                    <p>{this.state.status}</p>
+                <div className="formContents">
+                    <div className="formTitleAndStatus">
+                        <h1 className="formTitle">Artist</h1>
+                        <p>{this.state.status}</p>
+                    </div>
                     <form onSubmit={this.onSubmit}>
-                        <p>name</p>
                         <input
+                            placeholder="artist name"
                             name="artist_name"
                             onChange={this.handleChange}
                             value={this.state.artist_name}
