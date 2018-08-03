@@ -22,12 +22,14 @@
         "axios": "^0.18.0",
         "eslint-plugin-react-native": "^3.2.1",
         "expo": "^27.0.1",
+        "native-base": "^2.7.2",
         "react": "16.3.1",
         "react-native": "~0.55.2",
+        "react-native-easy-grid": "^0.2.0",
+        "react-native-spotify": "^2.0.3",
         "react-navigation": "^2.10.0",
         "react-redux": "^5.0.7",
         "redux": "^4.0.0",
-        "redux-thunk": "^2.3.0",
-        "remote-redux-devtools": "^0.5.12"
+        "redux-thunk": "^2.3.0"
     }
 }
