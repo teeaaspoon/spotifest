@@ -19,13 +19,13 @@ class Landing extends Component {
         <div className="festivalPic">
           <img src={image}/>
         </div>
-        <div className="pageContent animated fadeIn animation-delay-200">
+        <div className="pageContent ">
           <div className="titleAndLogin">
             <div className="title">
-              <h3>SPOTI</h3>
-              <h4>FEST</h4>
+              <h3 className="animated fadeIn delay-2">SPOTI</h3>
+              <h4 className="animated fadeIn delay-6">FEST</h4>
             </div>
-            <div className="loginButton">
+            <div className="loginButton animated fadeIn delay-10">
               <p onClick={this.handleClick}><img className="whiteLogo" src={logoWhite}/><img className="greenLogo" src={logoGreen}/>LOGIN TO SPOTIFY</p>
             </div>
           </div>
