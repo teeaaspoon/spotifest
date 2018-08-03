@@ -22,8 +22,8 @@ $thinFont: "proxima_nova_scosfthin";
 @import 'styles/_landingPage.scss';
 @import 'styles/_navBar.scss';
 @import 'styles/_filters.scss';
-
-
+@import 'styles/admin/_adminNav.scss';
+@import 'styles/admin/_adminRequests.scss';
 
 
 html {
@@ -37,6 +37,11 @@ html {
     font-family: $thinFont;
     font-size: 15px;
     .Home {
+      margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+    .Admin {
       margin-top: 1rem;
       margin-left: 4rem;
       margin-right: 4rem;

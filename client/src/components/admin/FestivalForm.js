@@ -74,7 +74,7 @@ class FestivalForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className="festivalForm">
                 {this.props.selectedForm === "festivalForm" &&
                 <div>
                 <h1>Festival</h1>

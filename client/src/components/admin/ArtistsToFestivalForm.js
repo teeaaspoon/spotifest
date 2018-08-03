@@ -60,7 +60,7 @@ class ArtistsToFestivalForm extends Component {
             return <p key={artist}>{artist}</p>;
         });
         return (
-            <div>
+            <div className="artistToFestivalForm">
             {this.props.selectedForm === "artistToFestivalForm" &&
             <div>
                 <h1>Artists To Festival Form</h1>
