@@ -2,7 +2,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import image from "./festival-pic.jpg"
-import logo from "./spotify-logo-white.png"
+import logoWhite from "./spotify-logo-white.png"
+import logoGreen from "./spotify-logo-green.png"
+
 
 
 class Landing extends Component {
@@ -20,7 +22,7 @@ class Landing extends Component {
               <h4>FEST</h4>
             </div>
             <div className="loginButton">
-              <p><img src={logo}/> LOGIN TO SPOTIFY</p>
+              <p><img className="whiteLogo" src={logoWhite}/><img className="greenLogo" src={logoGreen}/> LOGIN TO SPOTIFY</p>
             </div>
           </div>
         </div>
