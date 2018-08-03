@@ -37,8 +37,6 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="searchInput col-md-8">
-        {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
-        {this.props.filteredFestivals.length === 0 && <p>This festival does not exist! Press enter to send a request!</p>}
         <input
           className="searchFestival"
           onChange={this.onSearch}
@@ -46,6 +44,8 @@ class SearchBar extends Component {
           placeholder="search a festival name, city, or country..."
           value={this.props.filters.filter(f => f.type === "search")[0] ? (this.props.filters.filter(f => f.type === "search")[0].args):("")}
         />
+        {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
+        {this.props.filteredFestivals.length === 0 && <p>This festival does not exist! Press enter to send a request!</p>}
       </div>
     )
   }

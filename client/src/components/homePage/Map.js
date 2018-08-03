@@ -24,6 +24,10 @@ class Map extends Component {
   ]
 
   render() {
+    let selectedContinent = ""
+    if (this.props.filters.filter(f => f.type ="continent")[0]) {
+      selectedContinent = this.props.filters.filter(f => f.type ="continent")[0].args
+    }
     const allPaths = this.continents.map(continent => {
       return (
         <path
@@ -31,7 +35,7 @@ class Map extends Component {
           onClick={this.handleClick}
           d={continent.path}
           id={continent.name}
-          className={this.props.continent === continent.name ? "selectedContinent" : "not-selected"}>
+          className={selectedContinent === classNameToContinent[continent.name] ? "selectedContinent" : "not-selected"}>
         </path>)
     })
 
@@ -56,7 +60,7 @@ class Map extends Component {
 }
 
 const mapStateToProps = state => ({
-    continent: state.map.continent
+    filters: state.map.filters
 });
 
 export default connect(

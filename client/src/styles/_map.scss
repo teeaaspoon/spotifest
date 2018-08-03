@@ -7,17 +7,17 @@
   .rsm-svg {
     width: 75%;
     path {
-      fill: $black;
-      stroke: white;
+      fill: black;
+      stroke: gray;
       stroke-width: 1.5;
       &:hover {
-        fill: $blue;
+        fill: $green;
         stroke: $black;
       }
     }
     .selectedContinent {
       fill: $orange;
-      stroke: $black;
+      stroke: black;
       stroke-width: 1.5;
       &:hover {
         fill: #FF5722;

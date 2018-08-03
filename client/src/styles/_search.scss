@@ -1,17 +1,20 @@
 .search {
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 2px;
   padding-bottom: 4px;
   height: 35px;
   .select-year-container {
+    outline: none;
     padding: 0px;
     margin: 0px;
     width: 25%;
     height: 35px;
-    font-family: sans-serif;
-    font-size: 10px;
+    font-family: $spotifyFont;
+    font-size: 20px;
     .select-year__control {
+      outline: none;
       background-color: black;
       color: white;
       margin: 0px;
@@ -20,6 +23,10 @@
     .select-year__menu {
       background-color: $darkGrey;
       border: none;
+      .select-year__option--is-selected {
+        background-color: $darkGrey;
+        color: white;
+      }
       .select-year__option--is-focused {
         background-color: $darkGrey;
         color: $green;
@@ -32,20 +39,21 @@
   }
 
   .searchFestival {
+    input:focus::-webkit-input-placeholder { color:transparent; }
+    caret-color: $pink;
     margin: 0px;
     margin-left: 5rem;
     border: none;
     background-color: black;
-    width: 75%;
+    width: 50%;
     height: 35px;
-    padding-left: 1rem;
     padding-bottom: 0px;
     font-size: 20px;
-    font-family: $thinFont;
+    font-family: $spotifyFont;
     outline: none;
     color: white;
-    &:hover {
-      border-color: $blue
+    &:focus {
+      border-bottom: 1px solid $green;
     }
   }
 }
