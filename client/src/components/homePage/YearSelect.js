@@ -17,11 +17,15 @@ class YearSelect extends Component {
                                 return arr.indexOf(elem) === pos;
                               });
     return (
-        <Select
-          className="select-year"
-          onChange={this.handleYearChange}
-          options={years.map(year => ({value: year, label: year}))}
-        />
+      <Select
+        className="col-md-4 select-year-container"
+        placeholder="Select a year..."
+        classNamePrefix="select-year"
+        value={this.props.year}
+        onChange={this.handleYearChange}
+        options={years.map(year => ({value: year, label: year}))}
+      />
+
     )
 
   }

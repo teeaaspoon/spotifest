@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
-import GetLocationButton from "./GetLocationButton"
 import YearSelect from "./YearSelect"
+import NavBar from "./NavBar"
 
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
@@ -26,12 +26,17 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <SpotifyLoginButton />
-                <SearchBar />
-                <YearSelect />
-                <ListOfFestivals />
-                <GetLocationButton />
-                <Map />
+                <NavBar />
+                {/*<h1>Hey {this.props.userId}</h1>
+                <SpotifyLoginButton />*/}
+                <div className="search row">
+                    <SearchBar />
+                    <YearSelect />
+                </div>
+                <div className="mapAndFestivalList row">
+                    <Map />
+                    <ListOfFestivals />
+                </div>
                 {this.props.festivalSelected && <FestivalSelected />}
                 <div
                     ref={el => {

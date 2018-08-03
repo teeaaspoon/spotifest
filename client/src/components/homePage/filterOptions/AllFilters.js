@@ -24,7 +24,7 @@ class AllFilters extends Component {
       }
     })
     return (
-      <div>
+      <div className="allFilters">
         {allFilters}
       </div>
     )

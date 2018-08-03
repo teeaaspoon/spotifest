@@ -24,6 +24,10 @@ class Map extends Component {
   ]
 
   render() {
+    let selectedContinent = ""
+    if (this.props.filters.filter(f => f.type === "continent")[0]) {
+      selectedContinent = this.props.filters.filter(f => f.type === "continent")[0].args
+    }
     const allPaths = this.continents.map(continent => {
       return (
         <path
@@ -31,32 +35,33 @@ class Map extends Component {
           onClick={this.handleClick}
           d={continent.path}
           id={continent.name}
-          className={this.props.continent === continent.name ? "selectedContinent" : "not-selected"}>
+          className={selectedContinent === classNameToContinent[continent.name] ? "selectedContinent" : "not-selected"}>
         </path>)
     })
 
     return (
-      <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
-        <g className="rsm-zoomable-group" transform="translate(
-                   519.05
-                   337.21
-                 )
-                 scale(1)
-                 translate(-490 -275.5)
-               ">
-          <rect x="122" y="-74" width="737" height="699" fill="transparent" style={{strokeWidth: 0}}></rect>
-          <g className="rsmGeographies">
-          {allPaths}
+      <div className="map col-md-8">
+        <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
+          <g className="rsm-zoomable-group" transform="translate(
+                     519.05
+                     337.21
+                   )
+                   scale(1)
+                   translate(-490 -275.5)
+                 ">
+            <rect x="122" y="-74" width="737" height="699" fill="transparent" style={{strokeWidth: 0}}></rect>
+            <g className="rsmGeographies">
+            {allPaths}
+            </g>
           </g>
-
-        </g>
-      </svg>
+        </svg>
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-    continent: state.map.continent
+    filters: state.map.filters
 });
 
 export default connect(

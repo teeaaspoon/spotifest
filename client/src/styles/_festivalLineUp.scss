@@ -1,0 +1,12 @@
+.festivalSelected {
+  .lineup {
+    .artist {
+      &.selected {
+        color: $green
+      }
+      &.notSelected {
+        color: gray
+      }
+    }
+  }
+}

@@ -33,7 +33,7 @@ class CreatePlaylist extends Component {
     };
     render() {
         return (
-            <div>
+            <div className="createPlaylist">
                 <p>Playlist Title</p>
                 <input
                     name="playlistTitle"

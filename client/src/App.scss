@@ -1,10 +1,51 @@
-@import 'styles/_map.scss';
 
 $black: #181818;
+$blue: #3df5ff;
+$orange: #FD5F00;
+$darkGrey: #1e1e1e;
+$green: #01E365;
+$pink: #FF005A;
+$orange: #FF5722;
 
-body {
+@import url('https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker');
+
+$titleFont: "Oswald";
+$markerFont: "Permanent Marker";
+$spotifyFont: "Proxima Nova";
+$thinFont: "proxima_nova_scosfthin";
+
+@import 'styles/_map.scss';
+@import 'styles/_search.scss';
+@import 'styles/_festivalList.scss';
+@import 'styles/_getLocation.scss';
+@import 'styles/_festivalLineUp.scss';
+@import 'styles/_landingPage.scss';
+@import 'styles/_navBar.scss';
+@import 'styles/_filters.scss';
+@import 'styles/admin/_adminNav.scss';
+@import 'styles/admin/_adminRequests.scss';
+
+
+html {
   margin: 0px;
-  padding: 2rem;
-  background-color: white;
-  color: black;
+  padding: 0px;
+  body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    color: white;
+    font-family: $thinFont;
+    font-size: 15px;
+    .Home {
+      margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+    .Admin {
+      margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+  }
+
 }
