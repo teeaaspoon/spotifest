@@ -13,7 +13,7 @@ import Map from "./Map";
 class Home extends Component {
     componentDidUpdate() {
         // autoscrolls to bottom every update
-        this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
+        // this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
     }
 
     componentDidMount() {
@@ -26,22 +26,23 @@ class Home extends Component {
         return (
             <div className="Home">
                 <NavBar />
-                {/*<h1>Hey {this.props.userId}</h1>
-                <SpotifyLoginButton />*/}
-                <div className="search row">
+                <div className="mapAndSearch">
                     <SearchBar />
+                    <Map />
+                </div>
+                <div className="festivalsPage">
+                    <ListOfFestivals />
                     <YearSelect />
                 </div>
-                <div className="mapAndFestivalList row">
-                    <Map />
-                    <ListOfFestivals />
-                </div>
-                {this.props.festivalSelected && <FestivalSelected />}
-                <div
+{/*                <div className="artistsPage">
+                    {this.props.festivalSelected && <FestivalSelected />}
+                </div>*/}
+
+               {/* <div
                     ref={el => {
                         this.bottomOfList = el;
                     }}
-                />
+                />*/}
             </div>
 
         );

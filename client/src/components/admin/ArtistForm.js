@@ -84,7 +84,7 @@ class ArtistForm extends Component {
                             required
                         />
                         <br />
-                        <button> Submit </button>
+                        <button> submit </button>
                     </form>
                     {this.state.artists
                         ? this.mapArtistsToDiv(this.state.artists)

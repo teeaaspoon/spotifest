@@ -40,8 +40,8 @@ class Map extends Component {
     })
 
     return (
-      <div className="map col-md-8">
-        <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
+      <div className="map">
+        <svg width="1000" height="551" viewBox="0 0 1000 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
           <g className="rsm-zoomable-group" transform="translate(
                      519.05
                      337.21

@@ -14,14 +14,19 @@ $markerFont: "Permanent Marker";
 $spotifyFont: "Proxima Nova";
 $thinFont: "proxima_nova_scosfthin";
 
-@import 'styles/_map.scss';
-@import 'styles/_search.scss';
-@import 'styles/_festivalList.scss';
-@import 'styles/_getLocation.scss';
+@import 'styles/mapAndSearchPage/_map.scss';
+@import 'styles/mapAndSearchPage/_search.scss';
+@import 'styles/mapAndSearchPage/_mapAndSearch.scss';
+
+@import 'styles/festivalsPage/_festivalList.scss';
+@import 'styles/festivalsPage/_getLocation.scss';
+@import 'styles/festivalsPage/_filters.scss';
+@import 'styles/festivalsPage/_festivalsPage.scss';
+
 @import 'styles/_festivalLineUp.scss';
 @import 'styles/_landingPage.scss';
 @import 'styles/_navBar.scss';
-@import 'styles/_filters.scss';
+
 @import 'styles/admin/_adminNav.scss';
 @import 'styles/admin/_adminRequests.scss';
 @import 'styles/admin/_adminForms.scss';
