@@ -21,7 +21,7 @@ module Api::V1
         if Song.find_by spotify_uri: track.uri
           @songs << "existing song, don't add to db"
         else
-          @song = @artist.songs.new({song_name: track.name, spotify_uri: track.uri, spotify_song_info: track})
+          @song = @artist.songs.new({song_name: track.name, spotify_uri: track.uri})
           @track_id = track.uri.split("track:")[1]
           @audio_feature = RSpotify::AudioFeatures.find(@track_id)
           if @audio_feature && @audio_feature.uri

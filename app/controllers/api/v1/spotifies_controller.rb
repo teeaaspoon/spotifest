@@ -27,23 +27,27 @@ module Api::V1
     end
 
 
-    def create_playlist
+    def create_spotify_playlist
       binding.pry
       @spotify_user_id = params[:spotifyUser]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
       binding.pry
       @festival = Festival.find params[:festival][:id]
+      binding.pry
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
+      binding.pry
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
       binding.pry
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       binding.pry
-      # this will add all songs to the playlist
-      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
+      @tracks = RSpotify::Track.search("artist:#{artist.artist_name}", limit: (params[:numberOfSongs]))
       binding.pry
-      @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
+      # this will add all songs to the playlist
+      @artists.each { |artist| add_tracks_to_playlist(@playlist, @tracks) }
+      binding.pry
+      @artists.each { |artist| add_songs_to_playlist(@new_playlist, @tracks) }
       binding.pry
       render json: @playlist
     end
@@ -75,13 +79,15 @@ module Api::V1
     private
 
     def add_tracks_to_playlist(playlist, tracks)
-      track_uris = tracks.map {|track| track.spotify_uri}.join(",")
+      track_uris = tracks.map {|track| track.uri}.join(",")
+      binding.pry
       url = playlist.instance_variable_get(:@href) + "/tracks?uris=#{track_uris}"
       RSpotify::User.oauth_post(playlist.instance_variable_get(:@owner).id, url, {})
       tracks
     end
 
     def add_songs_to_playlist(playlist, tracks)
+      binding.pry
       tracks.each do |track|
         playlist.songs << track
       end
