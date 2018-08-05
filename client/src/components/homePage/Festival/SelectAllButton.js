@@ -13,7 +13,7 @@ class SelectAllButton extends Component {
 
   render() {
     return (
-      <button onClick={this.handleClick} >select all artists</button>
+      <button className="selectAllButton" onClick={this.handleClick} >SELECT ALL ARTISTS</button>
     )
   }
 }

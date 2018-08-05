@@ -19,8 +19,25 @@ class Artist extends Component {
     if (!this.props.artistsSelected.includes(this.props.artist)) {
       selectedOrNot = "notSelected"
     }
+    let isloaded = false
+    if (this.props.artist) {
+      if (this.props.artist.spotify_artist_info) {
+        if (this.props.artist.spotify_artist_info.images[0]) {
+          if (this.props.artist.spotify_artist_info.images[0].url) {
+            isloaded = true
+          }
+        }
+      }
+    }
     return (
-      <li className={`artist ${selectedOrNot}`} onClick={this.handleClick}>{this.props.artist.artist_name}</li>
+      <div>
+      {isloaded &&
+      <div className="artistDiv">
+        <p className={`artistName ${selectedOrNot}`}>{this.props.artist.artist_name}</p>
+        <img className={`artist ${selectedOrNot}`} onClick={this.handleClick} src={this.props.artist.spotify_artist_info.images[0].url} alt={"artist photo"}/>
+      </div>
+      }
+      </div>
     );
   }
 }

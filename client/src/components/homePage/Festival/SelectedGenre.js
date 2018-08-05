@@ -10,10 +10,10 @@ class SelectedGenre extends Component {
 
   render() {
     return (
-      <div>
+      <div className="selectedGenre">
         {this.props.genre}
         <span>
-          <button id={this.props.genre} onClick={this.deleteGenre}>delete</button>
+          <button id={this.props.genre} onClick={this.deleteGenre}><i className="fa fa-remove"></i></button>
         </span>
       </div>
     )

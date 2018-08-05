@@ -44,14 +44,14 @@ class GetLocationButton extends Component {
 
         {this.props.currentCoords.latitude ? (
           <div className="get-location-button">
-            <button onClick={this.handleClick}>GET FESTIVALS NEAR YOU</button>
             <Select
-              placeholder="SELECT RADIUS"
+              placeholder="Select radius..."
               className="select-radius-container"
               classNamePrefix="select-radius"
               onChange={this.setRadius}
               options={this.radiusOptions}
             />
+            <button onClick={this.handleClick}>GET FESTIVALS NEAR YOU</button>
           </div>
           ) : (
           <p className="getting-location-message">Getting current location...</p>

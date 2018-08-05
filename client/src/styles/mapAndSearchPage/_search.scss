@@ -1,37 +1,3 @@
-.select-year-container {
-  outline: none;
-  padding: 0px;
-  margin: 0px;
-  width: 25%;
-  height: 35px;
-  font-family: $spotifyFont;
-  font-size: 20px;
-
-  .select-year__control {
-    outline: none;
-    background-color: black;
-    color: white;
-    margin: 0px;
-    border: none;
-  }
-  .select-year__menu {
-    background-color: $darkGrey;
-    border: none;
-    .select-year__option--is-selected {
-      background-color: $darkGrey;
-      color: white;
-    }
-    .select-year__option--is-focused {
-      background-color: $darkGrey;
-      color: $green;
-    }
-    .select-year__option:hover {
-      background-color: $darkGrey;
-      color: $green;
-    }
-  }
-}
-
 .searchInput {
   display: flex;
   justify-content: center;

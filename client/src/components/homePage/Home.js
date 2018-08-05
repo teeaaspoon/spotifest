@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
-import YearSelect from "./YearSelect"
 import NavBar from "./NavBar"
-
+import GenreChart from "./GenreChart";
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
 import { connect } from "react-redux";
@@ -31,12 +30,14 @@ class Home extends Component {
                     <Map />
                 </div>
                 <div className="festivalsPage">
-                    <ListOfFestivals />
-                    <YearSelect />
+                    <div className="row">
+                        <ListOfFestivals />
+                        <GenreChart />
+                    </div>
                 </div>
-{/*                <div className="artistsPage">
+{                <div className="artistsPage">
                     {this.props.festivalSelected && <FestivalSelected />}
-                </div>*/}
+                </div>}
 
                {/* <div
                     ref={el => {

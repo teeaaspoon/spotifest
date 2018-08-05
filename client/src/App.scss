@@ -21,9 +21,18 @@ $thinFont: "proxima_nova_scosfthin";
 @import 'styles/festivalsPage/_festivalList.scss';
 @import 'styles/festivalsPage/_getLocation.scss';
 @import 'styles/festivalsPage/_filters.scss';
+@import 'styles/festivalsPage/_selectYear.scss';
 @import 'styles/festivalsPage/_festivalsPage.scss';
+@import 'styles/festivalsPage/_genreChart.scss';
 
-@import 'styles/_festivalLineUp.scss';
+@import 'styles/artistsPage/_festivalLineUp.scss';
+@import 'styles/artistsPage/_artistsPage.scss';
+@import 'styles/artistsPage/_selectGenre.scss';
+@import 'styles/artistsPage/_selectArtistOptions.scss';
+@import 'styles/artistsPage/_selectedGenres.scss';
+@import 'styles/artistsPage/_createPlaylist.scss';
+
+
 @import 'styles/_landingPage.scss';
 @import 'styles/_navBar.scss';
 
@@ -44,7 +53,7 @@ html {
     font-family: $thinFont;
     font-size: 15px;
     .Home {
-      margin-top: 1rem;
+      // margin-top: 1rem;
       margin-left: 4rem;
       margin-right: 4rem;
     }

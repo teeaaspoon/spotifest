@@ -4,13 +4,9 @@ import { fetchFestivalArtists } from "../../../actions/fetchActions";
 import { selectAllArtists, deselectArtist } from "../../../actions/userActions";
 import { saveFestivalGenres, saveFestivalGenresSum } from "../../../actions/genreActions";
 import SelectedGenre from "./SelectedGenre.js"
-import SelectAllButton from "./SelectAllButton.js"
-
-
-
 import Artist from "./Artist.js";
 
-class FestivalSelected extends Component {
+class FestivalLineup extends Component {
     componentWillMount() {
         this.props.fetchFestivalArtists(this.props.festivalSelected.id);
     }
@@ -87,16 +83,17 @@ class FestivalSelected extends Component {
             (<SelectedGenre key={genreStr} genre={genreStr}/>)
         )
         return (
-            <div className="lineup">
+            <div>
                 <div className="selectedGenres">
-                <SelectAllButton />
                 {allSelectedGenres}
                 </div>
-                <ul>
+                <div className="lineupWrapper">
+                <div className="lineup">
                     {this.mapFestivalArtistsIntoList(
                         this.props.festivalArtists
                     )}
-                </ul>
+                </div>
+                </div>
             </div>
         );
     }
@@ -111,4 +108,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { fetchFestivalArtists, selectAllArtists, saveFestivalGenres, saveFestivalGenresSum, deselectArtist }
-)(FestivalSelected);
+)(FestivalLineup);

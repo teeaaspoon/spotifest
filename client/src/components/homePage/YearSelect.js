@@ -19,7 +19,7 @@ class YearSelect extends Component {
     return (
       <Select
         className="col-md-4 select-year-container"
-        placeholder="Select a year..."
+        placeholder="Select year..."
         classNamePrefix="select-year"
         value={this.props.year}
         onChange={this.handleYearChange}

@@ -1,0 +1,37 @@
+.select-year-container {
+  height: 40px;
+  padding: 0px;
+  margin-bottom: 0px;
+  .select-year__control {
+    background-color: black;
+    width: 12rem;
+    color: white;
+    font-family: $spotifyFont;
+    margin: 0px;
+    border: 1px solid white;
+    border-radius: 20px;
+    .select-year__single-value {
+      color: gray;
+    }
+    .select-year__value-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .select-year__menu {
+    background-color: $darkGrey;
+    border: none;
+    .select-year__option--is-selected {
+      background-color: $darkGrey;
+      color: white;
+    }
+    .select-year__option--is-focused {
+      background-color: $darkGrey;
+      color: $green;
+    }
+    .select-year__option:hover {
+      background-color: $darkGrey;
+      color: $green;
+    }
+  }
+}

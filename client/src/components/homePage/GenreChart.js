@@ -33,6 +33,8 @@ class GenreChart extends Component {
       ]
     };
     const chartOptions = {
+      maintainAspectRatio: false,
+      responsive: false,
       legend: {
         display: false
       },
@@ -46,13 +48,21 @@ class GenreChart extends Component {
         }],
       }
     }
+    const festivalName = ""
+
     return (
-      <div className="barChart">
-        <p>Top Genres</p>
-        <Bar
-          data={data}
-          options= {chartOptions}
-        />
+      <div className="barChart col-md-6">
+        {this.props.festivalSelected &&
+          <div >
+            <p>{this.props.festivalSelected.title} Top Genres</p>
+            <Bar
+              height={550}
+              width={600}
+              data={data}
+              options= {chartOptions}
+            />
+          </div>
+        }
       </div>
 
     );
@@ -61,7 +71,8 @@ class GenreChart extends Component {
 
 const mapStateToProps = state => ({
   festivalGenres: state.genre.festivalGenres,
-  festivalGenresSum: state.genre.festivalGenresSum
+  festivalGenresSum: state.genre.festivalGenresSum,
+  festivalSelected: state.user.festivalSelected
 });
 
 export default connect(

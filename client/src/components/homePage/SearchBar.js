@@ -41,7 +41,7 @@ class SearchBar extends Component {
           className="searchFestival"
           onChange={this.onSearch}
           onKeyDown={this.sendRequest}
-          placeholder="search a festival name or click a continent..."
+          placeholder="search a festival name or choose a continent..."
           value={this.props.filters.filter(f => f.type === "search")[0] ? (this.props.filters.filter(f => f.type === "search")[0].args):("")}
         />
         {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
