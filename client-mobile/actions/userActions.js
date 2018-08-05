@@ -1,11 +1,11 @@
 import {
+    SAVE_JWT,
     SELECT_FESTIVAL,
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
-    SAVE_JWT,
     SELECT_ALL_ARTISTS,
-    CLEAR_JWT
+    GET_SPOTIFY_USER
 } from "./types";
 import axios from "axios";
 
@@ -16,13 +16,12 @@ export const getJwt = jwt => dispatch => {
     });
 };
 
-export const clearJwt = jwt => dispatch => {
+export const getSpotifyUser = spotify_id => dispatch => {
     dispatch({
-        type: CLEAR_JWT,
-        payload: jwt
+        type: GET_SPOTIFY_USER,
+        payload: spotify_id
     });
 };
-
 
 export const selectFestival = festival => dispatch => {
     dispatch({
@@ -32,13 +31,14 @@ export const selectFestival = festival => dispatch => {
 };
 
 export const createPlaylist = params => dispatch => {
-    axios.post("/api/v1/createspotifyplaylist", params).then(response => {
-        console.log(response);
-        dispatch({
-            type: CREATE_PLAYLIST,
-            payload: response.data
+    axios
+        .post("http://localhost:3001/api/v1/createspotifyplaylist", params)
+        .then(response => {
+            dispatch({
+                type: CREATE_PLAYLIST,
+                payload: response.data
+            });
         });
-    });
 };
 
 export const selectArtist = artist => dispatch => {

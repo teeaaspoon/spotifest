@@ -4,6 +4,7 @@ import ListOfFestivals from "./ListOfFestivals"
 import NavBar from "./NavBar"
 import GenreChart from "./GenreChart";
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import LogOutButton from "../auth/LogOutButton"
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
 import { connect } from "react-redux";

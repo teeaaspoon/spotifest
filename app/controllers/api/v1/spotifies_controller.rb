@@ -14,10 +14,10 @@ module Api::V1
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
-        redirect_to "http://localhost:3000/#{@spotify_user.spotify_id}?token=#{token}"
+        redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        redirect_to "http://localhost:3000/#{@spotify_user.spotify_id}?token=#{token}"
+        redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
 
@@ -27,23 +27,17 @@ module Api::V1
 
 
     def create_playlist
-      binding.pry
       @spotify_user_id = params[:spotifyUser]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
-      binding.pry
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
-      binding.pry
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
-      binding.pry
       # this will add all songs to the playlist
       @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
-      binding.pry
       @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
-      binding.pry
       render json: @playlist
     end
 

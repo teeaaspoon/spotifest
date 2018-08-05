@@ -1,15 +1,48 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    FlatList,
+    TouchableOpacity
+} from "react-native";
 import { fetchArtists, fetchFestivals } from "../actions/fetchActions";
 import { connect } from "react-redux";
+import Festival from "./Festival.js";
+
+XMLHttpRequest = GLOBAL.originalXMLHttpRequest
+    ? GLOBAL.originalXMLHttpRequest
+    : GLOBAL.XMLHttpRequest;
+
+// fetch logger
+global._fetch = fetch;
+global.fetch = function(uri, options, ...args) {
+    return global._fetch(uri, options, ...args).then(response => {
+        console.log("Fetch", { request: { uri, options, ...args }, response });
+        return response;
+    });
+};
 
 class Main extends Component {
+    static navigationOptions = () => ({
+        title: "Spotifest",
+        headerStyle: {
+            height: 54,
+            backgroundColor: "black"
+        },
+        headerTitleStyle: {
+            color: "green"
+        }
+    });
+
     componentDidMount() {
         this.props.fetchFestivals();
     }
-    handleClick = () => {
-        console.log("hihihii");
+
+    navigate = () => {
+        this.props.navigation.navigate("Lineup");
     };
+
     render() {
         return (
             <View style={styles.container}>
@@ -17,7 +50,7 @@ class Main extends Component {
                 <FlatList
                     data={this.props.festivals}
                     renderItem={({ item }) => (
-                        <Text onPress={this.handleClick}>{item.title}</Text>
+                        <Festival festival={item} navigate={this.navigate} />
                     )}
                     keyExtractor={item => item.id.toString()}
                 />
@@ -35,8 +68,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "center",
-        marginTop: 100
+        justifyContent: "center"
     }
 });
 
