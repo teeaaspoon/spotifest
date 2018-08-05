@@ -28,7 +28,7 @@ class SearchBar extends Component {
       axios.post("/api/v1/requests", { request: { festival_name: event.target.value } })
       .then(response => {
         if (response.data.created_at) {
-          this.setState({requestMessage: "request was sent!"})
+          this.setState({requestMessage: "your request was sent!"})
         } else {
           this.setState({requestMessage: "this festival has already been requested!"})
         }
@@ -45,6 +45,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="searchInput">
+        {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
         <input
           className="searchFestival"
           onChange={this.onSearch}
@@ -52,8 +53,7 @@ class SearchBar extends Component {
           placeholder="search a festival name or choose a continent..."
           value={this.props.filters.filter(f => f.type === "search")[0] ? (this.props.filters.filter(f => f.type === "search")[0].args):("")}
         />
-        {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
-        {this.props.filteredFestivals.length === 0 && <p>This festival does not exist! Press enter to send a request!</p>}
+        <p className={`${this.props.filteredFestivals.length === 0 && "showMessage"} requestMessage`}>This festival does not exist! Press enter to send a request!</p>
       </div>
     )
   }
