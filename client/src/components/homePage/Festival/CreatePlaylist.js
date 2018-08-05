@@ -41,7 +41,6 @@ class CreatePlaylist extends Component {
 
   }
   render() {
-    console.log(this.state)
     return (
       <div className="createPlaylist">
         <div className="row">
@@ -74,7 +73,7 @@ class CreatePlaylist extends Component {
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
     festivalArtists: state.fetch.festivalArtists,
-    artistsSelected: state.user.artistsSelected,
+    artistsSelected: state.genre.artistsSelected,
     jwt: state.user.jwt
 });
 

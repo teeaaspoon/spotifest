@@ -4,6 +4,7 @@ import FestivalLineup from "./FestivalLineup";
 import CreatePlaylist from "./CreatePlaylist";
 import SelectGenre from "./SelectGenre";
 import SelectAllButton from "./SelectAllButton.js"
+import DeselectAllButton from "./DeselectAllButton.js"
 import SelectedGenre from "./SelectedGenre.js"
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
@@ -26,6 +27,7 @@ class FestivalSelected extends Component {
                 <div className="selectArtistOptions">
                     <SelectGenre />
                     <SelectAllButton />
+                    <DeselectAllButton />
                     <button onClick={this.scrollToFestivalsPage} className="backToFestivals">BACK TO FESTIVALS</button>
                 </div>
                 <FestivalLineup />

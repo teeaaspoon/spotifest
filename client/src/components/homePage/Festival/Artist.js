@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectArtist, deselectArtist } from "../../../actions/userActions";
+import { selectArtist, deselectArtist } from "../../../actions/genreActions";
 
 class Artist extends Component {
 
@@ -16,7 +16,9 @@ class Artist extends Component {
 
   render() {
     let selectedOrNot = "selected"
-    if (!this.props.artistsSelected.includes(this.props.artist)) {
+    if (!this.props.artistsSelected) {
+      selectedOrNot = "notSelected"
+    } else if (!this.props.artistsSelected.includes(this.props.artist)) {
       selectedOrNot = "notSelected"
     }
     let isloaded = false
@@ -44,7 +46,7 @@ class Artist extends Component {
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    artistsSelected: state.user.artistsSelected
+    artistsSelected: state.genre.artistsSelected
 
 });
 
