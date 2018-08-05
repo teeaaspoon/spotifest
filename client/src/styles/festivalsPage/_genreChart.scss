@@ -1,9 +1,35 @@
 .barChart {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   padding-left: 0px;
   display: flex;
   align-items: center;
   text-align: center;
-  .chartjs-render-monitor {
+  .festivalTitle {
+    font-size: 20px;
+    margin: 0px;
+  }
+  .topGenreLabel {
+    font-style: italic;
+    font-size: 12px;
+    margin: 0px;
+    // font-family: $spotifyFont;
+  }
+  .viewLineup {
+    margin-top: 2rem;
+    font-family: $spotifyFont;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    padding: 0.5rem;
+    margin-bottom: 0px;
+    margin-left: 0.5rem;
+    border: 1px solid white;
+    height: 38px;
+    width: 15rem;
+    outline: none;
+    &:hover {
+      background-color: $green;
+      border-color: $green;
+    }
   }
 }

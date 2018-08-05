@@ -5,11 +5,17 @@ import CreatePlaylist from "./CreatePlaylist";
 import SelectGenre from "./SelectGenre";
 import SelectAllButton from "./SelectAllButton.js"
 import SelectedGenre from "./SelectedGenre.js"
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 
 class FestivalSelected extends Component {
+    scrollToFestivalsPage = () => {
+        const options = {
+        smooth: true,
+        }
+        scroller.scrollTo('festivalsPage', options)
+    }
     render() {
         const allSelectedGenres = this.props.selectedGenres.map(genreStr =>
             (<SelectedGenre key={genreStr} genre={genreStr}/>)
@@ -20,6 +26,7 @@ class FestivalSelected extends Component {
                 <div className="selectArtistOptions">
                     <SelectGenre />
                     <SelectAllButton />
+                    <button onClick={this.scrollToFestivalsPage} className="backToFestivals">BACK TO FESTIVALS</button>
                 </div>
                 <FestivalLineup />
                 <CreatePlaylist />

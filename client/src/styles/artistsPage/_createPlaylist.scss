@@ -36,7 +36,7 @@
     border-radius: 20px;
     width: 15rem;
     &:focus {
-      border-bottom: 1px solid $green;
+      border-color: $green;
     }
   }
   .select-number-container {

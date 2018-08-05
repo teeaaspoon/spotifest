@@ -4,13 +4,20 @@ import { connect } from "react-redux";
 import { saveContinent, saveCurrentCoords, saveRadius } from "../../actions/mapActions.js";
 import { southAmericaPath, oceaniaPath, northAmericaPath, europePath, asiaPath, africaPath } from "./mapData/pathData.js"
 import classNameToContinent from "./mapData/classNameToContinent.json"
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 class Map extends Component {
+  scrollToFestivalsPage = () => {
+    const options = {
+      smooth: true,
+    }
+    scroller.scrollTo('festivalsPage', options)
+  }
 
   handleClick = (e) => {
     const continent = classNameToContinent[e.target.id]
+    this.scrollToFestivalsPage()
     this.props.saveContinent(continent)
     this.props.saveRadius(null)
   }

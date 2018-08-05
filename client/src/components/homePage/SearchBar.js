@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { saveSearchInput } from "../../actions/mapActions.js";
 import axios from "axios";
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -11,6 +11,12 @@ class SearchBar extends Component {
     this.state = {
       requestMessage: null,
     }
+  }
+  scrollToFestivalsPage = () => {
+    const options = {
+      smooth: true,
+    }
+    scroller.scrollTo('festivalsPage', options)
   }
 
   onSearch = (event) => {
@@ -31,6 +37,8 @@ class SearchBar extends Component {
       .catch(error => {
         this.props.saveSearchInput("")
       });
+    } else if (event.keyCode === 13) {
+      this.scrollToFestivalsPage()
     }
   }
 
