@@ -6,9 +6,18 @@ import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, 
 
 
 export default class User extends Component {
+  scrollToTopArtists = () => {
+    const options = {
+      smooth: true,
+    }
+    scroller.scrollTo('topGenresAndArtistsPage', options)
+  }
+  componentDidMount () {
+    this.scrollToTopArtists()
+  }
   render() {
     return (
-      <div>
+      <div className="animated fadeIn delay-4">
         <NavBar />
         <p className="spotifestLogo">SPOTI<span>FEST</span></p>
         <Element name="topGenresAndArtistsPage" className="element">

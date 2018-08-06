@@ -44,7 +44,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchInput map animated fadeIn delay-4">
+      <div className="searchInput animated fadeIn delay-4">
         {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
         <input
           className="searchFestival "
