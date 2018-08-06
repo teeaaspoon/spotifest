@@ -2,10 +2,7 @@ import {
     SAVE_JWT,
     SELECT_FESTIVAL,
     CREATE_PLAYLIST,
-    SELECT_ARTIST,
-    DESELECT_ARTIST,
-    SELECT_ALL_ARTISTS,
-    GET_SPOTIFY_USER
+    CLEAR_JWT
 } from "../actions/types";
 
 const initialState = {
@@ -22,38 +19,21 @@ export default function(state = initialState, action) {
                 ...state,
                 jwt: action.payload
             };
-        case GET_SPOTIFY_USER:
+        case CLEAR_JWT:
             return {
                 ...state,
-                spotifyUser: action.payload
+                jwt: ""
             };
         case SELECT_FESTIVAL:
             return {
                 ...state,
-                artistsSelected: [],
                 festivalSelected: action.payload
             };
         case CREATE_PLAYLIST:
             return {
                 ...state
             };
-        case SELECT_ARTIST:
-            return {
-                ...state,
-                artistsSelected: [...state.artistsSelected, action.payload]
-            };
-        case DESELECT_ARTIST:
-            return {
-                ...state,
-                artistsSelected: state.artistsSelected.filter(
-                    artist => artist !== action.payload
-                )
-            };
-        case SELECT_ALL_ARTISTS:
-            return {
-                ...state,
-                artistsSelected: action.payload
-            };
+
         default:
             return state;
     }

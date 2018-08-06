@@ -1,0 +1,83 @@
+.adminForm {
+  // margin-top: 2rem;
+  display: flex;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  background-color: $black;
+  border-radius: 20px;
+  // padding: 2rem;
+  .formContents {
+    margin: 2rem;
+    .formTitleAndStatus {
+      padding-left: 2rem;
+      .formTitle {
+        font-family: $markerFont;
+      }
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      input, button {
+        text-align: center;
+        caret-color: $orange;
+        background-color: #111111;
+        border: 1px solid #111111;
+        outline: none;
+        padding: 1rem;
+        margin: 0.5rem;
+        border-radius: 20px;
+        color: white;
+        width: 13rem;
+        &::placeholder {
+          color: white;
+        }
+        &:focus {
+          border: 1px solid $orange;
+        }
+      }
+      button {
+        border: 1px solid $green;
+        &:hover {
+          color: black;
+          background-color: $green;
+        }
+      }
+    }
+    .formInputs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .festivalAuto, .artistAuto, button {
+        caret-color: $orange;
+        text-align: center;
+        background-color: #111111;
+        padding: 1rem;
+        margin: 0.5rem;
+        width: 15rem;
+        color: white;
+        border: 1px solid #111111;
+        outline: none;
+        border-radius: 20px;
+        &::placeholder {
+          color: white;
+        }
+        &:focus {
+          border: 1px solid $orange;
+        }
+      }
+      button {
+        outline: none;
+        border: 1px solid $green;
+        &:hover {
+          color: black;
+          background-color: $green;
+        }
+      }
+    }
+  }
+}
+
+
+
+

@@ -1,41 +1,60 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import ListOfFestivals from "./ListOfFestivals"
-import GetLocationButton from "./GetLocationButton"
-import YearSelect from "./YearSelect"
-
+import NavBar from "./NavBar"
+import GenreChart from "./GenreChart";
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import LogOutButton from "../auth/LogOutButton"
 
 import FestivalSelected from "./Festival/FestivalSelected.js";
 import { connect } from "react-redux";
-import SpotifyLoginButton from "../auth/SpotifyLoginButton";
 import Map from "./Map";
 
 
 class Home extends Component {
-    componentDidUpdate() {
-        // autoscrolls to bottom every update
-        this.bottomOfList.scrollIntoView({ behaviour: "smooth" });
+  scrollToMapAndSearchPage = () => {
+    const options = {
+      smooth: true,
     }
+    scroller.scrollTo('mapAndSearchPage', options)
+  }
 
-    render() {
-        return (
-            <div className="Home">
-                <SpotifyLoginButton />
-                <SearchBar />
-                <YearSelect />
-                <ListOfFestivals />
-                <GetLocationButton />
-                <Map />
-                {this.props.festivalSelected && <FestivalSelected />}
-                <div
-                    ref={el => {
-                        this.bottomOfList = el;
-                    }}
-                />
+  componentDidMount() {
+    window.thingFunction = () => {
+        console.log('pop up worked')
+    }
+  }
+
+  render() {
+    return (
+      <div className="Home">
+        <NavBar />
+
+        <Element name="mapAndSearchPage" className="element">
+          <div className="mapAndSearch">
+              <SearchBar />
+              <Map />
+          </div>
+        </Element>
+
+        <Element name="festivalsPage" className="element" >
+          <div className="festivalsPage">
+              <div className="row">
+                  <ListOfFestivals />
+                  <GenreChart />
+              </div>
             </div>
+        </Element>
 
-        );
-    }
+        <Element name="artistsPage" className="element">
+          <div className="artistsPage">
+              {this.props.festivalSelected && <FestivalSelected />}
+          </div>
+        </Element>
+      </div>
+
+    );
+  }
 }
 
 const mapStateToProps = state => ({

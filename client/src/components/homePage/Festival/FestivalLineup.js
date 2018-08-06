@@ -1,29 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchFestivalArtists } from "../../../actions/fetchActions";
-import { selectAllArtists, deselectArtist } from "../../../actions/userActions";
-import { saveFestivalGenres, saveFestivalGenresSum } from "../../../actions/genreActions";
+import { selectAllArtists, deselectArtist } from "../../../actions/genreActions";
+import { saveFestivalGenresSum, initializeSelectedArtists } from "../../../actions/genreActions";
 import SelectedGenre from "./SelectedGenre.js"
-
 import Artist from "./Artist.js";
 
-class FestivalSelected extends Component {
+class FestivalLineup extends Component {
     componentWillMount() {
-        this.props.fetchFestivalArtists(this.props.festivalSelected.id);
+        this.props.initializeSelectedArtists(this.props.festivalSelected.id)
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.festivalSelected !== this.props.festivalSelected) {
-            this.props.fetchFestivalArtists(nextProps.festivalSelected.id);
+            this.props.initializeSelectedArtists(nextProps.festivalSelected.id)
         }
     }
     componentDidUpdate() {
-        this.props.selectAllArtists(this.props.festivalArtists);
-
-        let festivalGenres = this.getAllFestivalGenres(this.props.festivalArtists)
-        this.props.saveFestivalGenres(festivalGenres)
-        this.props.saveFestivalGenresSum(this.sortGenreSum(this.props.festivalArtists))
-        this.filterByGenre(this.props.selectedGenres, this.props.festivalArtists)
+        this.props.saveFestivalGenresSum(this.sortGenreSum(this.props.allArtists))
     }
 
     mapFestivalArtistsIntoList = listOfArtists => {
@@ -32,6 +26,7 @@ class FestivalSelected extends Component {
         });
         return mappedArtists;
     };
+    // functions for finding top genres
     getAllFestivalGenres = (listOfArtists) => {
         let festivalGenres = {}
         listOfArtists.forEach(artist => {
@@ -63,21 +58,6 @@ class FestivalSelected extends Component {
         return genreSums
     }
 
-    filterByGenre = (selectedGenres, festivalArtists) => {
-        if (selectedGenres.length > 0) {
-            this.props.selectAllArtists(festivalArtists)
-            let selectArtists = []
-            selectedGenres.forEach(genre => {
-                let genreArtists = festivalArtists.filter(artist => artist.spotify_artist_info.genres.includes(genre))
-                selectArtists = [...selectArtists, ...genreArtists]
-            })
-            festivalArtists.forEach(artist => {
-                if(!selectArtists.includes(artist)) {
-                    this.props.deselectArtist(artist)
-                }
-            })
-        }
-    }
 
     render() {
         const allSelectedGenres = this.props.selectedGenres.map(genreStr =>
@@ -85,12 +65,16 @@ class FestivalSelected extends Component {
         )
         return (
             <div>
+                <div className="selectedGenres">
                 {allSelectedGenres}
-                <ul>
+                </div>
+                <div className="lineupWrapper">
+                <div className="lineup">
                     {this.mapFestivalArtistsIntoList(
-                        this.props.festivalArtists
+                        this.props.allArtists
                     )}
-                </ul>
+                </div>
+                </div>
             </div>
         );
     }
@@ -100,9 +84,10 @@ const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
     festivalArtists: state.fetch.festivalArtists,
     selectedGenres: state.genre.selectedGenres,
+    allArtists: state.genre.allArtists
 });
 
 export default connect(
     mapStateToProps,
-    { fetchFestivalArtists, selectAllArtists, saveFestivalGenres, saveFestivalGenresSum, deselectArtist }
-)(FestivalSelected);
+    { initializeSelectedArtists, fetchFestivalArtists, selectAllArtists, saveFestivalGenresSum, deselectArtist }
+)(FestivalLineup);

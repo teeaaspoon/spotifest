@@ -10,10 +10,10 @@ class SearchFilter extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="searchFilter filter">
         {this.props.search}
         <span>
-          <button onClick={this.deleteSearchFilter}>delete</button>
+          <button onClick={this.deleteSearchFilter}><i className="fa fa-remove"></i></button>
         </span>
       </div>
     )

@@ -4,16 +4,32 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Admin from "./components/admin/Admin";
 import Home from "./components/homePage/Home";
+import Landing from "./components/landingPage/Landing";
 import User from "./components/user/User";
-import LoggedIn from "./components/homePage/LoggedIn";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
+import { getJwt } from "./actions/userActions";
 import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
 import { saveCurrentCoords, selectAllFestivals } from "./actions/mapActions";
 import "./App.css";
 
 class App extends Component {
     componentWillMount() {
+
+        try {
+            let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
+            if (jwt) {
+                window.localStorage.setItem('jwt', jwt); //eslint-disable-line
+                console.log(window.localStorage);
+            } else {
+                jwt = window.localStorage.getItem("jwt");
+                console.log(jwt);
+            }
+            this.props.getJwt(jwtDecode(jwt));
+        } catch (error) {
+            console.log(error);
+        }
+
         this.props.fetchFestivals();
         if ("geolocation" in navigator) {
             console.log("geolocation is available");
@@ -30,22 +46,34 @@ class App extends Component {
             });
         });
     }
-    componentDidMount() {
-        try {
-            let jwt = window.localStorage.getItem("jwt");
-            jwtDecode(jwt);
-        } catch (error) {
-            console.log(error);
+
+    getParameterByName = (name, url) => {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-        this.props.selectAllFestivals()
+    componentDidMount() {
+        this.props.selectAllFestivals();
     }
     render() {
+
+        let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
+        let home;
+        if (jwt) {
+            home = <Home path="/" />
+        } else {
+            home = <Landing path="/" />
+        }
+
         return (
             <Provider store={store}>
                 <Router>
-                    <Home path="/" />
+                    {home}
                     <Admin path="/admin" />
-                    <LoggedIn path="/:userId" />
                     <User path="/user/:userId" />
                 </Router>
             </Provider>
@@ -54,10 +82,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    festivals: state.fetch.festivals
+    festivals: state.fetch.festivals,
+    jwt: state.user.jwt
 });
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals, saveCurrentCoords, selectAllFestivals }
+    { fetchArtists, fetchFestivals, saveCurrentCoords, selectAllFestivals, getJwt }
 )(App);

@@ -1,0 +1,37 @@
+.requests {
+  background-color: $black;
+  border-radius: 20px;
+  margin-top: 1rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  margin-bottom: 2rem;
+  .requestHeader {
+    padding-top: 1rem;
+    text-align: center;
+    font-family: $thinFont;
+  }
+  .allRequests {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .request {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border: 1px solid white;
+      border-radius: 20px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      margin-right: 0.5rem;
+      button {
+        background-color: $black;
+        border: none;
+        color: white;
+        margin: 0px;
+        padding: 0px;
+        padding-left: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.select-genre-container {
+  height: 40px;
+  padding: 0px;
+  margin-bottom: 1rem;
+  outline: none;
+  .select-genre__control {
+
+    background-color: black;
+    width: 12rem;
+    color: white;
+    font-family: $spotifyFont;
+    margin: 0px;
+    border: 1px solid white;
+    border-radius: 20px;
+    .select-genre__single-value {
+      color: gray;
+    }
+    .select-genre__value-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .select-genre__menu {
+    background-color: $darkGrey;
+    border: none;
+    .select-genre__option--is-selected {
+      background-color: $darkGrey;
+      color: white;
+    }
+    .select-genre__option--is-focused {
+      background-color: $darkGrey;
+      color: $green;
+    }
+    .select-genre__option:hover {
+      background-color: $darkGrey;
+      color: $green;
+    }
+  }
+}

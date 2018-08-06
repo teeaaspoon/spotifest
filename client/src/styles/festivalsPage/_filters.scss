@@ -1,0 +1,53 @@
+.allFilters {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  .filter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+    button {
+      background-color: black;
+      border: none;
+      color: white;
+      margin: 0px;
+      padding: 0px;
+      padding-left: 1rem;
+      outline: none;
+    }
+    &.continentFilter {
+      color: $pink;
+      border-color: $pink;
+      button {
+        color: $pink;
+      }
+    }
+    &.radiusFilter {
+      color: $blue;
+      border-color: $blue;
+      button {
+        color: $blue;
+      }
+    }
+    &.searchFilter {
+      color: $green;
+      border-color: $green;
+      button {
+        color: $green;
+      }
+    }
+    &.yearFilter {
+      color: $orange;
+      border-color: $orange;
+      button {
+        color: $orange;
+      }
+    }
+  }
+}

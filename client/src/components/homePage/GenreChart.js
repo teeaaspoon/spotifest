@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Bar } from 'react-chartjs-2';
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 class GenreChart extends Component {
   getLabelsAndData = (sumsArr) => {
@@ -14,6 +14,12 @@ class GenreChart extends Component {
       }
     }
     return {labels, data}
+  }
+  scrollToArtists = () => {
+    const options = {
+      smooth: true,
+    }
+    scroller.scrollTo('artistsPage', options)
   }
 
   render() {
@@ -33,6 +39,8 @@ class GenreChart extends Component {
       ]
     };
     const chartOptions = {
+      maintainAspectRatio: false,
+      responsive: false,
       legend: {
         display: false
       },
@@ -46,13 +54,23 @@ class GenreChart extends Component {
         }],
       }
     }
+    const festivalName = ""
+
     return (
-      <div>
-        <p>Top Genres</p>
-        <Bar
-          data={data}
-          options= {chartOptions}
-        />
+      <div className="barChart col-md-6">
+        {this.props.festivalSelected &&
+          <div >
+            <p className="festivalTitle">{this.props.festivalSelected.title}</p>
+            <p className="topGenreLabel">top genres</p>
+            <Bar
+              height={550}
+              width={600}
+              data={data}
+              options= {chartOptions}
+            />
+            <button onClick={this.scrollToArtists} className="viewLineup">VIEW LINEUP</button>
+          </div>
+        }
       </div>
 
     );
@@ -61,7 +79,8 @@ class GenreChart extends Component {
 
 const mapStateToProps = state => ({
   festivalGenres: state.genre.festivalGenres,
-  festivalGenresSum: state.genre.festivalGenresSum
+  festivalGenresSum: state.genre.festivalGenresSum,
+  festivalSelected: state.user.festivalSelected
 });
 
 export default connect(

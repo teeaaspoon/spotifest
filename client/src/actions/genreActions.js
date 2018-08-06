@@ -1,15 +1,22 @@
 import {
-    SAVE_FESTIVAL_GENRES,
     SAVE_FESTIVAL_GENRES_SUM,
     SAVE_GENRE,
     REMOVE_GENRE,
     RESET_GENRE,
+    SELECT_ARTIST,
+    DESELECT_ARTIST,
+    SELECT_ALL_ARTISTS,
+    DESELECT_ALL_ARTISTS,
+    INITIALIZE_SELECTED_ARTISTS,
 } from "./types";
+import axios from "axios";
 
-export const saveFestivalGenres = (festivalGenres) => dispatch => {
-    dispatch({
-        type: SAVE_FESTIVAL_GENRES,
-        payload: festivalGenres
+export const initializeSelectedArtists = festival_id => dispatch => {
+    axios.get(`/api/v1/festivals/${festival_id}/artists`).then(response => {
+        dispatch({
+            type: INITIALIZE_SELECTED_ARTISTS,
+            payload: response.data
+        });
     });
 };
 
@@ -37,4 +44,30 @@ export const resetGenre = () => dispatch => {
         type: RESET_GENRE,
     })
 }
+
+export const selectArtist = artist => dispatch => {
+    dispatch({
+        type: SELECT_ARTIST,
+        payload: artist
+    });
+};
+
+export const deselectArtist = artist => dispatch => {
+    dispatch({
+        type: DESELECT_ARTIST,
+        payload: artist
+    });
+};
+
+export const selectAllArtists = () => dispatch => {
+    dispatch({
+        type: SELECT_ALL_ARTISTS,
+    });
+};
+
+export const deselectAllArtists = () => dispatch => {
+    dispatch({
+        type: DESELECT_ALL_ARTISTS,
+    });
+};
 

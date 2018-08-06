@@ -1,0 +1,34 @@
+.lineup {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .artistDiv {
+    display: flex;
+    flex-direction: column;
+    .artistName {
+      text-align: center;
+      &.notSelected {
+        filter: brightness(15%)
+      }
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 40px;
+      border: 2px solid $green;
+      &.selected {
+        border-color: $green;
+
+      }
+      &.notSelected {
+        border-color: gray;
+        filter: brightness(15%);
+      }
+    }
+  }
+}
+

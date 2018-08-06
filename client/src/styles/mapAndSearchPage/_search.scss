@@ -1,0 +1,34 @@
+.searchInput {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10rem;
+  .searchFestival {
+    width: 50%;
+    text-align: center;
+    input:focus::-webkit-input-placeholder { color:transparent; }
+    caret-color: $pink;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: black;
+    height: 35px;
+    padding-bottom: 0px;
+    font-size: 22px;
+    font-family: $spotifyFont;
+    outline: none;
+    color: white;
+    border-bottom: 1px solid gray;
+    &:focus {
+      border-bottom: 1px solid $green;
+    }
+  }
+  .requestMessage {
+    margin: 0px;
+    color: black;
+    &.showMessage {
+      color: white;
+
+    }
+  }
+}

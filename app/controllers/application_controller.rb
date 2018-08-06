@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+    include ActionController::MimeResponds
+
   private
 
   # def create_genres

@@ -1,10 +1,67 @@
-@import 'styles/_map.scss';
 
 $black: #181818;
+$blue: #3df5ff;
+$orange: #FD5F00;
+$darkGrey: #1e1e1e;
+$green: #01E365;
+$pink: #FF005A;
+$orange: #FF5722;
 
-body {
+@import url('https://fonts.googleapis.com/css?family=Oswald|Permanent+Marker');
+
+$titleFont: "Oswald";
+$markerFont: "Permanent Marker";
+$spotifyFont: "Proxima Nova";
+$thinFont: "proxima_nova_scosfthin";
+
+@import 'styles/mapAndSearchPage/_map.scss';
+@import 'styles/mapAndSearchPage/_search.scss';
+@import 'styles/mapAndSearchPage/_mapAndSearch.scss';
+
+@import 'styles/festivalsPage/_festivalList.scss';
+@import 'styles/festivalsPage/_getLocation.scss';
+@import 'styles/festivalsPage/_filters.scss';
+@import 'styles/festivalsPage/_selectYear.scss';
+@import 'styles/festivalsPage/_festivalsPage.scss';
+@import 'styles/festivalsPage/_genreChart.scss';
+
+@import 'styles/artistsPage/_festivalLineUp.scss';
+@import 'styles/artistsPage/_artistsPage.scss';
+@import 'styles/artistsPage/_selectGenre.scss';
+@import 'styles/artistsPage/_selectArtistOptions.scss';
+@import 'styles/artistsPage/_selectedGenres.scss';
+@import 'styles/artistsPage/_createPlaylist.scss';
+
+
+@import 'styles/_landingPage.scss';
+@import 'styles/_navBar.scss';
+
+@import 'styles/admin/_adminNav.scss';
+@import 'styles/admin/_adminRequests.scss';
+@import 'styles/admin/_adminForms.scss';
+
+
+
+html {
   margin: 0px;
-  padding: 2rem;
-  background-color: white;
-  color: black;
+  padding: 0px;
+  body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    color: white;
+    font-family: $thinFont;
+    font-size: 15px;
+    .Home {
+      // margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+    .Admin {
+      margin-top: 1rem;
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+  }
+
 }
