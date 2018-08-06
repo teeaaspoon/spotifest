@@ -17,7 +17,9 @@ export default class User extends Component {
             <TopArtists userId={this.props.userId} />
           </div>
         </Element>
-        {/*<Playlists userId={this.props.userId} />*/}
+        <Element name="playlistList">
+          <Playlists userId={this.props.userId} />
+        </Element>
       </div>
     );
   }

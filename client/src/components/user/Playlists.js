@@ -5,8 +5,7 @@ import PlaylistStats from "./PlaylistStats";
 
 class UserPlaylists extends Component {
     componentDidMount() {
-        // fetch top spotify artists for user.
-        this.props.fetchUserPlaylists(this.props.userId);
+        // this.props.fetchUserPlaylists(this.props.userId);
     }
     mapPlaylistsToList = playlists => {
         const myPlaylists = playlists.map((playlist, index) => {
@@ -20,8 +19,8 @@ class UserPlaylists extends Component {
     };
     render() {
         return (
-            <div>
-                <p>These are your playlists</p>
+            <div className="playlistList">
+                <p className="playlistListTitle">YOUR PLAYLISTS FROM SPOTIFEST</p>
                 {this.mapPlaylistsToList(this.props.userPlaylists)}
             </div>
         );
