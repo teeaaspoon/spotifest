@@ -9,7 +9,7 @@ class TopArtists extends Component {
     }
     mapTopArtistsToList = listOfArtists => {
         const artists = listOfArtists.map((artist, index) => {
-            return <li key={index}>{artist}</li>;
+            return <li key={index}>{artist.name}</li>;
         });
         return artists;
     };
