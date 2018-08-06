@@ -16,8 +16,18 @@ class ListOfFestivals extends Component {
     scroller.scrollTo('mapAndSearchPage', options)
   }
 
+  compareName = (a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
   render() {
-    const filteredFestivals = this.props.filteredFestivals.map(festival => <Festival festival={festival} key={festival.id}/>)
+    console.log(this.props.filteredFestivals)
+    const sortedFestivals = this.props.filteredFestivals.sort(this.compareName)
+    const filteredFestivals = sortedFestivals.map(festival => <Festival festival={festival} key={festival.id}/>)
     return (
       <div className="list-of-festivals col-md-6">
         <h3 className="festivalHeader">FESTIVALS</h3>

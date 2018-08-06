@@ -1,0 +1,15 @@
+.playlistList {
+  border-top: 1px solid $black;
+  padding-top: 6rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .playlistListTitle {
+    font-family: $markerFont;
+    font-size: 22px;
+
+  }
+}

@@ -4,8 +4,7 @@ import { deletePlaylist, fetchUserPlaylists } from "../../actions/userActions";
 
 class UserPlaylists extends Component {
     componentDidMount() {
-        // fetch top spotify artists for user.
-        this.props.fetchUserPlaylists(this.props.userId);
+        // this.props.fetchUserPlaylists(this.props.userId);
     }
 
     handleClick = playlistId => {
@@ -25,8 +24,8 @@ class UserPlaylists extends Component {
     };
     render() {
         return (
-            <div>
-                <p>These are your playlists</p>
+            <div className="playlistList">
+                <p className="playlistListTitle">YOUR PLAYLISTS FROM SPOTIFEST</p>
                 {this.mapPlaylistsToList(this.props.playlists)}
             </div>
         );

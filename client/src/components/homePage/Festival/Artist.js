@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { selectArtist, deselectArtist } from "../../../actions/genreActions";
 
 class Artist extends Component {
-
-
   handleClick = (ev) => {
     if(ev.target.className === "artist selected") {
       this.props.deselectArtist(this.props.artist)

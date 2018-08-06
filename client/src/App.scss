@@ -40,6 +40,11 @@ $thinFont: "proxima_nova_scosfthin";
 @import 'styles/admin/_adminRequests.scss';
 @import 'styles/admin/_adminForms.scss';
 
+@import 'styles/topGenresAndArtistsPage/_topGenresAndArtists.scss';
+@import 'styles/topGenresAndArtistsPage/_topArtists.scss';
+@import 'styles/topGenresAndArtistsPage/_topGenres.scss';
+@import 'styles/topGenresAndArtistsPage/_playlistList.scss';
+
 
 
 html {

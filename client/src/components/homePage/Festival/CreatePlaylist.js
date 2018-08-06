@@ -10,7 +10,8 @@ class CreatePlaylist extends Component {
     this.state = {
       playlistTitle: this.props.festivalSelected.title,
       numberOfSongs: 10,
-      errorMessage: ""
+      errorMessage: "",
+      loadingMessage: ""
     };
   }
 
@@ -30,7 +31,7 @@ class CreatePlaylist extends Component {
 
   handleClick = () => {
     if (this.state.playlistTitle) {
-      this.setState({...this.state, errorMessage: ""})
+      this.setState({...this.state, errorMessage: "", loadingMessage: "CREATING PLAYLIST..."})
       this.props.createPlaylist({
         playlistTitle: this.state.playlistTitle,
         festival: this.props.festivalSelected,
@@ -61,10 +62,15 @@ class CreatePlaylist extends Component {
     this.props.deselectFestival()
   }
   render() {
+    let buttonMessage = "CREATE PLAYLIST"
+    if (this.state.loadingMessage) {
+      buttonMessage = this.state.loadingMessage
+    }
     let newPlaylistMessage = ""
     if (this.props.newPlaylistName) {
       newPlaylistMessage = `your playlist "${this.props.newPlaylistName}" was created!`
     }
+
     return (
       <div className="createPlaylist">
         <div className="row">
@@ -90,7 +96,7 @@ class CreatePlaylist extends Component {
         </div>
         <p>{newPlaylistMessage}{this.state.errorMessage}</p>
         {!this.props.newPlaylistName ?
-          (<button className="createPlaylistButton" onClick={this.handleClick}>CREATE PLAYLIST</button>) :
+          (<button className="createPlaylistButton" onClick={this.handleClick}>{buttonMessage}</button>) :
           (<button className="makeAnotherPlaylist" onClick={this.handleMakeAnother}>MAKE ANOTHER PLAYLIST</button>)}
       </div>
     );
