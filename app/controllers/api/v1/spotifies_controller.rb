@@ -38,22 +38,18 @@ module Api::V1
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
       @songs = []
-      binding.pry
       @artists.each do |artist|
         @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
       end
       @songs.uniq!
       @songs.flatten!
       add_tracks_to_spotify_playlist(@playlist, @songs)
-      binding.pry
       add_songs_to_playlist_object(@new_playlist, @songs)
-      binding.pry
       render json: @playlist
     end
 
     def fetch_top_genres
       get_user
-      binding.pry
       @top_artists = @RSpotify_user.top_artists
       @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
       render json: @genres
@@ -61,7 +57,6 @@ module Api::V1
 
     def fetch_top_artists
       get_user
-      binding.pry
       @top_artists = @RSpotify_user.top_artists
       render json: @top_artists
     end
@@ -87,7 +82,6 @@ module Api::V1
     end
 
     def add_songs_to_playlist_object(playlist, tracks)
-      binding.pry
       tracks.each do |track|
         if Song.find_by spotify_uri: track.uri
           playlist.songs << Song.find_by(spotify_uri: track.uri)
