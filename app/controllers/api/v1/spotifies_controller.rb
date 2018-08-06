@@ -6,11 +6,10 @@ module Api::V1
       render json: @spotify_users
     end
 
-
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
-      user_hash = user_info.to_hash
-      @spotify_user = Spotify.new(user_info: user_hash)
+      hash(user_info)
+      create_user(user_hash)
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
@@ -28,9 +27,7 @@ module Api::V1
 
 
     def create_spotify_playlist
-      @spotify_user_id = params[:spotifyUser]
-      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
-      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+      get_user
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
@@ -41,8 +38,7 @@ module Api::V1
       @artists.each do |artist|
         @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
       end
-      @songs.uniq!
-      @songs.flatten!
+      @songs.uniq!.flatten!
       add_tracks_to_spotify_playlist(@playlist, @songs)
       add_songs_to_playlist_object(@new_playlist, @songs)
       render json: @playlist
@@ -62,14 +58,18 @@ module Api::V1
     end
 
     def fetch_playlists
-      @spotify_user_id = params[:userId]
-      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      get_user
       @playlists = @spotify_user.playlists
       render json: @playlists
     end
 
     def destroy
       @spotify_user.destroy
+    end
+
+    def delete_playlist
+      @playlist = Playlist.find(params[:playlistId])
+      @playlist.destroy
     end
 
     private
@@ -108,5 +108,14 @@ module Api::V1
       payload[:exp] = exp.to_i
       JWT.encode(payload, Rails.application.secrets.secret_key_base)
     end
+
+    def hash(user_info)
+      user_hash = user_info.to_hash
+    end
+
+    def create_user(user_hash)
+      @spotify_user = Spotify.new(user_info: user_hash)
+    end
+    
   end
 end

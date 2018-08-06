@@ -4,20 +4,35 @@ import {
     DESELECT_FESTIVAL,
     CREATE_PLAYLIST,
     CLEAR_JWT,
-    CLEAR_NEW_PLAYLIST_NAME
+    CLEAR_NEW_PLAYLIST_NAME,
+    DELETE_PLAYLIST,
+    FETCH_USER_PLAYLISTS
 } from "../actions/types";
 
 const initialState = {
     jwt: "",
-    spotifyUser: "",
+    userId: "",
     festivalSelected: "",
     artistsSelected: [],
     newPlaylistName: "",
+    playlists: []
 
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
+        case FETCH_USER_PLAYLISTS:
+            return {
+                ...state,
+                playlists: action.payload
+            };
+        case DELETE_PLAYLIST:
+            return {
+                ...state,
+                playlists: state.playlists.filter(
+                    playlist => playlist.id !== action.payload
+                )
+            };
         case SAVE_JWT:
             return {
                 ...state,
@@ -37,6 +52,16 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 festivalSelected: ""
+            };
+        case CREATE_PLAYLIST:
+            return {
+                ...state,
+                newPlaylistName: action.payload
+            };
+        case CREATE_PLAYLIST:
+            return {
+                ...state,
+                newPlaylistName: action.payload
             };
         case CREATE_PLAYLIST:
             return {

@@ -4,7 +4,6 @@ import {
     FETCH_FESTIVAL_ARTISTS,
     FETCH_USER_TOP_GENRES,
     FETCH_USER_TOP_ARTISTS,
-    FETCH_USER_PLAYLISTS,
     FETCH_REQUESTS,
     CLEAR_REQUEST
 } from "./types";
@@ -70,16 +69,6 @@ export const fetchUserTopArtists = userId => dispatch => {
         console.log(response);
         dispatch({
             type: FETCH_USER_TOP_ARTISTS,
-            payload: response.data
-        });
-    });
-};
-
-export const fetchUserPlaylists = userId => dispatch => {
-    axios.get(`/api/v1/${userId}/playlists`).then(response => {
-        console.log(response);
-        dispatch({
-            type: FETCH_USER_PLAYLISTS,
             payload: response.data
         });
     });

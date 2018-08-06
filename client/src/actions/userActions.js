@@ -9,6 +9,8 @@ import {
     CLEAR_JWT,
     DESELECT_ALL_ARTISTS,
     CLEAR_NEW_PLAYLIST_NAME,
+    FETCH_USER_PLAYLISTS,
+    DELETE_PLAYLIST
 } from "./types";
 import axios from "axios";
 
@@ -16,6 +18,24 @@ export const getJwt = jwt => dispatch => {
     dispatch({
         type: SAVE_JWT,
         payload: jwt
+    });
+};
+
+export const deletePlaylist = playlist => dispatch => {
+    axios.delete(`/api/v1/playlists/${playlist}`).then(response => {
+        dispatch({
+            type: DELETE_PLAYLIST,
+            payload: playlist
+        });
+    });
+};
+
+export const fetchUserPlaylists = user => dispatch => {
+    axios.get(`/api/v1/${user}/playlists`).then(response => {
+        dispatch({
+            type: FETCH_USER_PLAYLISTS,
+            payload: response.data
+        });
     });
 };
 

@@ -37,7 +37,7 @@ class CreatePlaylist extends Component {
         festival: this.props.festivalSelected,
         artistsSelected: this.props.artistsSelected,
         numberOfSongs: this.state.numberOfSongs,
-        spotifyUser: this.props.jwt.userId
+        userId: this.props.jwt.userId
       });
     } else {
       this.setState({

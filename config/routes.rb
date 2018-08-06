@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "/api/v1/:userId/genres", to: 'api/v1/spotifies#fetch_top_genres', as: :fetch_top_genres
   get "/api/v1/:userId/artists", to: 'api/v1/spotifies#fetch_top_artists', as: :fetch_top_artists
   get "/api/v1/:userId/playlists", to: 'api/v1/spotifies#fetch_playlists', as: :fetch_playlists
-
+  delete "/api/v1/playlists/:playlistId", to: 'api/v1/spotifies#delete_playlist', as: :delete_playlist
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         resources :artists, only: [:index]
       end
       resources :spotifies
+      # resources :playlists
       resources :festivals
       resources :artists do
         resources :genres
