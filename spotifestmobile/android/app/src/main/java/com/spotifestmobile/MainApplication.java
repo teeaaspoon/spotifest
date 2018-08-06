@@ -3,7 +3,6 @@ package com.spotifestmobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.lufinkey.react.spotify.RNSpotifyPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -23,8 +22,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNSpotifyPackage()
+          new MainReactPackage()
       );
     }
 
