@@ -12,7 +12,11 @@
   box-shadow: 0px 1px 10px black;
   z-index: 9999;
   .row {
-    .navBarHome, .navBarUser {
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    p {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
       padding-bottom: 0.5rem;

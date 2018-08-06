@@ -4,7 +4,7 @@ import ArtistForm from "./ArtistForm";
 import Request from "./Request";
 import ArtistsToFestivalForm from "./ArtistsToFestivalForm";
 import { connect } from "react-redux";
-import { fetchArtists, fetchRequests } from "../../actions/fetchActions";
+import { fetchArtists, fetchFestivals, fetchRequests } from "../../actions/fetchActions";
 import { setNav } from "../../actions/adminNavActions";
 
 
@@ -14,6 +14,7 @@ class Admin extends Component {
   componentDidMount() {
     this.props.fetchRequests()
     this.props.fetchArtists()
+    this.props.fetchFestivals()
   }
   handleNav = (e) => {
     this.props.setNav(e.target.id.slice(0, -3))
@@ -63,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchArtists, fetchRequests, setNav }
+  { fetchArtists, fetchFestivals, fetchRequests, setNav }
 )(Admin);

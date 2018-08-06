@@ -1,12 +1,16 @@
 import {
     SELECT_FESTIVAL,
+    DESELECT_FESTIVAL,
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
     SAVE_JWT,
     SELECT_ALL_ARTISTS,
     CLEAR_JWT,
-    DESELECT_ALL_ARTISTS
+    DESELECT_ALL_ARTISTS,
+    CLEAR_NEW_PLAYLIST_NAME,
+    FETCH_USER_PLAYLISTS,
+    DELETE_PLAYLIST
 } from "./types";
 import axios from "axios";
 
@@ -14,6 +18,24 @@ export const getJwt = jwt => dispatch => {
     dispatch({
         type: SAVE_JWT,
         payload: jwt
+    });
+};
+
+export const deletePlaylist = playlist => dispatch => {
+    axios.delete(`/api/v1/playlists/${playlist}`).then(response => {
+        dispatch({
+            type: DELETE_PLAYLIST,
+            payload: playlist
+        });
+    });
+};
+
+export const fetchUserPlaylists = user => dispatch => {
+    axios.get(`/api/v1/${user}/playlists`).then(response => {
+        dispatch({
+            type: FETCH_USER_PLAYLISTS,
+            payload: response.data
+        });
     });
 };
 
@@ -32,14 +54,25 @@ export const selectFestival = festival => dispatch => {
     });
 };
 
+export const deselectFestival = () => dispatch => {
+    dispatch({
+        type: DESELECT_FESTIVAL,
+    });
+};
+
 export const createPlaylist = params => dispatch => {
     axios.post("/api/v1/createspotifyplaylist", params).then(response => {
-        console.log(response);
         dispatch({
             type: CREATE_PLAYLIST,
-            payload: response.data
+            payload: response.data.name
         });
     });
 };
+
+export const clearNewPlaylistName = () => dispatch => {
+    dispatch({
+        type: CLEAR_NEW_PLAYLIST_NAME,
+    })
+}
 
 
