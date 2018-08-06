@@ -37,6 +37,16 @@
           border-color: $green;
         }
       }
+      &.doesNotBelong {
+        .artistName {
+          filter: brightness(15%)
+        }
+        img {
+          border-color: gray;
+          filter: brightness(15%)
+        }
+
+      }
     }
   }
 
