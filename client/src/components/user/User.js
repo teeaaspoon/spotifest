@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TopGenres from "./TopGenres";
 import TopArtists from "./TopArtists";
 import Playlists from "./Playlists";
 import NavBar from "../homePage/NavBar.js"
@@ -13,7 +12,6 @@ export default class User extends Component {
         <NavBar />
         <Element name="topGenresAndArtistsPage" className="element">
           <div className="topGenresAndArtists">
-            {/*<TopGenres userId={this.props.userId} />*/}
             <TopArtists userId={this.props.userId} />
           </div>
         </Element>
