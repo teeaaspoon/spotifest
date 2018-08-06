@@ -10,6 +10,7 @@ export default class User extends Component {
     return (
       <div>
         <NavBar />
+        <p className="spotifestLogo">SPOTI<span>FEST</span></p>
         <Element name="topGenresAndArtistsPage" className="element">
           <div className="topGenresAndArtists">
             <TopArtists userId={this.props.userId} />

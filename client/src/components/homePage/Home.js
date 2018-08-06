@@ -23,6 +23,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <NavBar />
+        <p className="spotifestLogo">SPOTI<span>FEST</span></p>
 
         <Element name="mapAndSearchPage" className="element">
           <div className="mapAndSearch">

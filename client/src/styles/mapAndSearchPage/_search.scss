@@ -7,7 +7,9 @@
   .searchFestival {
     width: 50%;
     text-align: center;
-    input:focus::-webkit-input-placeholder { color:transparent; }
+    &::placeholder {
+      color: gray;
+    }
     caret-color: $pink;
     margin-bottom: 1rem;
     border: none;
@@ -18,7 +20,7 @@
     font-family: $thinFont;
     outline: none;
     color: white;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid white;
     &:focus {
       border-bottom: 1px solid $green;
     }

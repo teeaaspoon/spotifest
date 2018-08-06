@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   .rsm-svg {
-    // position: absolute;
     width: 80%;
     path {
+      cursor: pointer;
       fill: black;
-      stroke: gray;
+      stroke: white;
       stroke-width: 1.5;
       &:hover {
         fill: $green;
