@@ -1,0 +1,21 @@
+.topGenreList {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  button {
+    font-family: $spotifyFont;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 0px;
+    border: 1px solid white;
+    height: 40px;
+    width: 10rem;
+    outline: none;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    &:hover {
+      color: $green;
+      border-color: $green;
+    }
+  }
+}

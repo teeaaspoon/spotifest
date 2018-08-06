@@ -4,6 +4,8 @@ import mapReducer from "./mapReducer";
 import userReducer from "./userReducer";
 import genreReducer from "./genreReducer"
 import adminNavReducer from "./adminNavReducer"
+import profileReducer from "./profileReducer"
+
 
 
 export default combineReducers({
@@ -11,5 +13,6 @@ export default combineReducers({
     map: mapReducer,
     user: userReducer,
     genre: genreReducer,
-    adminNav: adminNavReducer
+    adminNav: adminNavReducer,
+    profile: profileReducer
 });

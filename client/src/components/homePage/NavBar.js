@@ -10,7 +10,7 @@ class NavBar extends Component {
       <div className="navBar">
         <div className="row">
           <Link to="/"><p className="navBarHome"> HOME </p></Link>
-          <Link to={`/user/${this.props.userId}`}><p className="navBarUser"> MY PLAYLISTS </p></Link>
+          <Link to={`/user/${this.props.userId}`}><p className="navBarUser"> PROFILE </p></Link>
         </div>
       </div>
     )
