@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         resources :artists, only: [:index]
       end
       resources :spotifies
+      resources :playlists
       resources :festivals
       resources :artists do
         resources :genres

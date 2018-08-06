@@ -10,7 +10,7 @@ import {
 
 const initialState = {
     jwt: "",
-    spotifyUser: "",
+    userId: "",
     festivalSelected: "",
     artistsSelected: []
 };
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         case GET_SPOTIFY_USER:
             return {
                 ...state,
-                spotifyUser: action.payload
+                userId: action.payload
             };
         case SELECT_FESTIVAL:
             return {

@@ -4,15 +4,16 @@ import {
     DESELECT_FESTIVAL,
     CREATE_PLAYLIST,
     CLEAR_JWT,
-    CLEAR_NEW_PLAYLIST_NAME
+    CLEAR_NEW_PLAYLIST_NAME,
+    DELETE_PLAYLIST
 } from "../actions/types";
 
 const initialState = {
     jwt: "",
-    spotifyUser: "",
+    userId: "",
     festivalSelected: "",
     artistsSelected: [],
-    newPlaylistName: "",
+    newPlaylistName: ""
 
 };
 
@@ -22,6 +23,10 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 jwt: action.payload
+            };
+        case DELETE_PLAYLIST:
+            return {
+                ...state
             };
         case CLEAR_JWT:
             return {

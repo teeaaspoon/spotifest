@@ -6,11 +6,10 @@ module Api::V1
       render json: @spotify_users
     end
 
-
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
-      user_hash = user_info.to_hash
-      @spotify_user = Spotify.new(user_info: user_hash)
+      hash(user_info)
+      create_user(user_hash)
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
@@ -28,9 +27,7 @@ module Api::V1
 
 
     def create_spotify_playlist
-      @spotify_user_id = params[:spotifyUser]
-      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
-      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
+      get_user
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
@@ -38,22 +35,17 @@ module Api::V1
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
       @songs = []
-      binding.pry
       @artists.each do |artist|
         @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
       end
-      @songs.uniq!
-      @songs.flatten!
+      @songs.uniq!.flatten!
       add_tracks_to_spotify_playlist(@playlist, @songs)
-      binding.pry
       add_songs_to_playlist_object(@new_playlist, @songs)
-      binding.pry
       render json: @playlist
     end
 
     def fetch_top_genres
       get_user
-      binding.pry
       @top_artists = @RSpotify_user.top_artists
       @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
       render json: @genres
@@ -61,14 +53,12 @@ module Api::V1
 
     def fetch_top_artists
       get_user
-      binding.pry
       @top_artists = @RSpotify_user.top_artists
       render json: @top_artists
     end
 
     def fetch_playlists
-      @spotify_user_id = params[:userId]
-      @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      get_user
       @playlists = @spotify_user.playlists
       render json: @playlists
     end
@@ -87,7 +77,6 @@ module Api::V1
     end
 
     def add_songs_to_playlist_object(playlist, tracks)
-      binding.pry
       tracks.each do |track|
         if Song.find_by spotify_uri: track.uri
           playlist.songs << Song.find_by(spotify_uri: track.uri)
@@ -114,5 +103,14 @@ module Api::V1
       payload[:exp] = exp.to_i
       JWT.encode(payload, Rails.application.secrets.secret_key_base)
     end
+
+    def hash(user_info)
+      user_hash = user_info.to_hash
+    end
+
+    def create_user(user_hash)
+      @spotify_user = Spotify.new(user_info: user_hash)
+    end
+    
   end
 end
