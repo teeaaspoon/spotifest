@@ -8,8 +8,7 @@ module Api::V1
 
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
-      hash(user_info)
-      create_user(user_hash)
+      create_user(hash(user_info))
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
