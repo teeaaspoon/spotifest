@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/auth/spotify/callback/', to: 'api/v1/spotifies#login'
-  post '/api/v1/createspotifyplaylist', to: 'api/v1/spotifies#create_playlist'
+  post '/api/v1/createspotifyplaylist', to: 'api/v1/spotifies#create_spotify_playlist'
   get "create_user", to: "api/v1/spotifies#create_user", as: :create_spotify
   post "set_user", to: "api/v1/spotifies#set_user", as: :set_user
   get "/api/v1/:userId/genres", to: 'api/v1/spotifies#fetch_top_genres', as: :fetch_top_genres

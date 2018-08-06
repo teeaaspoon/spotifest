@@ -17,9 +17,7 @@ module Api::V1
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        # replace their old user hash with the current one
-        @old_user.user_info = user_hash
-        @old_user.save
+        token = encode_token({userId: @old_user.spotify_id, admin: @old_user.admin})
         redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
@@ -29,7 +27,7 @@ module Api::V1
     end
 
 
-    def create_playlist
+    def create_spotify_playlist
       @spotify_user_id = params[:spotifyUser]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
@@ -39,13 +37,23 @@ module Api::V1
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
-      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
-      @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
+      @songs = []
+      binding.pry
+      @artists.each do |artist|
+        @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
+      end
+      @songs.uniq!
+      @songs.flatten!
+      add_tracks_to_spotify_playlist(@playlist, @songs)
+      binding.pry
+      add_songs_to_playlist_object(@new_playlist, @songs)
+      binding.pry
       render json: @playlist
     end
 
     def fetch_top_genres
       get_user
+      binding.pry
       @top_artists = @RSpotify_user.top_artists
       @genres = @top_artists.map {|artist| artist.genres }.flatten.uniq
       render json: @genres
@@ -53,6 +61,7 @@ module Api::V1
 
     def fetch_top_artists
       get_user
+      binding.pry
       @top_artists = @RSpotify_user.top_artists
       render json: @top_artists
     end
@@ -70,16 +79,27 @@ module Api::V1
 
     private
 
-    def add_tracks_to_playlist(playlist, tracks)
-      track_uris = tracks.map {|track| track.spotify_uri}.join(",")
+    def add_tracks_to_spotify_playlist(playlist, tracks)
+      track_uris = tracks.map {|track| track.uri}.join(",")
       url = playlist.instance_variable_get(:@href) + "/tracks?uris=#{track_uris}"
       RSpotify::User.oauth_post(playlist.instance_variable_get(:@owner).id, url, {})
       tracks
     end
 
-    def add_songs_to_playlist(playlist, tracks)
+    def add_songs_to_playlist_object(playlist, tracks)
+      binding.pry
       tracks.each do |track|
-        playlist.songs << track
+        if Song.find_by spotify_uri: track.uri
+          playlist.songs << Song.find_by(spotify_uri: track.uri)
+        else
+          new_song = Song.create!(spotify_uri: track.uri, song_name: track.name)
+          track_id = track.uri.split("track:")[1]
+          audio_feature = RSpotify::AudioFeatures.find(track_id)
+          if audio_feature && audio_feature.uri
+            new_song.audio = Audio.create!(features: @audio_feature)
+          end
+          playlist.songs << new_song
+        end
       end
     end
 
