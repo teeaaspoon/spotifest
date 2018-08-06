@@ -17,6 +17,9 @@ module Api::V1
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
+        # replace their old user hash with the current one
+        @old_user.user_info = user_hash
+        @old_user.save
         redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
@@ -31,7 +34,6 @@ module Api::V1
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
       @festival = Festival.find params[:festival][:id]
-      binding.pry
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
       # find all artists with params given
