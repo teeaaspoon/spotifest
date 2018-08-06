@@ -5,14 +5,18 @@ import {
     SELECT_ARTIST,
     DESELECT_ARTIST,
     SELECT_ALL_ARTISTS,
-    GET_SPOTIFY_USER
+    GET_SPOTIFY_USER,
+    DELETE_PLAYLIST,
+    FETCH_USER_PLAYLISTS
+
 } from "../actions/types";
 
 const initialState = {
     jwt: "",
     userId: "",
     festivalSelected: "",
-    artistsSelected: []
+    artistsSelected: [],
+    playlists: []
 };
 
 export default function(state = initialState, action) {
@@ -21,6 +25,18 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 jwt: action.payload
+            };
+        case FETCH_USER_PLAYLISTS:
+            return {
+                ...state,
+                playlists: action.payload
+            };
+        case DELETE_PLAYLIST:
+            return {
+                ...state,
+                playlists: state.playlists.filter(
+                    playlist => playlist.id !== action.payload
+                )
             };
         case GET_SPOTIFY_USER:
             return {

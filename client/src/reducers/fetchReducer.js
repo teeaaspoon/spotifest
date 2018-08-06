@@ -4,7 +4,6 @@ import {
     FETCH_FESTIVAL_ARTISTS,
     FETCH_USER_TOP_GENRES,
     FETCH_USER_TOP_ARTISTS,
-    FETCH_USER_PLAYLISTS,
     FETCH_REQUESTS,
     CLEAR_REQUEST
 } from "../actions/types";
@@ -15,7 +14,6 @@ const initialState = {
     festivalArtists: [],
     userTopGenres: [],
     userTopArtists: [],
-    userPlaylists: [],
     requests: []
 };
 
@@ -55,11 +53,6 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 userTopArtists: action.payload
-            };
-        case FETCH_USER_PLAYLISTS:
-            return {
-                ...state,
-                userPlaylists: action.payload
             };
         default:
             return state;

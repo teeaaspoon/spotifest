@@ -67,6 +67,11 @@ module Api::V1
       @spotify_user.destroy
     end
 
+    def delete_playlist
+      @playlist = Playlist.find(params[:playlistId])
+      @playlist.destroy
+    end
+
     private
 
     def add_tracks_to_spotify_playlist(playlist, tracks)
