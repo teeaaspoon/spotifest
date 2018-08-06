@@ -61,7 +61,7 @@ class App extends Component {
     }
     render() {
 
-        let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
+        let jwt = jwt = window.localStorage.getItem("jwt");
         let home;
         if (jwt) {
             home = <Home path="/" />

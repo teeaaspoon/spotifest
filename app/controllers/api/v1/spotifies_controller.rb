@@ -17,13 +17,7 @@ module Api::V1
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-<<<<<<< HEAD
         token = encode_token({userId: @old_user.spotify_id, admin: @old_user.admin})
-=======
-        # replace their old user hash with the current one
-        @old_user.user_info = user_hash
-        @old_user.save
->>>>>>> aca6eb988bb8cd34ceed1ab04b73a5260867964a
         redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
@@ -33,11 +27,7 @@ module Api::V1
     end
 
 
-<<<<<<< HEAD
     def create_spotify_playlist
-=======
-    def create_playlist
->>>>>>> aca6eb988bb8cd34ceed1ab04b73a5260867964a
       @spotify_user_id = params[:spotifyUser]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
@@ -47,7 +37,6 @@ module Api::V1
       # find all artists with params given
       @artists = params[:artistsSelected].map { |artist| Artist.find artist[:id] }
       # this will add all songs to the playlist
-<<<<<<< HEAD
       @songs = []
       binding.pry
       @artists.each do |artist|
@@ -59,10 +48,6 @@ module Api::V1
       binding.pry
       add_songs_to_playlist_object(@new_playlist, @songs)
       binding.pry
-=======
-      @artists.each { |artist| add_tracks_to_playlist(@playlist, artist.songs.limit(params[:numberOfSongs])) }
-      @artists.each { |artist| add_songs_to_playlist(@new_playlist, artist.songs.limit(params[:numberOfSongs])) }
->>>>>>> aca6eb988bb8cd34ceed1ab04b73a5260867964a
       render json: @playlist
     end
 
