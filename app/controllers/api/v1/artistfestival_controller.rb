@@ -16,7 +16,6 @@ module Api::V1
             if @festival.artists.length === @artists_id.length
                 render json: @festival
             end
-           
         end
 
         private 
