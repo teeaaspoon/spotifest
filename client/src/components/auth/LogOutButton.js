@@ -9,7 +9,6 @@ class LogOutButton extends Component {
               window.localStorage.clear(); //eslint-disable-line
               console.log(window.localStorage);
               this.props.clearJwt(this.props.jwt);
-              window.location.assign("http://localhost:3000/");
 
         } catch (error) {
             console.log(error);
@@ -18,7 +17,7 @@ class LogOutButton extends Component {
 
   render() {
     return (
-        <button onClick={this.handleClick}>LOGOUT</button>
+        <p onClick={this.handleClick}>LOGOUT</p>
     );
   }
 }
