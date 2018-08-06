@@ -58,7 +58,6 @@ html {
     font-family: $thinFont;
     font-size: 15px;
     .Home {
-      // margin-top: 1rem;
       margin-left: 4rem;
       margin-right: 4rem;
     }
@@ -69,4 +68,83 @@ html {
     }
   }
 
+}
+.spotifestLogo {
+  position: fixed;
+  bottom: 10px;
+  right: 28px;
+  color: gray;
+  font-size: 20px;
+  font-family: $titleFont;
+  span {
+    font-family: $markerFont;
+    filter: brightness(40%);
+    color: $green;
+    font-size: 16px;
+    position: fixed;
+    bottom: 16px;
+    right: 15px;
+  }
+}
+.delay-2 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.delay-6 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+.delay-10 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.delay-15 {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  right: 100%;
+  bottom: 0px;
+  background: $green;
+  height: 2px;
+  overflow: hidden;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+  right: 0;
+}
+
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }

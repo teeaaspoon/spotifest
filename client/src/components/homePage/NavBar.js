@@ -8,10 +8,10 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="navBar">
+      <div className="navBar animated fadeIn delay-2">
         <div className="row">
-          <Link to="/"><p className="navBarHome"> HOME </p></Link>
-          <Link to={`/user/${this.props.userId}`}><p className="navBarUser"> PROFILE </p></Link>
+          <Link to="/"><p className="hvr-underline-from-left navBarHome"> HOME </p></Link>
+          <Link to={`/user/${this.props.userId}`}><p className="navBarUser hvr-underline-from-left"> PROFILE </p></Link>
           <LogOutButton/>
         </div>
       </div>

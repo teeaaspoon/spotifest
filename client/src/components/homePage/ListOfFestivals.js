@@ -34,7 +34,7 @@ class ListOfFestivals extends Component {
         <GetLocationButton />
         <div className="yearAndGoBack">
         <YearSelect />
-        <button onClick={this.scrollToMapAndSearchPage}>GO BACK TO MAP/SEARCH</button>
+        <button onClick={this.scrollToMapAndSearchPage}>BACK TO MAP/SEARCH</button>
         </div>
 
         <div className="filter-options">

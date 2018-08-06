@@ -23,18 +23,7 @@
       content: '';
     }
   }
-  .delay-2 {
-    -webkit-animation-delay: 0.2s;
-    animation-delay: 0.2s;
-  }
-  .delay-6 {
-    -webkit-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-  }
-  .delay-10 {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-  }
+
   .titleAndLogin {
     display: flex;
     flex-direction: column;
@@ -92,6 +81,12 @@
           }
         }
       }
+    }
+    .aboutSpotifest {
+      padding-top: 4rem;
+      color: gray;
+      // font-family: $markerFont;
+      font-size: 15px;
     }
   }
 }

@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   .rsm-svg {
-    // position: absolute;
     width: 80%;
     path {
+      cursor: pointer;
       fill: black;
-      stroke: gray;
-      stroke-width: 1.5;
+      stroke: white;
+      stroke-width: 1;
       &:hover {
         fill: $green;
         stroke: $black;
@@ -16,11 +16,11 @@
     .selectedContinent {
       fill: $pink;
       stroke: black;
-      stroke-width: 1.5;
+      stroke-width: 1;
       &:hover {
         fill: #FF5722;
         stroke: $black;
-        stroke-width: 1.5;
+        stroke-width: 1;
       }
     }
 
