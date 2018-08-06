@@ -1,0 +1,21 @@
+.list-of-festivals {
+  margin-top: 2rem;
+  .festivalHeader {
+    font-family: $markerFont;
+    color: white;
+  }
+  .list {
+    height: 60vh;
+    overflow: scroll;
+    border-top: 1px solid $black;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 0px;
+    p {
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+}

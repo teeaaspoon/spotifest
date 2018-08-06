@@ -1,11 +1,14 @@
 import {
     SELECT_FESTIVAL,
+    DESELECT_FESTIVAL,
     CREATE_PLAYLIST,
     SELECT_ARTIST,
     DESELECT_ARTIST,
     SAVE_JWT,
     SELECT_ALL_ARTISTS,
-    CLEAR_JWT
+    CLEAR_JWT,
+    DESELECT_ALL_ARTISTS,
+    CLEAR_NEW_PLAYLIST_NAME,
 } from "./types";
 import axios from "axios";
 
@@ -31,33 +34,25 @@ export const selectFestival = festival => dispatch => {
     });
 };
 
+export const deselectFestival = () => dispatch => {
+    dispatch({
+        type: DESELECT_FESTIVAL,
+    });
+};
+
 export const createPlaylist = params => dispatch => {
     axios.post("/api/v1/createspotifyplaylist", params).then(response => {
-        console.log(response);
         dispatch({
             type: CREATE_PLAYLIST,
-            payload: response.data
+            payload: response.data.name
         });
     });
 };
 
-export const selectArtist = artist => dispatch => {
+export const clearNewPlaylistName = () => dispatch => {
     dispatch({
-        type: SELECT_ARTIST,
-        payload: artist
-    });
-};
+        type: CLEAR_NEW_PLAYLIST_NAME,
+    })
+}
 
-export const deselectArtist = artist => dispatch => {
-    dispatch({
-        type: DESELECT_ARTIST,
-        payload: artist
-    });
-};
 
-export const selectAllArtists = artists => dispatch => {
-    dispatch({
-        type: SELECT_ALL_ARTISTS,
-        payload: artists
-    });
-};

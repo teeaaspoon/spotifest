@@ -12,7 +12,7 @@ class App extends React.Component {
     render() {
         const MainNavigator = createStackNavigator({
             Home: { screen: Main },
-            Lineup: { screen: Login }
+            Lineup: { screen: Lineup }
         });
         return (
             <Provider store={store}>

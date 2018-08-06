@@ -16,13 +16,14 @@ class SelectGenre extends Component {
     const allGenres = this.props.festivalGenresSum.map(genre => ({value: genre[0], label: genre[0]}))
     return (
       <Select
-        className="select-genre"
+        className="select-genre-container"
+        classNamePrefix="select-genre"
         onChange={this.handleGenreChange}
         options={allGenres}
         onSelectResetsInput = { true }
         onBlurResetsInput = { true }
         value=""
-        placeholder="select genres"
+        placeholder="Select genre..."
       />
     )
   }

@@ -1,0 +1,21 @@
+.selectArtistOptions {
+  display: flex;
+  justify-content: center;
+  button {
+    outline: none;
+    font-family: $spotifyFont;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    padding: 0.5rem;
+    margin-bottom: 0px;
+    margin-left: 0.5rem;
+    border: 1px solid white;
+    height: 38px;
+    width: 15rem;
+    &:hover {
+      background-color: $green;
+      border-color: $green;
+    }
+  }
+}

@@ -137,7 +137,7 @@ class ArtistsToFestivalForm extends Component {
 
                 <p>{this.state.festivalSelected}</p>
                 {artistsSelected}
-                <button onClick={this.handleClick}>Submit</button>
+                <button onClick={this.handleClick}>submit</button>
                 </div>
             </div>
             }

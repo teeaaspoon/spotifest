@@ -4,13 +4,20 @@ import { connect } from "react-redux";
 import { saveContinent, saveCurrentCoords, saveRadius } from "../../actions/mapActions.js";
 import { southAmericaPath, oceaniaPath, northAmericaPath, europePath, asiaPath, africaPath } from "./mapData/pathData.js"
 import classNameToContinent from "./mapData/classNameToContinent.json"
-
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 class Map extends Component {
+  scrollToFestivalsPage = () => {
+    const options = {
+      smooth: true,
+    }
+    scroller.scrollTo('festivalsPage', options)
+  }
 
   handleClick = (e) => {
     const continent = classNameToContinent[e.target.id]
+    this.scrollToFestivalsPage()
     this.props.saveContinent(continent)
     this.props.saveRadius(null)
   }
@@ -40,8 +47,8 @@ class Map extends Component {
     })
 
     return (
-      <div className="map col-md-8">
-        <svg width="980" height="551" viewBox="0 0 980 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
+      <div className="map">
+        <svg width="1000" height="551" viewBox="0 0 1000 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
           <g className="rsm-zoomable-group" transform="translate(
                      519.05
                      337.21

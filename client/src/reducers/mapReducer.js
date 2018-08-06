@@ -86,22 +86,16 @@ export default function(state = initialState, action) {
       }
     case SAVE_SEARCH_INPUT:
       if (action.payload) {
-        // console.log("old filters: ", state.filters)
         if (state.filters.filter(f => f.type === "search").length > 0) {
-          console.log("search already exists")
           let filters = state.filters.filter(f=> f.type !== "search")
           filters = [...filters, {type: "search", args: action.payload}]
           const filteredFestivals = filterFestivals(state.allFestivals, filters)
           return {...state, filteredFestivals, filters}
         }
-        console.log("old filters: ", state.filters)
-        console.log("action.payload: ", action.payload)
         const filters = [...state.filters, {type: "search", args: action.payload}]
-        console.log("updated filters: ", filters)
         const filteredFestivals = filterFestivals(state.allFestivals, filters)
         return {...state, filteredFestivals, filters}
       } else {
-        console.log("delete search")
         const filters = state.filters.filter( f => f.type !== "search")
         const filteredFestivals = filterFestivals(state.allFestivals, filters)
         return {...state, filteredFestivals, filters}

@@ -82,7 +82,7 @@ class FestivalForm extends Component {
                         <p>{this.state.submitStatus}</p>
                     </div>
                     <form onSubmit={this.onSubmit}>
-                        <input placeholder="title" name="title" onChange={this.handleChange} value={this.state.title}/>
+                        <input placeholder="title" name="title" onChange={this.handleChange} autocomplete="off" value={this.state.title}/>
                         <input
                             onFocus={(e) => e.currentTarget.type = "date"}
                             onBlur={(e) => e.currentTarget.type = "text"}
@@ -97,13 +97,13 @@ class FestivalForm extends Component {
                             type="text"
                             name="end_date"
                             onChange={this.handleChange} />
-                        <input placeholder="city" name="city" onChange={this.handleChange} value={this.state.city}/>
-                        <input placeholder="country" name="country" onChange={this.handleChange} value={this.state.country}/>
-                        <input placeholder="continent" name="continent" onChange={this.handleChange} value={this.state.continent}/>
-                        <input placeholder="longitude" name="longitude" onChange={this.handleChange} value={this.state.longitude}/>
-                        <input placeholder="latitude" name="latitude" onChange={this.handleChange} value={this.state.latitude} />
+                        <input placeholder="city" name="city" onChange={this.handleChange} autocomplete="off" value={this.state.city}/>
+                        <input placeholder="country" name="country" onChange={this.handleChange} autocomplete="off" value={this.state.country}/>
+                        <input placeholder="continent" name="continent" onChange={this.handleChange} autocomplete="off" value={this.state.continent}/>
+                        <input placeholder="longitude" name="longitude" onChange={this.handleChange} autocomplete="off" value={this.state.longitude}/>
+                        <input placeholder="latitude" name="latitude" onChange={this.handleChange} autocomplete="off" value={this.state.latitude} />
                         <br />
-                        <button> Submit </button>
+                        <button> submit </button>
                     </form>
                 </div>
                 }
