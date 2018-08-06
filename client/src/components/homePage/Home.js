@@ -12,13 +12,6 @@ import Map from "./Map";
 
 
 class Home extends Component {
-  scrollToMapAndSearchPage = () => {
-    const options = {
-      smooth: true,
-    }
-    scroller.scrollTo('mapAndSearchPage', options)
-  }
-
   componentDidMount() {
     window.thingFunction = () => {
         console.log('pop up worked')
