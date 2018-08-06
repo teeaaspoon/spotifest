@@ -28,7 +28,7 @@ class Home extends Component {
         <Element name="mapAndSearchPage" className="element">
           <div className="mapAndSearch">
               <SearchBar />
-              <Map />
+              <Map/>
           </div>
         </Element>
 

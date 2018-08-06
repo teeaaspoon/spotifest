@@ -7,7 +7,7 @@
       cursor: pointer;
       fill: black;
       stroke: white;
-      stroke-width: 1.5;
+      stroke-width: 1;
       &:hover {
         fill: $green;
         stroke: $black;
@@ -16,11 +16,11 @@
     .selectedContinent {
       fill: $pink;
       stroke: black;
-      stroke-width: 1.5;
+      stroke-width: 1;
       &:hover {
         fill: #FF5722;
         stroke: $black;
-        stroke-width: 1.5;
+        stroke-width: 1;
       }
     }
 

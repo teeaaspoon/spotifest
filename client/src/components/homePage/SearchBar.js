@@ -44,10 +44,10 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchInput">
+      <div className="searchInput map animated fadeIn delay-4">
         {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
         <input
-          className="searchFestival"
+          className="searchFestival "
           onChange={this.onSearch}
           onKeyDown={this.sendRequest}
           placeholder="search for festival..."

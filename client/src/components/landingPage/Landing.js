@@ -28,6 +28,9 @@ class Landing extends Component {
             <div className="loginButton animated fadeIn delay-10">
               <p onClick={this.handleClick}><img className="whiteLogo" src={logoWhite}/><img className="greenLogo" src={logoGreen}/>LOGIN TO SPOTIFY</p>
             </div>
+            <div className="aboutSpotifest animated fadeIn delay-15">
+              <p>dynamically create spotify playlists for upcoming and past festivals</p>
+            </div>
           </div>
         </div>
       </div>
