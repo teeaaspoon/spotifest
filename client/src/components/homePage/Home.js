@@ -5,7 +5,7 @@ import NavBar from "./NavBar"
 import GenreChart from "./GenreChart";
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import LogOutButton from "../auth/LogOutButton"
-
+import { fetchFestivals } from "../../actions/fetchActions";
 import FestivalSelected from "./Festival/FestivalSelected.js";
 import { connect } from "react-redux";
 import Map from "./Map";
@@ -16,6 +16,7 @@ class Home extends Component {
     window.thingFunction = () => {
         console.log('pop up worked')
     }
+    this.props.fetchFestivals();
   }
 
   render() {
@@ -56,5 +57,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    null
+    {fetchFestivals}
 )(Home);

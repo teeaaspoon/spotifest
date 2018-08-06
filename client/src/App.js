@@ -9,7 +9,7 @@ import User from "./components/user/User";
 import jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
 import { getJwt } from "./actions/userActions";
-import { fetchArtists, fetchFestivals } from "./actions/fetchActions";
+import { fetchArtists } from "./actions/fetchActions";
 import { saveCurrentCoords, selectAllFestivals } from "./actions/mapActions";
 import "./App.css";
 
@@ -30,7 +30,7 @@ class App extends Component {
             console.log(error);
         }
 
-        this.props.fetchFestivals();
+        // this.props.fetchFestivals();
         if ("geolocation" in navigator) {
             console.log("geolocation is available");
         } else {
@@ -88,5 +88,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchArtists, fetchFestivals, saveCurrentCoords, selectAllFestivals, getJwt }
+    { fetchArtists, saveCurrentCoords, selectAllFestivals, getJwt }
 )(App);
