@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, NativeModules, TouchableHighlight } from "react-native";
+import {
+    Text,
+    View,
+    NativeModules,
+    TouchableHighlight,
+    StyleSheet
+} from "react-native";
 
 import { connect } from "react-redux";
 import { iosLogin } from "../actions/userActions";
@@ -21,13 +27,18 @@ class Login extends Component {
         return (
             <View>
                 <TouchableHighlight onPress={this.onButtonPress.bind(this)}>
-                    <Text>Spotify Auth</Text>
+                    <Text style={styles.login}>Spotify Auth</Text>
                 </TouchableHighlight>
-
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    login: {
+        color: "white"
+    }
+});
 
 export default connect(
     null,

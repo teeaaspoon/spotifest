@@ -79,6 +79,7 @@ export const iosLogin = params => dispatch => {
     axios
         .post("http://localhost:3001/api/v1/spotify/ios_login", params)
         .then(response => {
+            console.log(response);
             dispatch({
                 type: IOS_LOGIN,
                 payload: response.data

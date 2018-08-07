@@ -8,13 +8,11 @@ import Main from "./App/Components/Main";
 import Login from "./App/Components/Login";
 import FestivalList from "./App/Components/FestivalList";
 
-
 class App extends Component {
     render() {
         const MainNavigator = createStackNavigator({
             Home: { screen: Main },
-            Login: { screen: Login },
-            FestivalList: { screen: FestivalList}
+            FestivalList: { screen: FestivalList }
         });
         return (
             <Provider store={store}>

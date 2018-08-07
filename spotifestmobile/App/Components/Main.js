@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import FestivalList from "./FestivalList";
 import LandingPage from "./LandingPage";
 
-
 class Main extends Component {
     componentDidMount() {
         this.props.fetchFestivals();
@@ -16,8 +15,8 @@ class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LandingPage navigate={this.navigateToFestivalList}/>
-               {/* <FestivalList navigate={this.navigate} />*/}
+                <LandingPage navigate={this.navigateToFestivalList} />
+                {/* <FestivalList navigate={this.navigate} />*/}
             </View>
         );
     }
@@ -26,8 +25,7 @@ class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         // marginTop: 20,
-        backgroundColor: "black"
-    },
+    }
 });
 
 export default connect(
