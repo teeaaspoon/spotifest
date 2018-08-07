@@ -25,7 +25,6 @@ class ListOfFestivals extends Component {
   }
 
   render() {
-    console.log(this.props.filteredFestivals)
     const sortedFestivals = this.props.filteredFestivals.sort(this.compareName)
     const filteredFestivals = sortedFestivals.map(festival => <Festival festival={festival} key={festival.id}/>)
     return (

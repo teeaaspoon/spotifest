@@ -20,6 +20,7 @@ export default class Login extends Component {
                 <TouchableHighlight onPress={this.onButtonPress.bind(this)}>
                     <Text>Spotify Auth</Text>
                 </TouchableHighlight>
+
             </View>
         );
     }
