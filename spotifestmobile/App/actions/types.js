@@ -24,3 +24,5 @@ export const RESET_GENRE = "RESET_GENRE";
 
 export const IOS_LOGIN = "IOS_LOGIN";
 export const SELECT_ALL_FESTIVALS = "SELECT_ALL_FESTIVALS";
+
+

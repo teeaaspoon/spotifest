@@ -11,7 +11,8 @@ import {
 import { connect } from "react-redux";
 import {
     saveSearchInput,
-    selectAllFestivals
+    selectAllFestivals,
+    saveYear
 } from "../actions/filterFestivalActions.js";
 
 import Login from "./Login";
@@ -24,6 +25,7 @@ class LandingPage extends Component {
         this.props.saveSearchInput(text);
     };
     goToFestivalList = () => {
+        this.props.saveYear("")
         this.props.navigate();
     };
 
@@ -111,5 +113,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { saveSearchInput, selectAllFestivals }
+    { saveSearchInput, selectAllFestivals, saveYear }
 )(LandingPage);

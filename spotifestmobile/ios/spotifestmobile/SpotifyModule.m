@@ -3,21 +3,15 @@
  * Based on the code provided by Giannis in a comment on this Stackoverflow thread:
  * https://stackoverflow.com/questions/41682991/reactnative-ios-spotify-sdk
  */
-
 #import "SpotifyModule.h"
 #import "React/RCTLog.h"
 #import "React/RCTBridge.h"
-
-
 @implementation SpotifyModule
-
 /*
  * Exposes the module to react-native.
  * Accessible through NativeModules.SpotifyModule
  */
 RCT_EXPORT_MODULE()
-
-
 + (id)sharedManager {
   static SpotifyModule *sharedManager = nil;
   @synchronized(self) {
@@ -26,7 +20,6 @@ RCT_EXPORT_MODULE()
   }
   return sharedManager;
 }
-
 // Exposes the 'authenticate' method to React Native
 RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
 {
@@ -39,10 +32,8 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
   
   // The callback (called Custom URL Scheme in XCode project configuration)
   [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:@"spotifest://spotify"]];
-
   // The scope request for the token
   [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthUserReadPrivateScope, SPTAuthUserReadEmailScope, SPTAuthUserFollowReadScope]];
-
   // OPTIONAL. Allows retrieval of refresheable tokens. If not specified, it uses the 'Implicit Grant' auth workflow
   //[[SPTAuth defaultInstance] setTokenSwapURL: [NSURL URLWithString:@"http://my-token-swap-service.tld/swap.php"]];
   
@@ -67,7 +58,6 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
   // an iOS bug, so we wait a bit before doing so.
   [[UIApplication sharedApplication] openURL:loginURL];
 }
-
 /*
  * The method that you need to call when the application is opened through a Custom URL Scheme
  * (Here it would be whenever the webview redirects to: 'my-super-application://callback')
@@ -130,5 +120,4 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
   
   return NO;
 }
-
 @end
