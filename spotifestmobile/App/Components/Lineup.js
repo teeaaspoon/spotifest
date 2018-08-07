@@ -4,20 +4,51 @@ import {
     View,
     ImageBackground,
     FlatList,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity,
+    ActionSheetIOS
 } from "react-native";
 
 import { connect } from "react-redux";
-import { fetchFestivalArtists } from "../actions/fetchActions";
-import { initializeSelectedArtists } from "../actions/artistActions";
+import { initializeSelectedArtists, deselectAllArtists, selectAllArtists } from "../actions/artistActions";
 
 import Artist from "./Artist.js";
 
 class Lineup extends Component {
-    // componentWillMount() {
-    //     this.props.fetchFestivalArtists(this.props.festivalSelected.id);
-    // }
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            numberOfSongs: 10
+        }
+    }
+    handleDeselect = () => {
+        this.props.deselectAllArtists()
+    }
+    handleSelect = () => {
+        this.props.selectAllArtists()
+    }
+    showNumberOptions= () => {
+        ActionSheetIOS.showActionSheetWithOptions(
+            {
+                options: numberOptions,
+                cancelButtonIndex: numberOptions.length - 1
+            },
+            buttonIndex => {
+                if (numberOptions[buttonIndex] !== "cancel") {
+                    this.setState({...this.state, numberOfSongs: numberOptions[buttonIndex] })
+                }
+            }
+        );
+    }
+    makePlaylist = () => {
+        this.props.createPlaylist({
+            playlistTitle: this.props.festivalSelected.title,
+            festival: this.props.festivalSelected,
+            artistsSelected: this.props.festivalArtists,
+            numberOfSongs: this.state.numberOfSongs,
+            userId: this.props.userId
+        });
+    };
     componentWillMount() {
         this.props.initializeSelectedArtists(this.props.festivalSelected.id)
     }
@@ -29,12 +60,21 @@ class Lineup extends Component {
     }
 
     render() {
+        const numberOfSongs = `${this.state.numberOfSongs} songs / artist`
         return (
             <ImageBackground
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
                 <Text style={styles.text}>{this.props.festivalSelected.title}</Text>
+                <View style={styles.buttonsContainer}>
+                <TouchableOpacity>
+                    <Text onPress={this.handleSelect} style={styles.button}>SELECT ALL</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text onPress={this.handleDeselect} style={styles.button}>DESELECT ALL</Text>
+                </TouchableOpacity>
+                </View>
                 <FlatList
                     style={styles.flatlist}
                     data={this.props.allArtists}
@@ -42,10 +82,16 @@ class Lineup extends Component {
                     keyExtractor={item => item.id.toString()}
                     numColumns={2}
                 />
+                <View style={styles.createContainer}>
+                    <Text onPress={this.showNumberOptions} style={styles.numberSongs}>{numberOfSongs}</Text>
+                    <Text onPress={this.createPlaylist} style={styles.createButton}>CREATE PLAYLIST</Text>
+                </View>
             </ImageBackground>
         );
     }
 }
+
+const numberOptions= ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "cancel"]
 
 const styles = StyleSheet.create({
     background: {
@@ -56,7 +102,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     text: {
-        margin: 10,
+        margin: 8,
         textAlign: "center",
         color: "white",
         fontSize: 30,
@@ -64,6 +110,44 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
 
     },
+    buttonsContainer: {
+        flexDirection: "row"
+    },
+    button: {
+        backgroundColor: "white",
+        padding: 10,
+        margin: 8,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20,
+        overflow: "hidden",
+    },
+    createContainer: {
+        flexDirection: "row",
+        backgroundColor: "transparent"
+    },
+    numberSongs: {
+        color: "black",
+        fontSize: 15,
+        backgroundColor: "white",
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20,
+        overflow: "hidden",
+        margin: 8
+    },
+    createButton: {
+        color: "black",
+        fontSize: 15,
+        backgroundColor: "white",
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20,
+        overflow: "hidden",
+        margin: 8
+    }
 
 });
 
@@ -75,5 +159,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { fetchFestivalArtists, initializeSelectedArtists }
+    { deselectAllArtists, initializeSelectedArtists, selectAllArtists }
 )(Lineup);

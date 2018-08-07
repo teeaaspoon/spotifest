@@ -1,7 +1,9 @@
 import {
     INITIALIZE_SELECTED_ARTISTS,
     DESELECT_ARTIST,
-    SELECT_ARTIST
+    SELECT_ARTIST,
+    DESELECT_ALL_ARTISTS,
+    SELECT_ALL_ARTISTS
 } from "./types";
 import axios from "axios";
 
@@ -27,3 +29,16 @@ export const selectArtist = artist => dispatch => {
         payload: artist
     });
 };
+
+export const deselectAllArtists = () => dispatch => {
+    dispatch({
+        type: DESELECT_ALL_ARTISTS,
+    });
+};
+
+export const selectAllArtists = () => dispatch => {
+    dispatch({
+        type: SELECT_ALL_ARTISTS,
+    });
+};
+
