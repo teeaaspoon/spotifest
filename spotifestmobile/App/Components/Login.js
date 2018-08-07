@@ -26,8 +26,8 @@ class Login extends Component {
     render() {
         return (
             <View>
-                <TouchableHighlight onPress={this.onButtonPress.bind(this)}>
-                    <Text style={styles.login}>Spotify Auth</Text>
+                <TouchableHighlight style={styles.loginButton} onPress={this.onButtonPress.bind(this)}>
+                    <Text style={styles.loginText}>LOGIN TO SPOTIFY</Text>
                 </TouchableHighlight>
             </View>
         );
@@ -35,9 +35,20 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-    login: {
-        color: "white"
-    }
+    loginText: {
+        color: "#01E365",
+        fontSize: 15
+    },
+    loginButton: {
+        alignItems: "center",
+        marginTop: 40,
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        borderRadius: 20,
+        borderColor: "#01E365",
+        borderWidth: 2
+    },
 });
 
 export default connect(
