@@ -11,24 +11,30 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-import { initializeSelectedArtists, deselectAllArtists, selectAllArtists } from "../actions/artistActions";
+import {
+    initializeSelectedArtists,
+    deselectAllArtists,
+    selectAllArtists
+} from "../actions/artistActions";
+
+import { createPlaylist } from "../actions/userActions";
 
 import Artist from "./Artist.js";
 
 class Lineup extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             numberOfSongs: 10
-        }
+        };
     }
     handleDeselect = () => {
-        this.props.deselectAllArtists()
-    }
+        this.props.deselectAllArtists();
+    };
     handleSelect = () => {
-        this.props.selectAllArtists()
-    }
-    showNumberOptions= () => {
+        this.props.selectAllArtists();
+    };
+    showNumberOptions = () => {
         ActionSheetIOS.showActionSheetWithOptions(
             {
                 options: numberOptions,
@@ -36,32 +42,35 @@ class Lineup extends Component {
             },
             buttonIndex => {
                 if (numberOptions[buttonIndex] !== "cancel") {
-                    this.setState({...this.state, numberOfSongs: numberOptions[buttonIndex] })
+                    this.setState({
+                        ...this.state,
+                        numberOfSongs: numberOptions[buttonIndex]
+                    });
                 }
             }
         );
-    }
+    };
     makePlaylist = () => {
         this.props.createPlaylist({
             playlistTitle: this.props.festivalSelected.title,
             festival: this.props.festivalSelected,
-            artistsSelected: this.props.festivalArtists,
+            artistsSelected: this.props.artistsSelected,
             numberOfSongs: this.state.numberOfSongs,
             userId: this.props.userId
         });
     };
     componentWillMount() {
-        this.props.initializeSelectedArtists(this.props.festivalSelected.id)
+        this.props.initializeSelectedArtists(this.props.festivalSelected.id);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.festivalSelected !== this.props.festivalSelected) {
-            this.props.initializeSelectedArtists(nextProps.festivalSelected.id)
+            this.props.initializeSelectedArtists(nextProps.festivalSelected.id);
         }
     }
 
     render() {
-        const numberOfSongs = `${this.state.numberOfSongs} SONGS / ARTIST`
+        const numberOfSongs = `${this.state.numberOfSongs} SONGS / ARTIST`;
         return (
             <ImageBackground
                 style={styles.background}
@@ -71,13 +80,21 @@ class Lineup extends Component {
                     barStyle= "light-content"
                 />
                 <Text style={styles.text}>{this.props.festivalSelected.title}</Text>
+
                 <View style={styles.buttonsContainer}>
-                <TouchableOpacity>
-                    <Text onPress={this.handleSelect} style={styles.button}>SELECT ALL</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text onPress={this.handleDeselect} style={styles.button}>DESELECT ALL</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Text onPress={this.handleSelect} style={styles.button}>
+                            SELECT ALL
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Text
+                            onPress={this.handleDeselect}
+                            style={styles.button}
+                        >
+                            DESELECT ALL
+                        </Text>
+                    </TouchableOpacity>
                 </View>
                 <FlatList
                     style={styles.flatlist}
@@ -87,15 +104,37 @@ class Lineup extends Component {
                     numColumns={2}
                 />
                 <View style={styles.createContainer}>
-                    <Text onPress={this.showNumberOptions} style={styles.createButtons}>{numberOfSongs}</Text>
-                    <Text onPress={this.createPlaylist} style={styles.createButtons}>CREATE PLAYLIST</Text>
+                    <Text
+                        onPress={this.showNumberOptions}
+                        style={styles.createButtons}
+                    >
+                        {numberOfSongs}
+                    </Text>
+                    <Text
+                        onPress={this.makePlaylist}
+                        style={styles.createButtons}
+                    >
+                        CREATE PLAYLIST
+                    </Text>
                 </View>
             </ImageBackground>
         );
     }
 }
 
-const numberOptions= ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "cancel"]
+const numberOptions = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "cancel"
+];
 
 const styles = StyleSheet.create({
     background: {
@@ -112,8 +151,7 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 30,
         fontWeight: "bold",
-        textTransform: "uppercase",
-
+        textTransform: "uppercase"
     },
     buttonsContainer: {
         flexDirection: "row"
@@ -126,7 +164,7 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         borderRadius: 20,
         fontSize: 12,
-        overflow: "hidden",
+        overflow: "hidden"
     },
     createContainer: {
         flexDirection: "row",
@@ -141,19 +179,23 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         borderRadius: 20,
         overflow: "hidden",
-        margin: 8,
-    },
-
-
+        margin: 8
+    }
 });
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    festivalArtists: state.fetch.festivalArtists,
-    allArtists: state.artist.allArtists
+    allArtists: state.artist.allArtists,
+    userId: state.user.userId,
+    artistsSelected: state.artist.artistsSelected
 });
 
 export default connect(
     mapStateToProps,
-    { deselectAllArtists, initializeSelectedArtists, selectAllArtists }
+    {
+        deselectAllArtists,
+        initializeSelectedArtists,
+        selectAllArtists,
+        createPlaylist
+    }
 )(Lineup);

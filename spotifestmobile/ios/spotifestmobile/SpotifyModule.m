@@ -6,6 +6,7 @@
 #import "SpotifyModule.h"
 #import "React/RCTLog.h"
 #import "React/RCTBridge.h"
+
 @implementation SpotifyModule
 /*
  * Exposes the module to react-native.
@@ -33,9 +34,9 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
   // The callback (called Custom URL Scheme in XCode project configuration)
   [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:@"spotifest://spotify"]];
   // The scope request for the token
-  [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthUserReadPrivateScope, SPTAuthUserReadEmailScope, SPTAuthUserFollowReadScope]];
+  [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthUserReadPrivateScope, SPTAuthUserReadEmailScope, SPTAuthUserFollowReadScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistReadPrivateScope, SPTAuthUserLibraryReadScope, SPTAuthUserLibraryModifyScope, SPTAuthUserReadTopScope]];
   // OPTIONAL. Allows retrieval of refresheable tokens. If not specified, it uses the 'Implicit Grant' auth workflow
-  //[[SPTAuth defaultInstance] setTokenSwapURL: [NSURL URLWithString:@"http://my-token-swap-service.tld/swap.php"]];
+  [[SPTAuth defaultInstance] setTokenSwapURL: [NSURL URLWithString:@"http://localhost:3001/api/v1/swap"]];
   
   /*
    * Creates and opens a Spotify Auth Webview

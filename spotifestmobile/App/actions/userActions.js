@@ -61,12 +61,14 @@ export const deselectFestival = () => dispatch => {
 };
 
 export const createPlaylist = params => dispatch => {
-    axios.post("/api/v1/createspotifyplaylist", params).then(response => {
-        dispatch({
-            type: CREATE_PLAYLIST,
-            payload: response.data.name
+    axios
+        .post("http://localhost:3001/api/v1/createspotifyplaylist", params)
+        .then(response => {
+            dispatch({
+                type: CREATE_PLAYLIST,
+                payload: response.data.name
+            });
         });
-    });
 };
 
 export const clearNewPlaylistName = () => dispatch => {
@@ -79,7 +81,6 @@ export const iosLogin = params => dispatch => {
     axios
         .post("http://localhost:3001/api/v1/spotify/ios_login", params)
         .then(response => {
-            console.log(response);
             dispatch({
                 type: IOS_LOGIN,
                 payload: response.data

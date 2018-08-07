@@ -1,6 +1,13 @@
 module Api::V1
   class SpotifiesController < ApplicationController
 
+    CLIENT_ID = "61949ea347f344009e8b87b0e5606c8c"
+    CLIENT_SECRET = "1158d8503dae4dcb86cacf4bf62904aa"
+    ENCRYPTION_SECRET = "cFJLyifeUJUBFWdHzVbykfDmPHtLKLGzViHW9aHGmyTLD8hGXC"
+    CLIENT_CALLBACK_URL = "spotifest://spotify"
+    AUTH_HEADER = "Basic " + Base64.strict_encode64(CLIENT_ID + ":" + CLIENT_SECRET)
+    SPOTIFY_ACCOUNTS_ENDPOINT = URI.parse("https://accounts.spotify.com")
+
     def index
       @spotify_users = Spotify.all
       render json: @spotify_users
@@ -8,16 +15,19 @@ module Api::V1
 
     def login
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
-      create_user(hash(user_info))
+      user_hash = user_info.to_hash
+      @spotify_user = Spotify.new(user_info: user_hash)
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        @old_user.user_info = hash(user_info)
+        @old_user.refresh = refresh_info
+        @old_user.user_info = user_info.to_hash
         @old_user.save
         token = encode_token({userId: @old_user.spotify_id, admin: @old_user.admin})
+        binding.pry
         redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
@@ -34,6 +44,10 @@ module Api::V1
         :headers => headers
         )
       @old_user = Spotify.find_by(spotify_id: result["id"])
+      @old_user.user_info["credentials"]["token"] = params[:accessToken]
+      @old_user.user_info["credentials"]["refresh_token"] = params[:refreshToken]
+      @old_user.user_info["credentials"]["expires_at"] = params[:expirationDate]
+      @old_user.save
       render json: @old_user.spotify_id
     end
 
@@ -54,7 +68,8 @@ module Api::V1
       @artists.each do |artist|
         @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
       end
-      @songs.uniq!.flatten!
+      @songs.uniq!
+      @songs.flatten!
       add_tracks_to_spotify_playlist(@playlist, @songs)
       add_songs_to_playlist_object(@new_playlist, @songs)
       render json: @playlist
@@ -88,13 +103,41 @@ module Api::V1
       @playlist.destroy
     end
 
+    def token_swap
+      auth_code = params[:code]
+
+      http = Net::HTTP.new(SPOTIFY_ACCOUNTS_ENDPOINT.host, SPOTIFY_ACCOUNTS_ENDPOINT.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new("/api/token")
+
+      request.add_field("Authorization", AUTH_HEADER)
+
+      request.form_data = {
+          "grant_type" => "authorization_code",
+          "redirect_uri" => CLIENT_CALLBACK_URL,
+          "code" => auth_code
+      }
+
+      response = http.request(request)
+      # encrypt the refresh token before forwarding to the client
+      if response.code.to_i == 200
+          token_data = JSON.parse(response.body)
+          refresh_token = token_data["refresh_token"]
+          response.body = JSON.dump(token_data)
+      end
+      render json: response.body
+    end
+
     private
 
     def add_tracks_to_spotify_playlist(playlist, tracks)
-      track_uris = tracks.map {|track| track.uri}.join(",")
-      url = playlist.instance_variable_get(:@href) + "/tracks?uris=#{track_uris}"
-      RSpotify::User.oauth_post(playlist.instance_variable_get(:@owner).id, url, {})
-      tracks
+      tracks = tracks.each_slice(100).to_a
+      tracks.each do |array|
+        track_uris = array.map {|track| track.uri}.join(",")
+        url = playlist.instance_variable_get(:@href) + "/tracks?uris=#{track_uris}"
+        RSpotify::User.oauth_post(playlist.instance_variable_get(:@owner).id, url, {})
+      end
     end
 
     def add_songs_to_playlist_object(playlist, tracks)
@@ -104,10 +147,6 @@ module Api::V1
         else
           new_song = Song.create!(spotify_uri: track.uri, song_name: track.name)
           track_id = track.uri.split("track:")[1]
-          audio_feature = RSpotify::AudioFeatures.find(track_id)
-          if audio_feature && audio_feature.uri
-            new_song.audio = Audio.create!(features: @audio_feature)
-          end
           playlist.songs << new_song
         end
       end
@@ -116,6 +155,7 @@ module Api::V1
     def get_user
       @spotify_user_id = params[:userId]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
+      binding.pry
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
     end
 
@@ -124,14 +164,5 @@ module Api::V1
       payload[:exp] = exp.to_i
       JWT.encode(payload, Rails.application.secrets.secret_key_base)
     end
-
-    def hash(user_info)
-      user_hash = user_info.to_hash
-    end
-
-    def create_user(user_hash)
-      @spotify_user = Spotify.new(user_info: user_hash)
-    end
-
   end
 end
