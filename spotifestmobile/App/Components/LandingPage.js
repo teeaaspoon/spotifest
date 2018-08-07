@@ -26,7 +26,7 @@ class LandingPage extends Component {
         this.props.saveSearchInput(text);
     };
     goToFestivalList = () => {
-        this.props.saveYear("")
+        this.props.saveYear("");
         this.props.navigate();
     };
 
@@ -37,11 +37,9 @@ class LandingPage extends Component {
                 source={require("./festival-pic.jpg")}
             >
                 <View style={styles.container}>
-                    <StatusBar
-                        barStyle= "light-content"
-                    />
+                    <StatusBar barStyle="light-content" />
                     <Image style={styles.logo} source={require("./Logo.png")} />
-                    {!this.props.userId ? (
+                    {this.props.userId ? (
                         <View>
                             <View style={styles.searchBarWrapper}>
                                 <TextInput
