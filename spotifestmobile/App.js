@@ -6,12 +6,15 @@ import { createStackNavigator } from "react-navigation";
 import store from "./App/store.js";
 import Main from "./App/Components/Main";
 import Login from "./App/Components/Login";
+import FestivalList from "./App/Components/FestivalList";
+
 
 class App extends Component {
     render() {
         const MainNavigator = createStackNavigator({
             Home: { screen: Main },
-            Login: { screen: Login }
+            Login: { screen: Login },
+            FestivalList: { screen: FestivalList}
         });
         return (
             <Provider store={store}>

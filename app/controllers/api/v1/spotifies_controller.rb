@@ -132,6 +132,6 @@ module Api::V1
     def create_user(user_hash)
       @spotify_user = Spotify.new(user_info: user_hash)
     end
-    
+
   end
 end

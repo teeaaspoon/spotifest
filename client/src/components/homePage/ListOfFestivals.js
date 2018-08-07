@@ -25,7 +25,6 @@ class ListOfFestivals extends Component {
   }
 
   render() {
-    console.log(this.props.filteredFestivals)
     const sortedFestivals = this.props.filteredFestivals.sort(this.compareName)
     const filteredFestivals = sortedFestivals.map(festival => <Festival festival={festival} key={festival.id}/>)
     return (
@@ -34,7 +33,7 @@ class ListOfFestivals extends Component {
         <GetLocationButton />
         <div className="yearAndGoBack">
         <YearSelect />
-        <button onClick={this.scrollToMapAndSearchPage}>GO BACK TO MAP/SEARCH</button>
+        <button onClick={this.scrollToMapAndSearchPage}>BACK TO MAP/SEARCH</button>
         </div>
 
         <div className="filter-options">

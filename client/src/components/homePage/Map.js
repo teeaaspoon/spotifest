@@ -47,7 +47,7 @@ class Map extends Component {
     })
 
     return (
-      <div className="map">
+      <div className="map animated fadeIn">
         <svg width="1000" height="551" viewBox="0 0 1000 551" className="rsm-svg " preserveAspectRatio="xMidYMid" >
           <g className="rsm-zoomable-group" transform="translate(
                      519.05
