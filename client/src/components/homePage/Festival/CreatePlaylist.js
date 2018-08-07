@@ -4,6 +4,8 @@ import { createPlaylist, clearNewPlaylistName, deselectFestival } from "../../..
 import Select from 'react-select';
 import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
+const buttonSpan = <span className="loading">CREATING PLAYLIST</span>
+
 class CreatePlaylist extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class CreatePlaylist extends Component {
 
   handleClick = () => {
     if (this.state.playlistTitle) {
-      this.setState({...this.state, errorMessage: "", loadingMessage: "CREATING PLAYLIST..."})
+      this.setState({...this.state, errorMessage: "", loadingMessage: buttonSpan})
       this.props.createPlaylist({
         playlistTitle: this.state.playlistTitle,
         festival: this.props.festivalSelected,
