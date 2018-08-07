@@ -44,14 +44,20 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchInput">
+      <div className="searchInput animated fadeIn delay-4">
         {this.state.requestMessage && <p>{this.state.requestMessage}</p>}
         <input
-          className="searchFestival"
+          className="searchFestival "
           onChange={this.onSearch}
           onKeyDown={this.sendRequest}
-          placeholder="search a festival name or choose a continent..."
-          value={this.props.filters.filter(f => f.type === "search")[0] ? (this.props.filters.filter(f => f.type === "search")[0].args):("")}
+          placeholder="search for festival..."
+          value={this.props.filters.filter(
+                                            f => f.type === "search"
+                                        )[0]
+                                            ? this.props.filters.filter(
+                                                  f => f.type === "search"
+                                              )[0].args
+                                            : ""}
         />
         <p className={`${this.props.filteredFestivals.length === 0 && "showMessage"} requestMessage`}>This festival does not exist! Press enter to send a request!</p>
       </div>

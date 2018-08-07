@@ -24,7 +24,7 @@ class Admin extends Component {
     const allRequests = this.props.requests.map(request => <Request key={request.id} id={request.id} festival={request.festival_name} />)
     return (
       <div className="Admin">
-        {/*<h1>Admin</h1>*/}
+        <p className="spotifestLogo">SPOTI<span>FEST</span></p>
         <div className="adminNav">
           <div className="nav">
             <p onClick={this.handleNav}

@@ -14,7 +14,7 @@ class TopGenre extends Component {
 
   render() {
     return (
-      <button onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} >{this.props.genre}</button>
+      <button className="hvr-grow" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} >{this.props.genre}</button>
     );
   }
 }

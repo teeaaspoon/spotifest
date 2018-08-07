@@ -16,7 +16,7 @@ class LogOutButton extends Component {
 
     render() {
         return (
-            <p onClick={this.handleClick}>LOGOUT</p>
+            <p className="hvr-underline-from-left" onClick={this.handleClick}>LOGOUT</p>
         );
     }
 }

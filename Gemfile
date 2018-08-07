@@ -21,7 +21,7 @@ gem 'puma', '~> 3.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'whenever', require: false
+gem 'httparty'
 
 
 # Use Capistrano for deployment
