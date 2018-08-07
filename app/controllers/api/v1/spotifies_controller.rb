@@ -1,6 +1,13 @@
 module Api::V1
   class SpotifiesController < ApplicationController
 
+    CLIENT_ID = "61949ea347f344009e8b87b0e5606c8c"
+    CLIENT_SECRET = "1158d8503dae4dcb86cacf4bf62904aa"
+    ENCRYPTION_SECRET = "cFJLyifeUJUBFWdHzVbykfDmPHtLKLGzViHW9aHGmyTLD8hGXC"
+    CLIENT_CALLBACK_URL = "spotifest://spotify"
+    AUTH_HEADER = "Basic " + Base64.strict_encode64(CLIENT_ID + ":" + CLIENT_SECRET)
+    SPOTIFY_ACCOUNTS_ENDPOINT = URI.parse("https://accounts.spotify.com")
+
     def index
       @spotify_users = Spotify.all
       render json: @spotify_users
@@ -15,8 +22,8 @@ module Api::V1
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        @old_user.user_info = hash(user_info)
-        @old_user.save
+        # @old_user.user_info = hash(user_info)
+        # @old_user.save
         token = encode_token({userId: @old_user.spotify_id, admin: @old_user.admin})
         redirect_to "http://localhost:3000/?token=#{token}"
       end
@@ -34,6 +41,10 @@ module Api::V1
         :headers => headers
         )
       @old_user = Spotify.find_by(spotify_id: result["id"])
+      @old_user.user_info["credentials"]["token"] = params[:accessToken]
+      @old_user.user_info["credentials"]["refresh_token"] = params[:refreshToken]
+      @old_user.user_info["credentials"]["expires_at"] = params[:expirationDate]
+      @old_user.save
       render json: @old_user.spotify_id
     end
 
@@ -54,7 +65,8 @@ module Api::V1
       @artists.each do |artist|
         @songs << RSpotify::Track.search("artist:#{artist.artist_name}", limit: params[:numberOfSongs])
       end
-      @songs.uniq!.flatten!
+      @songs.uniq!
+      @songs.flatten!
       add_tracks_to_spotify_playlist(@playlist, @songs)
       add_songs_to_playlist_object(@new_playlist, @songs)
       render json: @playlist
@@ -86,6 +98,32 @@ module Api::V1
     def delete_playlist
       @playlist = Playlist.find(params[:playlistId])
       @playlist.destroy
+    end
+
+    def token_swap
+      auth_code = params[:code]
+
+      http = Net::HTTP.new(SPOTIFY_ACCOUNTS_ENDPOINT.host, SPOTIFY_ACCOUNTS_ENDPOINT.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new("/api/token")
+
+      request.add_field("Authorization", AUTH_HEADER)
+
+      request.form_data = {
+          "grant_type" => "authorization_code",
+          "redirect_uri" => CLIENT_CALLBACK_URL,
+          "code" => auth_code
+      }
+
+      response = http.request(request)
+      # encrypt the refresh token before forwarding to the client
+      if response.code.to_i == 200
+          token_data = JSON.parse(response.body)
+          refresh_token = token_data["refresh_token"]
+          response.body = JSON.dump(token_data)
+      end
+      render json: response.body
     end
 
     private

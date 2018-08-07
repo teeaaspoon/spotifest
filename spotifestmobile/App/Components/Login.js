@@ -13,10 +13,6 @@ import { iosLogin } from "../actions/userActions";
 const SpotifyModule = NativeModules.SpotifyModule;
 
 class Login extends Component {
-    componentDidMount() {
-        console.log(SpotifyModule);
-    }
-
     onButtonPress() {
         SpotifyModule.authenticate(data => {
             this.props.iosLogin(data);

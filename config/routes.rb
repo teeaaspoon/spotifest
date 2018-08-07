@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/api/v1/:userId/playlists", to: 'api/v1/spotifies#fetch_playlists', as: :fetch_playlists
   delete "/api/v1/playlists/:playlistId", to: 'api/v1/spotifies#delete_playlist', as: :delete_playlist
 
+  post '/api/v1/swap', to: 'api/v1/spotifies#token_swap'
+  post '/api/v1/refresh', to: 'api/v1/spotifies#token_refresh'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do

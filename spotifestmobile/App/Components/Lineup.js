@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { fetchFestivalArtists } from "../actions/fetchActions";
 
 import Artist from "./Artist.js";
+import CreatePlaylist from "./CreatePlaylist";
 
 class Lineup extends Component {
     componentWillMount() {
@@ -29,6 +30,7 @@ class Lineup extends Component {
                     renderItem={({ item }) => <Artist artist={item} />}
                     keyExtractor={item => item.id.toString()}
                 />
+                <CreatePlaylist />
             </ImageBackground>
         );
     }
