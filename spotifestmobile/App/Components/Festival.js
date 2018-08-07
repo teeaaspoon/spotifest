@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { selectFestival } from "../actions/userActions";
 
-export default class Festival extends Component {
+import { connect } from "react-redux";
+
+class Festival extends Component {
     handlePress = () => {
+        // renders the lineup page
+        this.props.selectFestival(this.props.festival);
+        this.props.navigation.navigate("Lineup");
     };
 
     render() {
@@ -18,6 +24,11 @@ export default class Festival extends Component {
 
 const styles = StyleSheet.create({
     text: {
-        color: "white",
-    },
+        color: "white"
+    }
 });
+
+export default connect(
+    null,
+    { selectFestival }
+)(Festival);
