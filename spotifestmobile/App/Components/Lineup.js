@@ -6,7 +6,8 @@ import {
     FlatList,
     StyleSheet,
     TouchableOpacity,
-    ActionSheetIOS
+    ActionSheetIOS,
+    StatusBar
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -66,6 +67,9 @@ class Lineup extends Component {
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
+                <StatusBar
+                    barStyle= "light-content"
+                />
                 <Text style={styles.text}>{this.props.festivalSelected.title}</Text>
                 <View style={styles.buttonsContainer}>
                 <TouchableOpacity>
@@ -102,7 +106,8 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     text: {
-        margin: 8,
+        marginTop: 50,
+        marginBottom: 10,
         textAlign: "center",
         color: "white",
         fontSize: 30,

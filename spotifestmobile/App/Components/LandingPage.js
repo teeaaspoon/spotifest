@@ -6,7 +6,8 @@ import {
     Text,
     Image,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from "react-native";
 import { connect } from "react-redux";
 import {
@@ -37,8 +38,11 @@ class LandingPage extends Component {
                 source={require("./festival-pic.jpg")}
             >
                 <View style={styles.container}>
+                    <StatusBar
+                        barStyle= "light-content"
+                    />
                     <Image style={styles.logo} source={require("./Logo.png")} />
-                    {this.props.userId ? (
+                    {!this.props.userId ? (
                         <View>
                             <View style={styles.searchBarWrapper}>
                                 <TextInput

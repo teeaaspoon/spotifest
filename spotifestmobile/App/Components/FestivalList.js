@@ -5,7 +5,8 @@ import {
     FlatList,
     StyleSheet,
     ImageBackground,
-    ActionSheetIOS
+    ActionSheetIOS,
+    StatusBar
 } from "react-native";
 import { connect } from "react-redux";
 import { saveYear } from "../actions/filterFestivalActions.js";
@@ -33,6 +34,9 @@ class FestivalList extends Component {
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
+                <StatusBar
+                    barStyle= "light-content"
+                />
                 <View style={styles.listContainer}>
                     <View style={styles.filtersContainer}>
                         <Text
@@ -68,7 +72,7 @@ const styles = {
     },
     filtersContainer: {
         alignItems: "center",
-        marginTop: 10,
+        marginTop: 30,
         marginBottom: 20
     },
     filter: {
