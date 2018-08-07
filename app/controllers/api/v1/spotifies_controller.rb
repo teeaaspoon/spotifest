@@ -7,6 +7,7 @@ module Api::V1
     end
 
     def login
+      binding.pry
       user_info = RSpotify::User.new(request.env['omniauth.auth'])
       create_user(hash(user_info))
       @spotify_user.spotify_id = @spotify_user.user_info['id']
