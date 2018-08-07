@@ -4,6 +4,8 @@ import fetchReducer from "./fetchReducer";
 import userReducer from "./userReducer";
 // import genreReducer from "./genreReducer"
 import filterFestivalReducer from "./filterFestivalReducer";
+import artistReducer from "./artistReducer";
+
 
 
 export default combineReducers({
@@ -11,5 +13,6 @@ export default combineReducers({
     // map: mapReducer,
     user: userReducer,
     // genre: genreReducer
-    filterFestival: filterFestivalReducer
+    filterFestival: filterFestivalReducer,
+    artist: artistReducer
 });

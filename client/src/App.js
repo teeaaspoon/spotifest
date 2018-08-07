@@ -15,7 +15,6 @@ import "./App.css";
 
 class App extends Component {
     componentWillMount() {
-
         try {
             let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
             if (jwt) {
@@ -29,7 +28,6 @@ class App extends Component {
         } catch (error) {
             console.log(error);
         }
-
         // this.props.fetchFestivals();
         if ("geolocation" in navigator) {
             console.log("geolocation is available");
@@ -46,7 +44,6 @@ class App extends Component {
             });
         });
     }
-
     getParameterByName = (name, url) => {
             if (!url) url = window.location.href;
             name = name.replace(/[\[\]]/g, '\\$&');
@@ -60,7 +57,6 @@ class App extends Component {
         this.props.selectAllFestivals();
     }
     render() {
-
         let jwt = jwt = window.localStorage.getItem("jwt");
         let home;
         if (jwt) {
@@ -68,7 +64,6 @@ class App extends Component {
         } else {
             home = <Landing path="/" />
         }
-
         return (
             <Provider store={store}>
                 <Router>

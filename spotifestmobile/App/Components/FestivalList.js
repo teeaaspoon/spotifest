@@ -64,7 +64,7 @@ const styles = {
         height: "100%"
     },
     listContainer: {
-        padding: 10
+        padding: 30
     },
     filtersContainer: {
         alignItems: "center",
