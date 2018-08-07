@@ -36,7 +36,9 @@ class Artist extends Component {
                     <View>
                     {selectedOrNot === "selected" ? (
                         <TouchableOpacity onPress={this.pressSelected} style={styles.artistContainer}>
-                        <Text style={styles.selectedText}>{this.props.artist.artist_name}</Text>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.selectedText}>{this.props.artist.artist_name}</Text>
+                        </View>
                         <Image
 
                             source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
@@ -45,7 +47,9 @@ class Artist extends Component {
                         </TouchableOpacity>
                     ):(
                         <TouchableOpacity onPress={this.pressNotSelected} style={styles.artistContainer}>
-                        <Text style={styles.notSelectedText}>{this.props.artist.artist_name}</Text>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.notSelectedText}>{this.props.artist.artist_name}</Text>
+                        </View>
                         <Image
                             source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
                             style={styles.notSelectedArtistPhoto}
@@ -74,7 +78,8 @@ const styles = StyleSheet.create({
     selectedText: {
         color: "white",
         textTransform: "uppercase",
-        fontSize: 10
+        fontSize: 10,
+        textAlign: "center",
     },
     selectedArtistPhoto: {
         marginTop: 5,
@@ -88,7 +93,8 @@ const styles = StyleSheet.create({
     notSelectedText: {
         color: "gray",
         textTransform: "uppercase",
-        fontSize: 10
+        fontSize: 10,
+        textAlign: "center"
     },
     notSelectedArtistPhoto: {
         marginTop: 5,
@@ -99,7 +105,10 @@ const styles = StyleSheet.create({
         borderColor: "gray",
         borderWidth: 2,
         opacity: 0.2
-
+    },
+    textContainer: {
+        width: 100,
+        alignItems: "center"
     }
 });
 
