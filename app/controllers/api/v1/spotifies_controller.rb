@@ -14,10 +14,9 @@ module Api::V1
     end
 
     def login
-      refresh_info = request.env['omniauth.auth']
-      user_info = RSpotify::User.new(refresh_info)
+      user_info = RSpotify::User.new(request.env['omniauth.auth'])
       user_hash = user_info.to_hash
-      @spotify_user = Spotify.new(user_info: user_hash, refresh: refresh_info)
+      @spotify_user = Spotify.new(user_info: user_hash)
       @spotify_user.spotify_id = @spotify_user.user_info['id']
       token = encode_token({userId: @spotify_user.spotify_id})
       if @spotify_user.save
@@ -59,7 +58,6 @@ module Api::V1
 
     def create_spotify_playlist
       get_user
-      binding.pry
       @festival = Festival.find params[:festival][:id]
       @playlist = @RSpotify_user.create_playlist!(params[:playlistTitle])
       @new_playlist = @spotify_user.playlists.create!(spotify_playlist_info: @playlist, name: params[:playlistTitle])
@@ -157,9 +155,8 @@ module Api::V1
     def get_user
       @spotify_user_id = params[:userId]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
-      @RSpotify_user = RSpotify::User.new(@spotify_user.refresh)
-      user_hash = @RSpotify_user.to_hash
-      @spotify_user.user_info = user_hash
+      binding.pry
+      @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
     end
 
     def encode_token(payload={})

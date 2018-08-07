@@ -16,6 +16,8 @@ import {
     selectAllArtists
 } from "../actions/artistActions";
 
+import { createPlaylist } from "../actions/userActions";
+
 import Artist from "./Artist.js";
 
 class Lineup extends Component {
@@ -51,7 +53,7 @@ class Lineup extends Component {
         this.props.createPlaylist({
             playlistTitle: this.props.festivalSelected.title,
             festival: this.props.festivalSelected,
-            artistsSelected: this.props.festivalArtists,
+            artistsSelected: this.props.artistsSelected,
             numberOfSongs: this.state.numberOfSongs,
             userId: this.props.userId
         });
@@ -179,11 +181,17 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
-    festivalArtists: state.fetch.festivalArtists,
-    allArtists: state.artist.allArtists
+    allArtists: state.artist.allArtists,
+    userId: state.user.userId,
+    artistsSelected: state.artist.artistsSelected
 });
 
 export default connect(
     mapStateToProps,
-    { deselectAllArtists, initializeSelectedArtists, selectAllArtists }
+    {
+        deselectAllArtists,
+        initializeSelectedArtists,
+        selectAllArtists,
+        createPlaylist
+    }
 )(Lineup);
