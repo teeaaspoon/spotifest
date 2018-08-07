@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { Text, View, NativeModules, TouchableHighlight } from "react-native";
 
+import { connect } from "react-redux";
+import { iosLogin } from "../actions/userActions";
+
 const SpotifyModule = NativeModules.SpotifyModule;
 
-export default class Login extends Component {
+class Login extends Component {
     componentDidMount() {
         console.log(SpotifyModule);
     }
 
     onButtonPress() {
         SpotifyModule.authenticate(data => {
-            console.log(data);
+            this.props.iosLogin(data);
         });
     }
 
@@ -24,3 +27,8 @@ export default class Login extends Component {
         );
     }
 }
+
+export default connect(
+    null,
+    { iosLogin }
+)(Login);

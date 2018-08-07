@@ -21,3 +21,5 @@ export const SAVE_FESTIVAL_GENRES_SUM = "SAVE_FESTIVAL_GENRES_SUM";
 export const SAVE_GENRE = "SAVE_GENRE";
 export const REMOVE_GENRE = "REMOVE_GENRE";
 export const RESET_GENRE = "RESET_GENRE";
+
+export const IOS_LOGIN = "IOS_LOGIN";

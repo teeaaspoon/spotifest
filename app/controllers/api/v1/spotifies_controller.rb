@@ -22,6 +22,21 @@ module Api::V1
       end
     end
 
+    def ios_login
+       headers = {
+        "Accept"  => "application/json",
+        "Content-Type" => "application/json",
+        "Authorization" => "Bearer #{params[:accessToken]}"
+       }
+
+      result = HTTParty.get(
+        "https://api.spotify.com/v1/me",
+        :headers => headers
+        )
+      @old_user = Spotify.find_by(spotify_id: result["id"])
+      render json: @old_user.spotify_id
+    end
+
     def show
       render json: @spotify_user
     end

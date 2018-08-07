@@ -1,58 +1,82 @@
 import {
     SAVE_JWT,
     SELECT_FESTIVAL,
+    DESELECT_FESTIVAL,
     CREATE_PLAYLIST,
-    SELECT_ARTIST,
-    DESELECT_ARTIST,
-    SELECT_ALL_ARTISTS,
-    GET_SPOTIFY_USER
+    CLEAR_JWT,
+    CLEAR_NEW_PLAYLIST_NAME,
+    DELETE_PLAYLIST,
+    FETCH_USER_PLAYLISTS,
+    IOS_LOGIN
 } from "../actions/types";
 
 const initialState = {
     jwt: "",
-    spotifyUser: "",
+    userId: "",
     festivalSelected: "",
-    artistsSelected: []
+    artistsSelected: [],
+    newPlaylistName: "",
+    playlists: []
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
+        case FETCH_USER_PLAYLISTS:
+            return {
+                ...state,
+                playlists: action.payload
+            };
+        case DELETE_PLAYLIST:
+            return {
+                ...state,
+                playlists: state.playlists.filter(
+                    playlist => playlist.id !== action.payload
+                )
+            };
         case SAVE_JWT:
             return {
                 ...state,
                 jwt: action.payload
             };
-        case GET_SPOTIFY_USER:
+        case CLEAR_JWT:
             return {
                 ...state,
-                spotifyUser: action.payload
+                jwt: ""
             };
         case SELECT_FESTIVAL:
             return {
                 ...state,
-                artistsSelected: [],
                 festivalSelected: action.payload
+            };
+        case DESELECT_FESTIVAL:
+            return {
+                ...state,
+                festivalSelected: ""
             };
         case CREATE_PLAYLIST:
             return {
-                ...state
+                ...state,
+                newPlaylistName: action.payload
             };
-        case SELECT_ARTIST:
+        case CREATE_PLAYLIST:
             return {
                 ...state,
-                artistsSelected: [...state.artistsSelected, action.payload]
+                newPlaylistName: action.payload
             };
-        case DESELECT_ARTIST:
+        case CREATE_PLAYLIST:
             return {
                 ...state,
-                artistsSelected: state.artistsSelected.filter(
-                    artist => artist !== action.payload
-                )
+                newPlaylistName: action.payload
             };
-        case SELECT_ALL_ARTISTS:
+        case CLEAR_NEW_PLAYLIST_NAME:
             return {
                 ...state,
-                artistsSelected: action.payload
+                newPlaylistName: ""
+            };
+        case IOS_LOGIN:
+            return {
+                ...state,
+                userId: action.payload
             };
         default:
             return state;
