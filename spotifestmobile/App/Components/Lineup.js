@@ -60,7 +60,7 @@ class Lineup extends Component {
     }
 
     render() {
-        const numberOfSongs = `${this.state.numberOfSongs} songs / artist`
+        const numberOfSongs = `${this.state.numberOfSongs} SONGS / ARTIST`
         return (
             <ImageBackground
                 style={styles.background}
@@ -83,8 +83,8 @@ class Lineup extends Component {
                     numColumns={2}
                 />
                 <View style={styles.createContainer}>
-                    <Text onPress={this.showNumberOptions} style={styles.numberSongs}>{numberOfSongs}</Text>
-                    <Text onPress={this.createPlaylist} style={styles.createButton}>CREATE PLAYLIST</Text>
+                    <Text onPress={this.showNumberOptions} style={styles.createButtons}>{numberOfSongs}</Text>
+                    <Text onPress={this.createPlaylist} style={styles.createButtons}>CREATE PLAYLIST</Text>
                 </View>
             </ImageBackground>
         );
@@ -120,34 +120,25 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 20,
+        fontSize: 12,
         overflow: "hidden",
     },
     createContainer: {
         flexDirection: "row",
         backgroundColor: "transparent"
     },
-    numberSongs: {
+    createButtons: {
         color: "black",
-        fontSize: 15,
+        fontSize: 12,
         backgroundColor: "white",
         padding: 10,
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 20,
         overflow: "hidden",
-        margin: 8
+        margin: 8,
     },
-    createButton: {
-        color: "black",
-        fontSize: 15,
-        backgroundColor: "white",
-        padding: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        borderRadius: 20,
-        overflow: "hidden",
-        margin: 8
-    }
+
 
 });
 
