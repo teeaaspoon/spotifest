@@ -14,6 +14,13 @@ import { saveYear } from "../actions/filterFestivalActions.js";
 import Festival from "./Festival";
 
 class FestivalList extends Component {
+    compareName = (a, b) => {
+        if (a.title < b.title) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
     showYearOptions = () => {
         ActionSheetIOS.showActionSheetWithOptions(
             {
@@ -29,6 +36,7 @@ class FestivalList extends Component {
         );
     };
     render() {
+        const sortedFestivals = this.props.filteredFestivals.sort(this.compareName)
         return (
             <ImageBackground
                 style={styles.background}
@@ -47,7 +55,7 @@ class FestivalList extends Component {
                         </Text>
                     </View>
                     <FlatList
-                        data={this.props.filteredFestivals}
+                        data={sortedFestivals}
                         renderItem={({ item }) => (
                             <Festival
                                 festival={item}
@@ -68,7 +76,7 @@ const styles = {
         height: "100%"
     },
     listContainer: {
-        padding: 30
+        padding: 30,
     },
     filtersContainer: {
         alignItems: "center",

@@ -31,7 +31,6 @@ class LandingPage extends Component {
     };
 
     render() {
-        // console.log(this.props.filteredFestivals)
         return (
             <ImageBackground
                 style={styles.background}
@@ -42,7 +41,7 @@ class LandingPage extends Component {
                         barStyle= "light-content"
                     />
                     <Image style={styles.logo} source={require("./Logo.png")} />
-                    {!this.props.userId ? (
+                    {this.props.userId ? (
                         <View>
                             <View style={styles.searchBarWrapper}>
                                 <TextInput

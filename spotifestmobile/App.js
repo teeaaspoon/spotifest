@@ -22,14 +22,14 @@ class App extends Component {
                 screen: FestivalList,
                 navigationOptions: ({ navigation }) => ({
                   headerTransparent: true,
-                  headerTintColor: "#FF005A"
+                  headerTintColor: "white"
                 }),
             },
             Lineup: {
                 screen: Lineup,
                 navigationOptions: ({ navigation }) => ({
                   headerTransparent: true,
-                  headerTintColor: "#FF005A"
+                  headerTintColor: "white"
                 }),
             }
         });
