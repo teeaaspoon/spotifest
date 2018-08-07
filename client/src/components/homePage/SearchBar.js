@@ -51,7 +51,13 @@ class SearchBar extends Component {
           onChange={this.onSearch}
           onKeyDown={this.sendRequest}
           placeholder="search for festival..."
-          value={t}
+          value={this.props.filters.filter(
+                                            f => f.type === "search"
+                                        )[0]
+                                            ? this.props.filters.filter(
+                                                  f => f.type === "search"
+                                              )[0].args
+                                            : ""}
         />
         <p className={`${this.props.filteredFestivals.length === 0 && "showMessage"} requestMessage`}>This festival does not exist! Press enter to send a request!</p>
       </div>
