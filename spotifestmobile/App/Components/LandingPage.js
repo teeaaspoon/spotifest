@@ -36,31 +36,36 @@ class LandingPage extends Component {
             >
                 <View style={styles.container}>
                     <Image style={styles.logo} source={require("./Logo.png")} />
-                    <View style={styles.searchBarWrapper}>
-                        <TextInput
-                            style={styles.searchBar}
-                            value={
-                                this.props.filters.filter(
-                                    f => f.type === "search"
-                                )[0]
-                                    ? this.props.filters.filter(
-                                          f => f.type === "search"
-                                      )[0].args
-                                    : ""
-                            }
-                            onChangeText={this.onSearch}
-                            placeholder="TYPE FESTIVAL..."
-                            placeholderTextColor="white"
-                        />
-                    </View>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={this.goToFestivalList}
-                    >
-                        <Text style={styles.buttonText}>SEARCH</Text>
-                    </TouchableOpacity>
+                    {this.props.userId ? (
+                        <View>
+                            <View style={styles.searchBarWrapper}>
+                                <TextInput
+                                    style={styles.searchBar}
+                                    value={
+                                        this.props.filters.filter(
+                                            f => f.type === "search"
+                                        )[0]
+                                            ? this.props.filters.filter(
+                                                  f => f.type === "search"
+                                              )[0].args
+                                            : ""
+                                    }
+                                    onChangeText={this.onSearch}
+                                    placeholder="TYPE FESTIVAL..."
+                                    placeholderTextColor="white"
+                                />
+                            </View>
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={this.goToFestivalList}
+                            >
+                                <Text style={styles.buttonText}>SEARCH</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <Login />
+                    )}
                 </View>
-                <Login />
             </ImageBackground>
         );
     }
@@ -106,7 +111,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
     filters: state.filterFestival.filters,
-    filteredFestivals: state.filterFestival.filteredFestivals
+    filteredFestivals: state.filterFestival.filteredFestivals,
+    userId: state.user.userId
 });
 
 export default connect(
