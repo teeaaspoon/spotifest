@@ -114,15 +114,18 @@ class Lineup extends Component {
                     numColumns={2}
                 />
                 <View style={styles.createContainer}>
+                    {this.props.newPlaylistName ? (
+                    <View>
                     <Text
                         onPress={this.showNumberOptions}
                         style={styles.createButtons}
                     >
                         {numberOfSongs}
                     </Text>
-                    {!this.props.newPlaylistName ? (
-                    <Text onPress={this.makePlaylist} style={styles.createButtons}>{buttonMessage}</Text>):(
-                    <Text style={styles.createButtons}>PLAYLIST CREATED</Text>)}
+                    <Text onPress={this.makePlaylist} style={styles.createButtons}>{buttonMessage}</Text>
+                    </View>
+                    ):(
+                    <Text style={styles.playlistCreated}>PLAYLIST CREATED</Text>)}
                 </View>
             </ImageBackground>
         );
@@ -187,6 +190,17 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         overflow: "hidden",
         margin: 8
+    },
+    playlistCreated: {
+        color: "black",
+        backgroundColor: "#01E365",
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 20,
+        overflow: "hidden",
+        margin: 8,
+        fontSize: 12
     }
 });
 
