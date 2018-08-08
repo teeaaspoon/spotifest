@@ -13,7 +13,6 @@ import { setNav } from "../../actions/adminNavActions";
 import jwtDecode from "jwt-decode";
 import { Router, Link } from "@reach/router";
 
-
 class Admin extends Component {
     componentDidMount() {
         this.props.fetchRequests();
@@ -42,7 +41,12 @@ class Admin extends Component {
                         </p>
                         <div className="adminNav">
                             <div className="nav">
-                                <Link to="/"><p className="hvr-underline-from-left navBarHome"> HOME </p></Link>
+                                <Link to="/">
+                                    <p className="hvr-underline-from-left navBarHome">
+                                        {" "}
+                                        HOME{" "}
+                                    </p>
+                                </Link>
                                 <p
                                     onClick={this.handleNav}
                                     id="festivalFormNav"
@@ -100,7 +104,6 @@ class Admin extends Component {
             </div>
         );
     }
-
 }
 const mapStateToProps = state => ({
     requests: state.fetch.requests,

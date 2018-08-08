@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+
 /.bundle
 
 # Ignore all logfiles and tempfiles.
@@ -16,3 +17,4 @@
 .byebug_history
 
 bardia_db
+.env

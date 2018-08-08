@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>MOBILE_CALLBACK_URI</key>
+	<string>spotifest://spotify</string>
+	<key>CLIENT_ID</key>
+	<string>61949ea347f344009e8b87b0e5606c8c</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
