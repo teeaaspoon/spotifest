@@ -114,7 +114,7 @@ class Lineup extends Component {
                     numColumns={2}
                 />
                 <View style={styles.createContainer}>
-                    {this.props.newPlaylistName ? (
+                    {!this.props.newPlaylistName ? (
                     <View>
                     <Text
                         onPress={this.showNumberOptions}
