@@ -1,9 +1,12 @@
+require 'dotenv'
+Dotenv.load
+
 module Api::V1
   class SpotifiesController < ApplicationController
 
-    CLIENT_ID = "61949ea347f344009e8b87b0e5606c8c"
-    CLIENT_SECRET = "1158d8503dae4dcb86cacf4bf62904aa"
-    CLIENT_CALLBACK_URL = "spotifest://spotify"
+    CLIENT_ID = ENV["CLIENT_ID"]
+    CLIENT_SECRET = ENV["CLIENT_SECRET"]
+    CLIENT_CALLBACK_URL = ENV["MOBILE_CALLBACK_URI"]
     AUTH_HEADER = "Basic " + Base64.strict_encode64(CLIENT_ID + ":" + CLIENT_SECRET)
     SPOTIFY_ACCOUNTS_ENDPOINT = URI.parse("https://accounts.spotify.com")
 
