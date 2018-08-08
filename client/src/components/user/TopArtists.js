@@ -22,7 +22,7 @@ class TopArtists extends Component {
         // const topTen = this.props.allArtists.slice(0, 10)
         // const topArtists = topTen.map(artist => <TopArtist key={artist.id} artist={artist}/>)
         // console.log("top artists", topTen)
-        const topGenres = this.props.topGenres.map(genre => <TopGenre key={genre} genre={genre}/>)
+        const topGenres = this.props.topGenres.map(genre => <TopGenre key={genre} genre={genre}/>).slice(0, 5)
         const topArtists = this.props.topArtists.map(artist => <TopArtist key={artist.id} artist={artist}/>)
         const topTen = topArtists.slice(0, 10)
         return (

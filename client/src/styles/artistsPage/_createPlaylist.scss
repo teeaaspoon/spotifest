@@ -44,6 +44,7 @@
     padding: 0px;
     margin-bottom: 1rem;
     .select-number__control {
+      cursor: pointer;
       background-color: black;
       width: 15rem;
       color: white;
@@ -86,6 +87,7 @@
     height: 40px;
     width: 15rem;
     outline: none;
+    cursor: pointer;
     &:hover {
       background-color: $green;
       color: black;
