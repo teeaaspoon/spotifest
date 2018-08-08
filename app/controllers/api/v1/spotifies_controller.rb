@@ -23,11 +23,10 @@ module Api::V1
         redirect_to "http://localhost:3000/?token=#{token}"
       else
         @old_user = Spotify.find_by(spotify_id: @spotify_user.spotify_id)
-        @old_user.refresh = refresh_info
+        # @old_user.refresh = refresh_info
         @old_user.user_info = user_info.to_hash
         @old_user.save
         token = encode_token({userId: @old_user.spotify_id, admin: @old_user.admin})
-        binding.pry
         redirect_to "http://localhost:3000/?token=#{token}"
       end
     end
@@ -155,7 +154,6 @@ module Api::V1
     def get_user
       @spotify_user_id = params[:userId]
       @spotify_user = Spotify.find_by(spotify_id: @spotify_user_id)
-      binding.pry
       @RSpotify_user = RSpotify::User.new(@spotify_user.user_info)
     end
 
