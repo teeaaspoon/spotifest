@@ -6,6 +6,8 @@ import ArtistsToFestivalForm from "./ArtistsToFestivalForm";
 import { connect } from "react-redux";
 import { fetchArtists, fetchFestivals, fetchRequests } from "../../actions/fetchActions";
 import { setNav } from "../../actions/adminNavActions";
+import { Router, Link } from "@reach/router";
+
 
 
 
@@ -27,20 +29,21 @@ class Admin extends Component {
         <p className="spotifestLogo">SPOTI<span>FEST</span></p>
         <div className="adminNav">
           <div className="nav">
+            <Link to="/"><p className="hvr-underline-from-left navBarHome"> HOME </p></Link>
             <p onClick={this.handleNav}
               id="festivalFormNav"
-              className={`${this.props.selectedForm === "festivalForm" ? ("selectedNav") : ("notSelected")} festivalFormNav`}>
-              FESTIVAL FORM
+              className={`${this.props.selectedForm === "festivalForm" ? ("selectedNav") : ("notSelected")} hvr-underline-from-left festivalFormNav`}>
+              FESTIVAL
             </p>
             <p onClick={this.handleNav}
               id="artistFormNav"
-              className={`${this.props.selectedForm === "artistForm" ? ("selectedNav") : ("notSelected")} artistFormNav`}>
-              ARTIST FORM
+              className={`${this.props.selectedForm === "artistForm" ? ("selectedNav") : ("notSelected")} hvr-underline-from-left artistFormNav`}>
+              ARTIST
             </p>
             <p onClick={this.handleNav}
               id="artistToFestivalFormNav"
-              className={`${this.props.selectedForm === "artistToFestivalForm" ? ("selectedNav") : ("notSelected")} artistToFestivalFormNav`}>
-              ARTIST TO FESTIVAL FORM
+              className={`${this.props.selectedForm === "artistToFestivalForm" ? ("selectedNav") : ("notSelected")} hvr-underline-from-left artistToFestivalFormNav`}>
+              ARTIST TO FESTIVAL
             </p>
           </div>
         </div>
