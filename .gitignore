@@ -17,4 +17,4 @@
 .byebug_history
 
 bardia_db
-./.env
+.env
