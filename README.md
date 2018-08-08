@@ -76,11 +76,12 @@ Heading to a music festival and want to get hype for your must-see acts? Use Spo
 
 -   To set up the app's connection to Spotify, sign up for a free Spotify account at <https://www.spotify.com>
 -   Once you are logged in, create an app on this page <https://developer.spotify.com/dashboard/applications>
--   Update the project's .env file with the following credentials from your app:
+-   Create a .env file with the following credentials from your app:
     -   `CLIENT_ID`
     -   `CLIENT_SECRET`
     -   `WEB_CALLBACK_URI` without localhost. example: "/auth/spotify/callback"
     -   `MOBILE_CALLBACK_URI` example: "spotifest://spotify"
+-   Note: a .env.example is included for your reference
 -   On the Spotify app page, click the Edit Settings button, and add the following Redirect URIs:
 -   http://localhost:3001/auth/spotify/callback
 -   http://localhost:3001/auth/spotify
