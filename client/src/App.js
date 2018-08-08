@@ -18,7 +18,7 @@ class App extends Component {
         try {
             let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
             if (jwt) {
-                window.localStorage.setItem('jwt', jwt); //eslint-disable-line
+                window.localStorage.setItem("jwt", jwt); //eslint-disable-line
                 console.log(window.localStorage);
             } else {
                 jwt = window.localStorage.getItem("jwt");
@@ -45,25 +45,31 @@ class App extends Component {
         });
     }
     getParameterByName = (name, url) => {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return "";
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
     componentDidMount() {
         this.props.selectAllFestivals();
     }
     render() {
-        let jwt = jwt = window.localStorage.getItem("jwt");
+        let jwt = (jwt = window.localStorage.getItem("jwt"));
         let home;
+        // let admin;
         if (jwt) {
-            home = <Home path="/" />
+            home = <Home path="/" />;
         } else {
-            home = <Landing path="/" />
+            home = <Landing path="/" />;
         }
+        // if (jwt && jwt.admin) {
+        //     admin = <Admin path="/admin" />;
+        // } else {
+        //     admin = <Landing path="/admin" />;
+        // }
         return (
             <Provider store={store}>
                 <Router>
