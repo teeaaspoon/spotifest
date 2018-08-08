@@ -1,6 +1,8 @@
 require_relative 'boot'
 
 require "rails"
+require 'dotenv'
+Dotenv.load
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -43,6 +45,6 @@ module Spotifest
     config.session_store :cookie_store
     config.api_only = false
 
-    RSpotify::authenticate("93f4e88d8d0049ebaa27cef78dd4d9a7", "123fbd3643f340758de3c12782cbd67d")
+    RSpotify::authenticate(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"])
   end
 end
