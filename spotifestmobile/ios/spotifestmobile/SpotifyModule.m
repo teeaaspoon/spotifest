@@ -29,10 +29,12 @@ RCT_EXPORT_METHOD(authenticate:(RCTResponseSenderBlock)callback)
    */
   
   // The spotify client id
-  [[SPTAuth defaultInstance] setClientID:@"61949ea347f344009e8b87b0e5606c8c"];
+  NSString *CLIENT_ID = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CLIENT_ID"];
+  NSString *MOBILE_CALLBACK_URI = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"MOBILE_CALLBACK_URI"];
+  [[SPTAuth defaultInstance] setClientID:CLIENT_ID];
   
   // The callback (called Custom URL Scheme in XCode project configuration)
-  [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:@"spotifest://spotify"]];
+  [[SPTAuth defaultInstance] setRedirectURL:[NSURL URLWithString:MOBILE_CALLBACK_URI]];
   // The scope request for the token
   [[SPTAuth defaultInstance] setRequestedScopes:@[SPTAuthUserReadPrivateScope, SPTAuthUserReadEmailScope, SPTAuthUserFollowReadScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistReadPrivateScope, SPTAuthUserLibraryReadScope, SPTAuthUserLibraryModifyScope, SPTAuthUserReadTopScope]];
   // OPTIONAL. Allows retrieval of refresheable tokens. If not specified, it uses the 'Implicit Grant' auth workflow

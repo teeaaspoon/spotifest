@@ -1,5 +1,5 @@
 .barChart {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   padding-left: 0px;
   display: flex;
   align-items: center;
@@ -27,6 +27,7 @@
     height: 38px;
     width: 15rem;
     outline: none;
+    cursor: pointer;
     &:hover {
       background-color: $green;
       border-color: $green;
