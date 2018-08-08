@@ -19,10 +19,8 @@ class App extends Component {
             let jwt = this.getParameterByName("token", location.search); //eslint-disable-line
             if (jwt) {
                 window.localStorage.setItem("jwt", jwt); //eslint-disable-line
-                console.log(window.localStorage);
             } else {
                 jwt = window.localStorage.getItem("jwt");
-                console.log(jwt);
             }
             this.props.getJwt(jwtDecode(jwt));
         } catch (error) {
@@ -65,11 +63,6 @@ class App extends Component {
         } else {
             home = <Landing path="/" />;
         }
-        // if (jwt && jwt.admin) {
-        //     admin = <Admin path="/admin" />;
-        // } else {
-        //     admin = <Landing path="/admin" />;
-        // }
         return (
             <Provider store={store}>
                 <Router>
