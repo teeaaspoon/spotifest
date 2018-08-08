@@ -63,7 +63,7 @@ class GenreChart extends Component {
             <p className="festivalTitle">{this.props.festivalSelected.title}</p>
             <p className="topGenreLabel">top genres</p>
             <Bar
-              height={550}
+              height={500}
               width={600}
               data={data}
               options= {chartOptions}

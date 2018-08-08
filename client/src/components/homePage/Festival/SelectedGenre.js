@@ -5,6 +5,7 @@ import { removeGenre } from "../../../actions/genreActions.js";
 
 class SelectedGenre extends Component {
   deleteGenre = (ev) => {
+    console.log("deleted: ", ev.target)
     this.props.removeGenre(ev.target.id)
   }
 
@@ -13,7 +14,7 @@ class SelectedGenre extends Component {
       <div className="selectedGenre">
         {this.props.genre}
         <span>
-          <button id={this.props.genre} onClick={this.deleteGenre}><i className="fa fa-remove"></i></button>
+          <button onClick={this.deleteGenre}><i id={this.props.genre} className="fa fa-remove"></i></button>
         </span>
       </div>
     )
