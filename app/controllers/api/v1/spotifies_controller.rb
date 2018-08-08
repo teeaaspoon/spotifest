@@ -3,7 +3,6 @@ module Api::V1
 
     CLIENT_ID = "61949ea347f344009e8b87b0e5606c8c"
     CLIENT_SECRET = "1158d8503dae4dcb86cacf4bf62904aa"
-    ENCRYPTION_SECRET = "cFJLyifeUJUBFWdHzVbykfDmPHtLKLGzViHW9aHGmyTLD8hGXC"
     CLIENT_CALLBACK_URL = "spotifest://spotify"
     AUTH_HEADER = "Basic " + Base64.strict_encode64(CLIENT_ID + ":" + CLIENT_SECRET)
     SPOTIFY_ACCOUNTS_ENDPOINT = URI.parse("https://accounts.spotify.com")
