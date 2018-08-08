@@ -12,9 +12,26 @@ import Lineup from "./App/Components/Lineup";
 class App extends Component {
     render() {
         const MainNavigator = createStackNavigator({
-            Home: { screen: Main },
-            FestivalList: { screen: FestivalList },
-            Lineup: { screen: Lineup }
+            Home: {
+                screen: Main,
+                navigationOptions: ({ navigation }) => ({
+                  headerTransparent: true,
+                }),
+            },
+            FestivalList: {
+                screen: FestivalList,
+                navigationOptions: ({ navigation }) => ({
+                  headerTransparent: true,
+                  headerTintColor: "white"
+                }),
+            },
+            Lineup: {
+                screen: Lineup,
+                navigationOptions: ({ navigation }) => ({
+                  headerTransparent: true,
+                  headerTintColor: "white"
+                }),
+            }
         });
         return (
             <Provider store={store}>
@@ -25,8 +42,8 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        marginTop: 20
+    back: {
+        color: "red"
     }
 });
 

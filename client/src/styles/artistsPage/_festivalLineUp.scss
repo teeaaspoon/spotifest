@@ -19,14 +19,14 @@
       margin-left: 20px;
       margin-right: 20px;
       margin-bottom: 40px;
-      border: 2px solid $green;
+      border: 3px solid $green;
       &.selected {
         border-color: $green;
 
       }
       &.notSelected {
         border-color: gray;
-        filter: brightness(15%) grayscale(100%);
+        filter: brightness(25%) grayscale(100%);
       }
     }
   }

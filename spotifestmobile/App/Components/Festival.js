@@ -11,10 +11,11 @@ class Festival extends Component {
         this.props.navigation.navigate("Lineup");
     };
 
+
     render() {
         return (
             <View>
-                <TouchableOpacity onPress={this.handlePress}>
+                <TouchableOpacity style={styles.festivalContainer} onPress={this.handlePress}>
                     <Text style={styles.text}>{this.props.festival.title}</Text>
                 </TouchableOpacity>
             </View>
@@ -23,8 +24,14 @@ class Festival extends Component {
 }
 
 const styles = StyleSheet.create({
+    festivalContainer: {
+        padding: 5,
+        borderBottomColor: "gray",
+        borderBottomWidth: 0.5,
+    },
     text: {
-        color: "white"
+        color: "white",
+        fontSize: 15,
     }
 });
 

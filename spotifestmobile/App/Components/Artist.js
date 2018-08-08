@@ -14,6 +14,16 @@ class Artist extends Component {
     }
 
     render() {
+        let isloaded = false
+        if (this.props.artist) {
+          if (this.props.artist.spotify_artist_info) {
+            if (this.props.artist.spotify_artist_info.images[0]) {
+              if (this.props.artist.spotify_artist_info.images[0].url) {
+                isloaded = true
+              }
+            }
+          }
+        }
         let selectedOrNot = "selected"
         if (!this.props.artistsSelected) {
           selectedOrNot = "notSelected"
@@ -22,24 +32,32 @@ class Artist extends Component {
         }
         return (
             <View styles={styles.container}>
-                {selectedOrNot === "selected" ? (
-                    <TouchableOpacity onPress={this.pressSelected} style={styles.artistContainer}>
-                    <Text style={styles.selectedText}>{this.props.artist.artist_name}</Text>
-                    <Image
+                {isloaded &&
+                    <View>
+                    {selectedOrNot === "selected" ? (
+                        <TouchableOpacity onPress={this.pressSelected} style={styles.artistContainer}>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.selectedText}>{this.props.artist.artist_name}</Text>
+                        </View>
+                        <Image
 
-                        source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
-                        style={styles.selectedArtistPhoto}
-                    />
-                    </TouchableOpacity>
-                ):(
-                    <TouchableOpacity onPress={this.pressNotSelected} style={styles.artistContainer}>
-                    <Text style={styles.notSelectedText}>{this.props.artist.artist_name}</Text>
-                    <Image
-                        source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
-                        style={styles.notSelectedArtistPhoto}
-                    />
-                    </TouchableOpacity>
-                )}
+                            source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
+                            style={styles.selectedArtistPhoto}
+                        />
+                        </TouchableOpacity>
+                    ):(
+                        <TouchableOpacity onPress={this.pressNotSelected} style={styles.artistContainer}>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.notSelectedText}>{this.props.artist.artist_name}</Text>
+                        </View>
+                        <Image
+                            source={{uri: this.props.artist.spotify_artist_info.images[0].url}}
+                            style={styles.notSelectedArtistPhoto}
+                        />
+                        </TouchableOpacity>
+                    )}
+                    </View>
+                }
             </View>
         );
     }
@@ -60,7 +78,8 @@ const styles = StyleSheet.create({
     selectedText: {
         color: "white",
         textTransform: "uppercase",
-        fontSize: 10
+        fontSize: 10,
+        textAlign: "center",
     },
     selectedArtistPhoto: {
         marginTop: 5,
@@ -74,7 +93,8 @@ const styles = StyleSheet.create({
     notSelectedText: {
         color: "gray",
         textTransform: "uppercase",
-        fontSize: 10
+        fontSize: 10,
+        textAlign: "center"
     },
     notSelectedArtistPhoto: {
         marginTop: 5,
@@ -85,7 +105,10 @@ const styles = StyleSheet.create({
         borderColor: "gray",
         borderWidth: 2,
         opacity: 0.2
-
+    },
+    textContainer: {
+        width: 100,
+        alignItems: "center"
     }
 });
 

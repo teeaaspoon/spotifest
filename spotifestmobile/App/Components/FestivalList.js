@@ -5,7 +5,8 @@ import {
     FlatList,
     StyleSheet,
     ImageBackground,
-    ActionSheetIOS
+    ActionSheetIOS,
+    StatusBar
 } from "react-native";
 import { connect } from "react-redux";
 import { saveYear } from "../actions/filterFestivalActions.js";
@@ -13,6 +14,13 @@ import { saveYear } from "../actions/filterFestivalActions.js";
 import Festival from "./Festival";
 
 class FestivalList extends Component {
+    compareName = (a, b) => {
+        if (a.title < b.title) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
     showYearOptions = () => {
         ActionSheetIOS.showActionSheetWithOptions(
             {
@@ -28,11 +36,15 @@ class FestivalList extends Component {
         );
     };
     render() {
+        const sortedFestivals = this.props.filteredFestivals.sort(this.compareName)
         return (
             <ImageBackground
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
+                <StatusBar
+                    barStyle= "light-content"
+                />
                 <View style={styles.listContainer}>
                     <View style={styles.filtersContainer}>
                         <Text
@@ -43,7 +55,7 @@ class FestivalList extends Component {
                         </Text>
                     </View>
                     <FlatList
-                        data={this.props.filteredFestivals}
+                        data={sortedFestivals}
                         renderItem={({ item }) => (
                             <Festival
                                 festival={item}
@@ -64,11 +76,11 @@ const styles = {
         height: "100%"
     },
     listContainer: {
-        padding: 30
+        padding: 30,
     },
     filtersContainer: {
         alignItems: "center",
-        marginTop: 10,
+        marginTop: 30,
         marginBottom: 20
     },
     filter: {

@@ -6,7 +6,8 @@ import {
     Text,
     Image,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from "react-native";
 import { connect } from "react-redux";
 import {
@@ -25,18 +26,18 @@ class LandingPage extends Component {
         this.props.saveSearchInput(text);
     };
     goToFestivalList = () => {
-        this.props.saveYear("")
+        this.props.saveYear("");
         this.props.navigate();
     };
 
     render() {
-        // console.log(this.props.filteredFestivals)
         return (
             <ImageBackground
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
                 <View style={styles.container}>
+                    <StatusBar barStyle="light-content" />
                     <Image style={styles.logo} source={require("./Logo.png")} />
                     {this.props.userId ? (
                         <View>

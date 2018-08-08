@@ -6,7 +6,8 @@ import {
     FlatList,
     StyleSheet,
     TouchableOpacity,
-    ActionSheetIOS
+    ActionSheetIOS,
+    StatusBar
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -24,7 +25,8 @@ class Lineup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numberOfSongs: 10
+            numberOfSongs: 10,
+            loadingMessage: ""
         };
     }
     handleDeselect = () => {
@@ -50,6 +52,7 @@ class Lineup extends Component {
         );
     };
     makePlaylist = () => {
+        this.setState({...this.state, loadingMessage: "CREATING PLAYLIST"})
         this.props.createPlaylist({
             playlistTitle: this.props.festivalSelected.title,
             festival: this.props.festivalSelected,
@@ -69,15 +72,25 @@ class Lineup extends Component {
     }
 
     render() {
+        let newPlaylistMessage = ""
+        if (this.props.newPlaylistName) {
+          newPlaylistMessage = `your playlist "${this.props.newPlaylistName}" was created!`
+        }
+        let buttonMessage = "CREATE PLAYLIST"
+        if (this.state.loadingMessage) {
+          buttonMessage = this.state.loadingMessage
+        }
         const numberOfSongs = `${this.state.numberOfSongs} SONGS / ARTIST`;
         return (
             <ImageBackground
                 style={styles.background}
                 source={require("./festival-pic.jpg")}
             >
-                <Text style={styles.text}>
-                    {this.props.festivalSelected.title}
-                </Text>
+                <StatusBar
+                    barStyle= "light-content"
+                />
+                <Text style={styles.text}>{this.props.festivalSelected.title}</Text>
+
                 <View style={styles.buttonsContainer}>
                     <TouchableOpacity>
                         <Text onPress={this.handleSelect} style={styles.button}>
@@ -107,12 +120,9 @@ class Lineup extends Component {
                     >
                         {numberOfSongs}
                     </Text>
-                    <Text
-                        onPress={this.makePlaylist}
-                        style={styles.createButtons}
-                    >
-                        CREATE PLAYLIST
-                    </Text>
+                    {!this.props.newPlaylistName ? (
+                    <Text onPress={this.makePlaylist} style={styles.createButtons}>{buttonMessage}</Text>):(
+                    <Text style={styles.createButtons}>PLAYLIST CREATED</Text>)}
                 </View>
             </ImageBackground>
         );
@@ -142,7 +152,8 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     text: {
-        margin: 8,
+        marginTop: 50,
+        marginBottom: 0,
         textAlign: "center",
         color: "white",
         fontSize: 30,
@@ -183,7 +194,8 @@ const mapStateToProps = state => ({
     festivalSelected: state.user.festivalSelected,
     allArtists: state.artist.allArtists,
     userId: state.user.userId,
-    artistsSelected: state.artist.artistsSelected
+    artistsSelected: state.artist.artistsSelected,
+    newPlaylistName: state.user.newPlaylistName
 });
 
 export default connect(
