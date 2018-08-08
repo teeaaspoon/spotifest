@@ -11,6 +11,7 @@ import {
 } from "../../actions/fetchActions";
 import { setNav } from "../../actions/adminNavActions";
 import jwtDecode from "jwt-decode";
+import { Router, Link } from "@reach/router";
 
 class Admin extends Component {
     componentDidMount() {
@@ -40,6 +41,12 @@ class Admin extends Component {
                         </p>
                         <div className="adminNav">
                             <div className="nav">
+                                <Link to="/">
+                                    <p className="hvr-underline-from-left navBarHome">
+                                        {" "}
+                                        HOME{" "}
+                                    </p>
+                                </Link>
                                 <p
                                     onClick={this.handleNav}
                                     id="festivalFormNav"
@@ -48,7 +55,7 @@ class Admin extends Component {
                                         "festivalForm"
                                             ? "selectedNav"
                                             : "notSelected"
-                                    } festivalFormNav`}
+                                    } festivalFormNav hvr-underline-from-left`}
                                 >
                                     FESTIVAL FORM
                                 </p>
@@ -59,7 +66,7 @@ class Admin extends Component {
                                         this.props.selectedForm === "artistForm"
                                             ? "selectedNav"
                                             : "notSelected"
-                                    } artistFormNav`}
+                                    } artistFormNav hvr-underline-from-left`}
                                 >
                                     ARTIST FORM
                                 </p>
@@ -71,7 +78,7 @@ class Admin extends Component {
                                         "artistToFestivalForm"
                                             ? "selectedNav"
                                             : "notSelected"
-                                    } artistToFestivalFormNav`}
+                                    } artistToFestivalFormNav hvr-underline-from-left`}
                                 >
                                     ARTIST TO FESTIVAL FORM
                                 </p>
