@@ -9,7 +9,8 @@ const store = createStore(
     rootReducer,
     initialState,
     compose(
-        applyMiddleware(...middleware)
+        applyMiddleware(...middleware),
+        // Uncomment the following lines to use Redux Chrome DevTools
         // window.__REDUX_DEVTOOLS_EXTENSION__ &&
         //     window.__REDUX_DEVTOOLS_EXTENSION__()
     )
