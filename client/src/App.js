@@ -67,8 +67,8 @@ class App extends Component {
             <Provider store={store}>
                 <Router>
                     {home}
-                    <Admin path="/admin" />
                     <User path="/user/:userId" />
+                    <Admin path="/admin" />
                 </Router>
             </Provider>
         );

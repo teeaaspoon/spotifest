@@ -1,45 +1,44 @@
 .playlistList {
-  border-top: 1px solid $black;
-  padding-top: 6rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .playlistListTitle {
-    font-family: $markerFont;
-    font-size: 22px;
-    margin-bottom: 3rem;
-  }
-  .playlistsContainer {
+    border-top: 1px solid $black;
+    padding-top: 6rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    .playlistDiv {
-      margin-left: 1rem;
-      margin-right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      button {
-        font-family: $spotifyFont;
-        background-color: white;
-        color: black;
-        border-radius: 20px;
-        padding: 0.5rem;
-        margin-bottom: 0px;
-        margin-left: 0.5rem;
-        margin-top: 1rem;
-        border: 1px solid white;
-        height: 38px;
-        width: 15rem;
-        outline: none;
-        &:hover {
-          background-color: $green;
-          border-color: $green;
-        }
-      }
+    flex-direction: column;
+    align-items: center;
+    .playlistListTitle {
+        font-family: $markerFont;
+        font-size: 22px;
+        margin-bottom: 3rem;
     }
-  }
+    .playlistsContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .playlistDiv {
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            button {
+                font-family: $spotifyFont;
+                background-color: white;
+                color: black;
+                border-radius: 20px;
+                padding: 0.5rem;
+                margin-bottom: 0px;
+                margin-left: 0.5rem;
+                margin-top: 1rem;
+                border: 1px solid white;
+                height: 38px;
+                width: 15rem;
+                outline: none;
+                &:hover {
+                    background-color: $green;
+                    border-color: $green;
+                }
+            }
+        }
+    }
 }
