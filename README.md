@@ -4,15 +4,13 @@ Heading to a music festival and want to get hype for your must-see acts? Use Spo
 
 # Screenshots
 
-!["Home"]()
+!["Home"](https://github.com/teeaaspoon/spotifest/blob/master/public/gifs/ezgif.com-video-to-gif%20(3).gif)
 
-!["Profile"]()
+!["Profile"](https://github.com/teeaaspoon/spotifest/blob/master/public/gifs/ezgif.com-video-to-gif%20(1).gif)
 
-!["Admin"]()
+!["Admin"](https://github.com/teeaaspoon/spotifest/blob/master/public/gifs/ezgif.com-video-to-gif%20(2).gif)
 
-!["Landing"]()
-
-!["iOs"]()
+!["iOs"](https://github.com/teeaaspoon/spotifest/blob/master/public/gifs/ezgif.com-video-to-gif.gif)
 
 ## Rails API Dependencies
 
